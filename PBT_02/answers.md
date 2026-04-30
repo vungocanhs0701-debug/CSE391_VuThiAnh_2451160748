@@ -156,3 +156,9 @@ Dùng khi hình ảnh cần kèm theo chú thích/diễn giải như giá, mô t
 **Ví dụ thực tế:**
 - Ảnh sản phẩm trong trang chi tiết sản phẩm kèm giá và mô tả (ví dụ: "iPhone 16 Pro Max — 25.990.000đ").
 - Ảnh biểu đồ thống kê doanh thu trong báo cáo kèm chú thích giải thích số liệu hoặc nguồn dữ liệu.
+
+
+### Giải thích: Vì sao HTML không thể validate Confirm Password?
+HTML5 chỉ hỗ trợ validation theo từng input riêng lẻ như required, minlength, pattern,...
+Nó không có cơ chế so sánh giá trị giữa 2 input khác nhau (password và confirm password).
+Vì vậy việc kiểm tra "Xác nhận mật khẩu" phải dùng JavaScript hoặc xử lý ở phía server.
