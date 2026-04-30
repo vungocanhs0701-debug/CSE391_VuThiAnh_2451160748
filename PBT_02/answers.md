@@ -162,3 +162,115 @@ Dùng khi hình ảnh cần kèm theo chú thích/diễn giải như giá, mô t
 HTML5 chỉ hỗ trợ validation theo từng input riêng lẻ như required, minlength, pattern,...
 Nó không có cơ chế so sánh giá trị giữa 2 input khác nhau (password và confirm password).
 Vì vậy việc kiểm tra "Xác nhận mật khẩu" phải dùng JavaScript hoặc xử lý ở phía server.
+
+# Phần C
+## Câu C1 (10đ) — Debug Form
+### Lỗi 1: Dòng 2 — Input "Tên" không có `<label for="...">` (accessibility)
+**Sửa:**
+```html
+<label for="name">Tên:</label>
+<input type="text" id="name" name="name" required>
+```
+### Lỗi 2: Dòng 2 — Input "Tên" thiếu name attribute (best practice)
+**Sửa:**
+```html
+<input type="text" id="name" name="name" required>
+```
+### Lỗi 3: Dòng 4 — Input email không có `<label>` (accessibility)
+**Sửa:**
+```html
+<label for="email">Email:</label>
+<input type="email" id="email" name="email" placeholder="Email của bạn" required>
+```
+### Lỗi 4: Dòng 4 — Email thiếu required nên có thể để trống (validation)
+**Sửa:**
+```html
+<input type="email" id="email" name="email" placeholder="Email của bạn" required>
+```
+### Lỗi 5: Dòng 6-7 — Password không có rule validate (minlength/pattern) (validation)
+**Sửa:**
+```html
+<label for="password">Mật khẩu:</label>
+<input type="password" id="password" name="password"
+       placeholder="Mật khẩu"
+       required minlength="8">
+
+<label for="confirmPassword">Nhập lại mật khẩu:</label>
+<input type="password" id="confirmPassword" name="confirmPassword"
+       placeholder="Nhập lại mật khẩu"
+       required minlength="8">
+```
+### Lỗi 6: Dòng 9 — Phone dùng `type="text"` thay vì `type="tel"` (best practice + validation)
+**Sửa:**
+```html
+<label for="phone">Phone:</label>
+<input type="tel" id="phone" name="phone"
+       placeholder="0901234567"
+       pattern="[0-9]{10}" required>
+```
+### Lỗi 7: Dòng 9 — Phone dùng `value="0901234567"` sai best practice (nên dùng placeholder)
+**Sửa:**
+```html
+<input type="tel" id="phone" name="phone" placeholder="0901234567" required>
+```
+### Lỗi 8: Dòng 11-14 — `<select>` không có `<label> `và thiếu name + thiếu option mặc định (accessibility + validation)
+**Sửa:**
+```html
+<label for="city">Thành phố:</label>
+<select id="city" name="city" required>
+    <option value="">-- Chọn thành phố --</option>
+    <option value="hanoi">Hà Nội</option>
+    <option value="hcm">TP.HCM</option>
+</select>
+```
+### Lỗi 9: Dòng 16-18 — Checkbox đồng ý điều khoản thiếu `<input type="checkbox">` và thiếu required
+**Sửa:**
+```html
+<input type="checkbox" id="agree" name="agree" required>
+<label for="agree">Tôi đồng ý điều khoản</label>
+```
+### Lỗi 10: Dòng 20 — Nút submit dùng `<input type="submit">` vẫn đúng nhưng nên dùng `<button>` (best practice)
+**Sửa:**
+```html
+<button type="submit">Gửi</button>
+```
+## Câu C2 (10đ) — Thiết kế chiến lược Validation
+### 1. Pattern regex
+
+**CMND/CCCD (12 chữ số):**
+```html
+pattern="[0-9]{12}"
+```
+**Số tài khoản (10–15 chữ số):**
+```html
+pattern="[0-9]{10,15}"
+```
+**Email: bắt buộc, đúng format:**
+```html
+<input type="email" required>
+```
+**PIN: đúng 6 chữ số, KHÔNG hiển thị:**
+```html
+<input type="password" pattern="[0-9]{6}" maxlength="6" required>
+```
+### 2. HTML5 validation có đủ an toàn cho ngân hàng không?
+Không đủ an toàn.
+Lý do:
+- HTML5 validation chạy trên trình duyệt (client-side) → người dùng có thể:
+    + Tắt JavaScript / chỉnh HTML bằng DevTools
+    + Gửi request giả bằng Postman / API tool
+- Không có khả năng kiểm tra logic bảo mật thực sự
+- Không bảo vệ dữ liệu khi bị tấn công trực tiếp vào server
+Kết luận: HTML5 chỉ để hỗ trợ UX, không phải bảo mật.
+### 3. 3 thứ HTML5 KHÔNG làm được (phải dùng JavaScript)
+**So sánh dữ liệu giữa 2 field**
+    Ví dụ: password = confirm password
+**Kiểm tra dữ liệu từ server**
+    Ví dụ: email đã tồn tại hay chưa (API check)
+**Logic validation phức tạp**
+    Ví dụ: kiểm tra số dư tài khoản, hạn mức giao dịch, OTP hợp lệ
+### 4. 2 rủi ro nếu chỉ validate frontend
+**Người dùng giả mạo request**
+    Bypass form bằng Postman/cURL → gửi dữ liệu sai hoặc độc hại
+**Dữ liệu sai lọt vào database**
+    Backend không kiểm tra → lưu dữ liệu lỗi → gây lỗi hệ thống hoặc gian lận
