@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Test - PBT02</title>
+</head>
+<body>
+    <h1>Validation Test (Câu A2)</h1>
+
+    <form>
+        <h3>Trường hợp 1: required (để trống)</h3>
+        <input type="text" required value="">
+        <hr>
+
+        <h3>Trường hợp 2: email không hợp lệ</h3>
+        <input type="email" value="abc">
+        <hr>
+
+        <h3>Trường hợp 3: number vượt max</h3>
+        <input type="number" min="1" max="10" value="15">
+        <hr>
+
+        <h3>Trường hợp 4: pattern sai định dạng</h3>
+        <input type="text" pattern="[0-9]{10}" value="abc123">
+        <hr>
+
+        <h3>Trường hợp 5: minlength quá ngắn</h3>
+        <input type="password" minlength="8" value="123">
+        <hr>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
