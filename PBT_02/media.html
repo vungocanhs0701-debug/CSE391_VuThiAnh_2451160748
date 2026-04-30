@@ -1,0 +1,96 @@
+<!-- media.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Multimedia - Giới thiệu sản phẩm</title>
+</head>
+<body>
+    <header>
+        <h1>Giới thiệu sản phẩm - Multimedia</h1>
+
+        <!-- SVG inline (logo đơn giản) -->
+        <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" fill="#007bff"></circle>
+            <text x="50" y="58" text-anchor="middle" font-size="24" fill="white">
+                Shop
+            </text>
+        </svg>
+
+        <p>Trang demo đa phương tiện cho E-Commerce (Ảnh, Video, Audio, SVG).</p>
+    </header>
+
+    <hr>
+
+    <main>
+        <h2>Ảnh sản phẩm</h2>
+
+        <!-- Ảnh responsive -->
+        <figure>
+            <img src="screenshots/iphone16.jpg"
+                 alt="iPhone 16 Pro Max màu titan, mặt lưng và camera"
+                 loading="lazy"
+                 style="max-width: 100%; height: auto;">
+            <figcaption>iPhone 16 Pro Max — 25.990.000đ</figcaption>
+        </figure>
+
+        <figure>
+            <img src="screenshots/airpods.jpg"
+                 alt="Tai nghe AirPods Pro màu trắng đặt trong hộp sạc"
+                 loading="lazy"
+                 style="max-width: 100%; height: auto;">
+            <figcaption>AirPods Pro Gen 2 — 5.490.000đ</figcaption>
+        </figure>
+
+        <figure>
+            <img src="screenshots/watch.png"
+                 alt="Apple Watch màu đen với dây silicone thể thao"
+                 loading="lazy"
+                 style="max-width: 100%; height: auto;">
+            <figcaption>Apple Watch Series 9 — 9.990.000đ</figcaption>
+        </figure>
+
+        <hr>
+
+        <h2>Video review (YouTube embed)</h2>
+
+        <iframe width="560" height="315"
+                src="https://www.youtube.com/embed/ifDRD6MbsUs"
+                title="Video review sản phẩm"
+                frameborder="0"
+                allowfullscreen
+                loading="lazy"></iframe>
+
+        <hr>
+
+        <h2>Video giới thiệu sản phẩm (HTML5 video)</h2>
+
+        <video controls width="640"
+               poster="screenshots/thumbnail.jpg"
+               preload="metadata"
+               style="max-width: 100%; height: auto;">
+            <source src="screenshots/review.mp4" type="video/mp4">
+            <source src="screenshots/review.webm" type="video/webm">
+            <p>Trình duyệt không hỗ trợ video. <a href="review.mp4">Tải video</a></p>
+        </video>
+
+        <hr>
+
+        <h2>Audio giới thiệu</h2>
+
+        <audio controls>
+            <source src="screenshots/intro.mp3" type="audio/mpeg">
+            <source src="screenshots/intro.ogg" type="audio/ogg">
+            <p>Trình duyệt không hỗ trợ audio. <a href="intro.mp3">Tải audio</a></p>
+        </audio>
+
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>&copy; 2026 Demo Multimedia E-Commerce</p>
+    </footer>
+</body>
+</html>
