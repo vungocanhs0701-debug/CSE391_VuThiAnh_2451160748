@@ -65,6 +65,10 @@ nav a:hover::after {
     width: 100%;
 }
 
+
+.menu-toggle, .hamburger {
+    display: none;
+}
 .hero {
     min-height: 100vh;
     background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
@@ -106,12 +110,7 @@ nav a:hover::after {
 .cta-button:hover {
     transform: scale(1.08);
     box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-}
-
-.menu-toggle, .hamburger {
-    display: none;
-}
-
+}  
 .hamburger {
     display: none;
     font-size: 30px;
