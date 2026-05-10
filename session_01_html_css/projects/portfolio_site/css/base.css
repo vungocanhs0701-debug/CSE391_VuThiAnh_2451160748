@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background: var(--color-light);
+    color: var(--color-text);
+}
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
