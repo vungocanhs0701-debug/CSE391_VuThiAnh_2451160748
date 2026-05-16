@@ -24,3 +24,24 @@
   background-color: var(--custom-primary-hover) !important;
   border-color: var(--custom-primary-hover) !important;
 }
+.py-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  .py-section-sm {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  .gap-custom {
+    gap: 2rem;
+  }
+  
+  .mt-section {
+    margin-top: 5rem;
+  }
+  
+  .mb-section {
+    margin-bottom: 5rem;
+  }
