@@ -17,3 +17,7 @@ body {
   .card:hover img {
     opacity: 0.85;
   }
+  .sticky-top {
+    top: 100px;
+    z-index: 1;
+  }
