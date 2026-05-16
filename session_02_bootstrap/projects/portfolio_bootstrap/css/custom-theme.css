@@ -45,3 +45,92 @@
   .mb-section {
     margin-bottom: 5rem;
   }
+  body {
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    background-color: var(--custom-bg-light);
+    color: var(--custom-text-body);
+    line-height: 1.6;
+  }
+  
+  h1, h2, h3, h4, h5, h6,
+  .navbar-brand {
+    color: var(--custom-text-dark);
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid var(--custom-border);
+  }
+  
+  .nav-link {
+    color: var(--custom-text-dark);
+  }
+  
+  .nav-link:hover {
+    color: var(--bs-primary);
+    text-decoration: underline;
+  }
+  
+  /* Cards */
+  .card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .card img {
+    transition: 0.3s ease;
+  }
+  
+  .card:hover img {
+    opacity: 0.85;
+  }
+  
+  /* Buttons */
+  .btn {
+    border-radius: 8px;
+  }
+  
+  .btn-dark {
+    background-color: var(--custom-text-dark);
+    border-color: var(--custom-text-dark);
+  }
+  
+  .btn-outline-dark:hover {
+    background-color: var(--custom-text-dark);
+  }
+  
+  /* Forms */
+  .form-control,
+  .form-select {
+    border-radius: 10px;
+    border-color: var(--custom-border);
+  }
+  
+  .form-control:focus,
+  .form-select:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.25rem rgba(20, 184, 166, 0.15);
+  }
+  
+  /* Badges */
+  .badge.bg-dark {
+    background-color: var(--bs-primary) !important;
+  }
+  
+  /* Progress */
+  .progress {
+    height: 12px;
+    border-radius: 8px;
+    background-color: var(--custom-border);
+  }
+  
+  .progress-bar.bg-dark {
+    background-color: var(--bs-primary) !important;
+  }
+  
+  /* Smooth anchor spacing */
+  section {
+    scroll-margin-top: 90px;
+  }
