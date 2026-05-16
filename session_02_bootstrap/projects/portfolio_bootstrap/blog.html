@@ -6,366 +6,166 @@
 
   <title>Blog — Vu Thi Anh</title>
 
-  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/blog.css">
 </head>
 
 <body class="bg-light">
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top border-bottom">
-    <div class="container">
+<nav class="navbar navbar-expand-lg bg-white border-bottom py-4">
+  <div class="container">
 
-      <a class="navbar-brand fw-bold" href="index.html">
-        Vu Thi Anh
-      </a>
+    <a class="navbar-brand fw-bold fs-3" href="index.html">
+      Vu Thi Anh
+    </a>
 
-      <button class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav">
+  </div>
+</nav>
 
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<section id="blog" class="py-5">
 
-      <div class="collapse navbar-collapse" id="navbarNav">
+  <div class="container">
 
-        <ul class="navbar-nav ms-auto">
+    <div class="mb-5">
 
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
+      <h1 class="display-4 fw-bold">
+        Blog
+      </h1>
 
-          <li class="nav-item">
-            <a class="nav-link active" href="blog.html">Blog</a>
-          </li>
-
-        </ul>
-
-      </div>
-
-    </div>
-  </nav>
-
-  <!-- Blog Section -->
-  <section id="blog" class="py-5">
-
-    <div class="container">
-
-      <div class="text-center mb-5">
-
-        <p class="text-uppercase text-muted fw-semibold mb-2">
-          Journal
-        </p>
-
-        <h1 class="display-5 fw-bold">
-          Latest Articles
-        </h1>
-
-      </div>
-
-      <div class="row g-5">
-
-        <!-- LEFT CONTENT -->
-        <div class="col-lg-8">
-
-          <!-- POST 1 -->
-          <article class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
-
-            <img src="https://placehold.co/900x450"
-                 class="card-img-top"
-                 alt="Blog post">
-
-            <div class="card-body p-4">
-
-              <span class="badge bg-dark">
-                Bootstrap
-              </span>
-
-              <h3 class="card-title mt-3 fw-bold">
-                Building a Responsive Portfolio
-              </h3>
-
-              <p class="text-muted small">
-                By Vu Thi Anh • Jan 15, 2026 • 5 min read
-              </p>
-
-              <p class="card-text text-muted">
-                Learn how to create a clean and responsive portfolio website using Bootstrap 5 grid system and utility classes.
-              </p>
-
-              <a href="#" class="btn btn-outline-dark">
-                Read More
-              </a>
-
-            </div>
-
-          </article>
-
-          <!-- POST 2 -->
-          <article class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
-
-            <img src="https://placehold.co/900x450"
-                 class="card-img-top"
-                 alt="Blog post">
-
-            <div class="card-body p-4">
-
-              <span class="badge bg-secondary">
-                Design
-              </span>
-
-              <h3 class="card-title mt-3 fw-bold">
-                Minimal UI Design Principles
-              </h3>
-
-              <p class="text-muted small">
-                By Vu Thi Anh • Feb 2, 2026 • 4 min read
-              </p>
-
-              <p class="card-text text-muted">
-                White space, typography, alignment and spacing are key elements in creating clean modern interfaces.
-              </p>
-
-              <a href="#" class="btn btn-outline-dark">
-                Read More
-              </a>
-
-            </div>
-
-          </article>
-
-          <!-- POST 3 -->
-          <article class="card border-0 shadow-sm rounded-4 overflow-hidden">
-
-            <img src="https://placehold.co/900x450"
-                 class="card-img-top"
-                 alt="Blog post">
-
-            <div class="card-body p-4">
-
-              <span class="badge bg-dark">
-                Frontend
-              </span>
-
-              <h3 class="card-title mt-3 fw-bold">
-                Why I Started Learning Frontend
-              </h3>
-
-              <p class="text-muted small">
-                By Vu Thi Anh • Mar 10, 2026 • 6 min read
-              </p>
-
-              <p class="card-text text-muted">
-                Frontend development helps me combine creativity and technology to build useful digital experiences.
-              </p>
-
-              <a href="#" class="btn btn-outline-dark">
-                Read More
-              </a>
-
-            </div>
-
-          </article>
-
-        </div>
-
-        <!-- SIDEBAR -->
-        <div class="col-lg-4">
-
-          <div class="sticky-sidebar">
-
-            <!-- SEARCH -->
-            <div class="card border-0 shadow-sm rounded-4 mb-4">
-
-              <div class="card-body p-4">
-
-                <h5 class="fw-bold mb-3">
-                  Search
-                </h5>
-
-                <div class="input-group">
-
-                  <input type="text"
-                         class="form-control"
-                         placeholder="Search...">
-
-                  <button class="btn btn-dark">
-                    Go
-                  </button>
-
-                </div>
-
-              </div>
-
-            </div>
-
-            <!-- CATEGORIES -->
-            <div class="card border-0 shadow-sm rounded-4 mb-4">
-
-              <div class="card-body p-4">
-
-                <h5 class="fw-bold mb-3">
-                  Categories
-                </h5>
-
-                <ul class="list-group list-group-flush">
-
-                  <li class="list-group-item d-flex justify-content-between">
-                    Bootstrap
-                    <span class="badge bg-dark rounded-pill">12</span>
-                  </li>
-
-                  <li class="list-group-item d-flex justify-content-between">
-                    Design
-                    <span class="badge bg-dark rounded-pill">8</span>
-                  </li>
-
-                  <li class="list-group-item d-flex justify-content-between">
-                    Frontend
-                    <span class="badge bg-dark rounded-pill">6</span>
-                  </li>
-
-                </ul>
-
-              </div>
-
-            </div>
-
-            <!-- RECENT POSTS -->
-            <div class="card border-0 shadow-sm rounded-4 mb-4">
-
-              <div class="card-body p-4">
-
-                <h5 class="fw-bold mb-4">
-                  Recent Posts
-                </h5>
-
-                <div class="d-flex mb-3">
-
-                  <img src="https://placehold.co/70x70"
-                       class="rounded"
-                       width="70"
-                       height="70"
-                       alt="Recent post">
-
-                  <div class="ms-3">
-
-                    <h6 class="mb-1">
-                      Portfolio Design
-                    </h6>
-
-                    <small class="text-muted">
-                      Jan 15, 2026
-                    </small>
-
-                  </div>
-
-                </div>
-
-                <div class="d-flex mb-3">
-
-                  <img src="https://placehold.co/70x70"
-                       class="rounded"
-                       width="70"
-                       height="70"
-                       alt="Recent post">
-
-                  <div class="ms-3">
-
-                    <h6 class="mb-1">
-                      Bootstrap Layout
-                    </h6>
-
-                    <small class="text-muted">
-                      Feb 2, 2026
-                    </small>
-
-                  </div>
-
-                </div>
-
-                <div class="d-flex">
-
-                  <img src="https://placehold.co/70x70"
-                       class="rounded"
-                       width="70"
-                       height="70"
-                       alt="Recent post">
-
-                  <div class="ms-3">
-
-                    <h6 class="mb-1">
-                      UI Inspiration
-                    </h6>
-
-                    <small class="text-muted">
-                      Mar 10, 2026
-                    </small>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-            <!-- TAGS -->
-            <div class="card border-0 shadow-sm rounded-4">
-
-              <div class="card-body p-4">
-
-                <h5 class="fw-bold mb-3">
-                  Tags
-                </h5>
-
-                <div class="d-flex flex-wrap gap-2">
-
-                  <span class="badge bg-dark">HTML</span>
-                  <span class="badge bg-dark">CSS</span>
-                  <span class="badge bg-dark">Bootstrap</span>
-                  <span class="badge bg-dark">UI</span>
-                  <span class="badge bg-dark">Responsive</span>
-                  <span class="badge bg-dark">Frontend</span>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- Footer -->
-  <footer class="border-top py-4 bg-white">
-
-    <div class="container text-center">
-
-      <p class="text-muted mb-0">
-        &copy; 2026 Vu Thi Anh. All rights reserved.
+      <p class="fs-5 text-muted">
+        Thoughts about frontend development and design.
       </p>
 
     </div>
 
-  </footer>
+    <div class="row g-5">
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- LEFT -->
+      <div class="col-lg-8">
+
+        <!-- POST 1 -->
+        <article class="card mb-4">
+
+          <img src="https://placehold.co/900x450"
+               class="card-img-top"
+               alt="Blog post 1">
+
+          <div class="card-body p-4">
+
+            <span class="badge bg-dark">
+              Bootstrap
+            </span>
+
+            <h3 class="card-title mt-3 fw-bold">
+              Building a Portfolio Website
+            </h3>
+
+            <p class="card-text text-muted">
+              <small>
+                By Vu Thi Anh • Jan 15, 2026 • 5 min read
+              </small>
+            </p>
+
+            <p class="card-text text-muted">
+              Learn how to build a clean responsive portfolio using Bootstrap grid and utility classes.
+            </p>
+
+            <a href="#" class="btn btn-outline-dark">
+              Read More
+            </a>
+
+          </div>
+
+        </article>
+
+        <!-- POST 2 -->
+        <article class="card mb-4">
+
+          <img src="https://placehold.co/900x450"
+               class="card-img-top"
+               alt="Blog post 2">
+
+          <div class="card-body p-4">
+
+            <span class="badge bg-dark">
+              Design
+            </span>
+
+            <h3 class="card-title mt-3 fw-bold">
+              Minimal UI Design
+            </h3>
+
+            <p class="card-text text-muted">
+              <small>
+                By Vu Thi Anh • Feb 2, 2026 • 4 min read
+              </small>
+            </p>
+
+            <p class="card-text text-muted">
+              White space and typography are important in creating modern user interfaces.
+            </p>
+
+            <a href="#" class="btn btn-outline-dark">
+              Read More
+            </a>
+
+          </div>
+
+        </article>
+
+        <!-- POST 3 -->
+        <article class="card">
+
+          <img src="https://placehold.co/900x450"
+               class="card-img-top"
+               alt="Blog post 3">
+
+          <div class="card-body p-4">
+
+            <span class="badge bg-dark">
+              Frontend
+            </span>
+
+            <h3 class="card-title mt-3 fw-bold">
+              Why I Learn Frontend
+            </h3>
+
+            <p class="card-text text-muted">
+              <small>
+                By Vu Thi Anh • Mar 10, 2026 • 6 min read
+              </small>
+            </p>
+
+            <p class="card-text text-muted">
+              Frontend development combines creativity and technology into useful digital experiences.
+            </p>
+
+            <a href="#" class="btn btn-outline-dark">
+              Read More
+            </a>
+
+          </div>
+
+        </article>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div class="col-lg-4">
+
+        <!-- sidebar làm bước 2 -->
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-</html>
+</html> 
