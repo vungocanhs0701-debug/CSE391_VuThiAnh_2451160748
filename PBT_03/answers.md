@@ -93,3 +93,129 @@ Kết quả
 - Text sẽ có màu đỏ.
 Giải thích
 - Inline CSS có độ ưu tiên (specificity) cao nhất nên ghi đè các cách còn lại.
+
+# Câu A2 — CSS Selectors — Dự đoán kết quả
+
+## HTML đã cho
+
+```html
+<div id="app">
+    <header class="top-bar dark">
+        <h1>ShopTLU</h1>
+        <nav>
+            <a href="/" class="active">Home</a>
+            <a href="/products">Products</a>
+            <a href="/about">About</a>
+        </nav>
+    </header>
+
+    <main>
+        <article class="product">
+            <h2>iPhone 16</h2>
+            <p class="price">25.990.000đ</p>
+            <p>Mô tả sản phẩm...</p>
+        </article>
+
+        <article class="product featured">
+            <h2>MacBook Pro</h2>
+            <p class="price">45.990.000đ</p>
+            <p>Mô tả sản phẩm...</p>
+        </article>
+    </main>
+</div>
+```
+### 1. h1
+Chọn:
+- ShopTLU
+Giải thích
+- Selector `h1` chọn tất cả thẻ h1 trong trang.
+- Trong HTML chỉ có 1 thẻ h1 là:
+```html
+<h1>ShopTLU</h1>
+```
+### 2. .price
+Chọn:
+- 25.990.000đ
+- 45.990.000đ
+Giải thích
+- `.price` chọn tất cả element có class `price`.
+```html
+<p class="price">25.990.000đ</p>
+<p class="price">45.990.000đ</p>
+```
+### 3. #app header
+Chọn:
+- toàn bộ phần header chứa:
+- ShopTLU
+   + Home
+   + Products
+   + About
+Giải thích
+- `#app` chọn element có id `app`
+- `header` chọn thẻ header nằm bên trong `#app`
+```html
+<header class="top-bar dark">
+```
+### 4. nav a:first-child
+Chọn:
+- Home
+Giải thích
+- `nav` chọn thẻ nav
+- `a:first-child` chọn thẻ a đầu tiên bên trong nav
+<a href="/" class="active">Home</a>
+
+### 5. .product.featured h2
+Chọn:
+- MacBook Pro
+Giải thích
+- `.product.featured`
+nghĩa là element có đồng thời 2 class:
+    - product
+    - featured
+<article class="product featured">
+
+Sau đó selector chọn thẻ h2 bên trong article đó.
+<h2>MacBook Pro</h2>
+
+### 6. article > p
+Chọn:
+- 25.990.000đ
+- Mô tả sản phẩm...
+- 45.990.000đ
+- Mô tả sản phẩm...
+Giải thích
+`>` là child selector
+Chọn tất cả thẻ p là con trực tiếp của article
+<article>
+    <p>...</p>
+</article>
+
+Có tổng cộng 4 thẻ p.
+
+### 7. a[href="/"]
+Chọn:
+- Home
+Giải thích
+- Selector này chọn thẻ a có attribute:
+
+href="/"
+
+Nên chọn:
+
+<a href="/" class="active">Home</a>
+
+### 8. .top-bar.dark h1
+Chọn:
+- ShopTLU
+Giải thích
+- `.top-bar.dark`
+nghĩa là element có cả:
+    - class top-bar
+    - class dark
+<header class="top-bar dark">
+Sau đó chọn h1 nằm bên trong.
+<h1>ShopTLU</h1>
+
+# Screenshot
+Ảnh kiểm chứng được lưu trong folder:
+screenshots/selectors_test.png
