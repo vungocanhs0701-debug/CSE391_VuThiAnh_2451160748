@@ -571,3 +571,128 @@ Tổng:
 Ảnh layout có dùng border-box được lưu tại:
 
 ![Layout có dùng border-box](screenshots/layout_with_border_box.png)
+
+
+# Bài B3 — Specificity Battle
+
+## Các file đã tạo
+
+- specificity.html
+- specificity.css
+
+---
+
+## Element được target
+
+```html
+<p id="demo" class="text highlight">Hello World</p>
+```
+### 10 CSS rules từ thấp đến cao theo specificity
+Rule 1
+```css
+p {
+    color: black;
+}
+```
+Specificity: (0,0,1)
+
+Rule 2
+```css
+body p {
+    color: gray;
+}
+```
+Specificity: (0,0,2)
+
+Rule 3
+```css
+.text {
+    color: blue;
+}
+```
+Specificity: (0,1,0)
+
+Rule 4
+```css
+.highlight {
+    color: orange;
+}
+```
+Specificity: (0,1,0)
+
+Rule 5
+```css
+p.text {
+    color: green;
+}
+```
+Specificity: (0,1,1)
+
+Rule 6
+```css
+.text.highlight {
+    color: purple;
+}
+```
+Specificity: (0,2,0)
+
+Rule 7
+```css
+p.text.highlight {
+    color: brown;
+}
+```
+Specificity: (0,2,1)
+
+Rule 8
+```css
+#demo {
+    color: red;
+}
+```
+Specificity: (1,0,0)
+
+Rule 9
+```css
+p#demo.text {
+    color: deeppink;
+}
+```
+Specificity: (1,1,1)
+
+Rule 10
+```css
+body p#demo.text.highlight {
+    color: darkblue;
+}
+```
+Specificity: (1,2,2)
+
+### Element cuối cùng hiển thị màu gì?
+- Element cuối cùng hiển thị màu darkblue.
+- Giải thích
+- Rule 10:
+```css
+body p#demo.text.highlight {
+    color: darkblue;
+}
+```
+có specificity cao nhất là:
+
+(1,2,2)
+
+- Nó có:
+    1 ID selector: #demo
+    2 class selector: .text, .highlight
+    2 element selector: body, p
+- Vì vậy Rule 10 thắng các rule còn lại.
+### Thay đổi thứ tự rules trong CSS file. Kết quả có đổi không?
+- Nếu các rule có specificity khác nhau thì khi đổi thứ tự, kết quả không đổi vì rule có specificity cao hơn vẫn thắng.
+- Nếu hai rule có specificity bằng nhau thì rule viết sau sẽ thắng.
+- Trong bài này, Rule 3 và Rule 4 cùng specificity:
+    (0,1,0)
+- Nếu chỉ xét Rule 3 và Rule 4, rule nào viết sau sẽ thắng.
+- Nhưng kết quả cuối cùng vẫn là darkblue vì Rule 10 có specificity cao nhất.
+### Screenshot
+Ảnh kết quả được lưu tại:
+![Specificity Result](screenshots/specificity_result.png)
