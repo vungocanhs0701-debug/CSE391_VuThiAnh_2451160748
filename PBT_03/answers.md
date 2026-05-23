@@ -457,3 +457,117 @@ nav a:hover {
     Navigation có hover và active
     Bảng kỹ năng có border-collapse, zebra striping và hover row
     Footer có background đậm, chữ nhạt và căn giữa
+
+# Bài B2 — Box Model Lab
+
+## Các file đã tạo
+
+- boxmodel_lab.html
+- boxmodel.css
+
+---
+
+## Phần 1 — Chứng minh content-box vs border-box
+
+### Hộp 1: content-box
+
+CSS:
+
+```css
+.content-box {
+    box-sizing: content-box;
+}
+```
+- Cùng thuộc tính:
+```css
+width: 300px;
+padding: 20px;
+border: 5px solid;
+```
+- Tính chiều rộng thực tế:
+
+    width + padding-left + padding-right + border-left + border-right
+    = 300 + 20 + 20 + 5 + 5
+    = 350px
+→ Hộp 1 content-box: chiều rộng thực tế = 350px
+
+### Hộp 2: border-box
+
+CSS:
+```css
+.border-box {
+    box-sizing: border-box;
+}
+```
+- Cùng thuộc tính:
+```css
+width: 300px;
+padding: 20px;
+border: 5px solid;
+```
+- Với `border-box`, width đã bao gồm cả content + padding + border.
+→ Hộp 2 border-box: chiều rộng thực tế = 300px
+
+* Giải thích sự khác biệt
+
+- Với `content-box`, thuộc tính `width` chỉ tính phần nội dung. Padding và border được cộng thêm bên ngoài nên hộp bị rộng hơn.
+
+- Với `border-box`, thuộc tính `width` đã bao gồm cả content, padding và border nên kích thước hiển thị đúng bằng 300px.
+* Screenshot phần 1
+- Ảnh DevTools box model của hộp content-box được - - lưu tại:
+![Content Box](screenshots/content_box_devtools.png)
+
+- Ảnh DevTools box model của hộp border-box được - - lưu tại:
+![Border Box](screenshots/border_box_devtools.png)
+## Phần 2 — Layout 3 cột
+- Trường hợp không dùng border-box
++ Container rộng:
+    1000px
++ Cột trái sidebar:
+    width 250 + padding trái phải 30 = 280px
++ Cột giữa content:
+    width 500 + padding trái phải 40 = 540px
++ Cột phải ads:
+    width 250 + padding trái phải 30 = 280px
+
++ Tổng chiều rộng thật:
+    280 + 540 + 280 = 1100px
+→ Tổng là 1100px, lớn hơn container 1000px.
+- Vì vậy layout bị vượt quá chiều rộng container.
+
+- Trường hợp có dùng border-box
+
+Khi dùng:
+```css
+box-sizing: border-box;
+```
+thì width đã bao gồm cả padding và border.
+
+Cột trái:
+
+250px
+
+Cột giữa:
+
+500px
+
+Cột phải:
+
+250px
+
+Tổng:
+
+250 + 500 + 250 = 1000px
+
+→ Tổng đúng bằng 1000px, nên 3 cột nằm vừa trong container.
+
+* Screenshot phần 2
+
+Ảnh layout không dùng border-box được lưu tại:
+
+![Layout không dùng border-box](screenshots/layout_no_border_box.png)
+
+
+Ảnh layout có dùng border-box được lưu tại:
+
+![Layout có dùng border-box](screenshots/layout_with_border_box.png)
