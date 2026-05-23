@@ -219,3 +219,73 @@ Sau đó chọn h1 nằm bên trong.
 # Screenshot
 Ảnh kiểm chứng được lưu trong folder:
 screenshots/selectors_test.png
+
+# Câu A3 — Box Model — Tính toán kích thước
+
+## Trường hợp 1: content-box mặc định
+
+```css
+.box-1 {
+    width: 400px;
+    padding: 20px;
+    border: 5px solid black;
+    margin: 10px;
+}
+```
+Chiều rộng hiển thị
+Công thức:
+    width + padding-left + padding-right + border-left + border-right
+Tính:
+    400 + 20 + 20 + 5 + 5 = 450px
+→ Chiều rộng hiển thị = 450px
+
+Không gian chiếm trên trang
+Công thức:
+    chiều rộng hiển thị + margin-left + margin-right
+Tính:
+    450 + 10 + 10 = 470px
+→ Không gian chiếm trên trang = 470px
+
+## Trường hợp 2: border-box
+```csscss
+.box-2 {
+    box-sizing: border-box;
+    width: 400px;
+    padding: 20px;
+    border: 5px solid black;
+    margin: 10px;
+}
+```
+Chiều rộng hiển thị
+Với `box-sizing: border-box`, `width` đã bao gồm content + padding + border.
+→ Chiều rộng hiển thị = 400px
+
+Kích thước content thực tế
+Công thức:
+    width - padding-left - padding-right - border-left - border-right
+Tính:
+    400 - 20 - 20 - 5 - 5 = 350px
+→ Kích thước content thực tế = 350px
+
+Không gian chiếm trên trang
+Công thức:
+    chiều rộng hiển thị + margin-left + margin-right
+Tính:
+    400 + 10 + 10 = 420px
+→ Không gian chiếm trên trang = 420px
+
+## Trường hợp 3: Margin collapse
+```css
+.box-a { margin-bottom: 25px; }
+.box-b { margin-top: 40px; }
+```
+Khoảng cách giữa box-a và box-b
+Vì margin dọc của 2 phần tử liền kề bị collapse nên khoảng cách không cộng lại.
+Browser lấy margin lớn hơn:
+    max(25px, 40px) = 40px
+→ Khoảng cách giữa box-a và box-b = 40px
+
+*Giải thích tại sao không phải 65px
+Không phải:
+    25px + 40px = 65px
+Vì trong CSS, margin theo chiều dọc giữa 2 block liền kề có thể bị gộp lại, gọi là margin collapse. Khi đó trình duyệt không cộng 2 margin, mà chỉ lấy giá trị lớn hơn.
