@@ -289,3 +289,104 @@ Browser lấy margin lớn hơn:
 Không phải:
     25px + 40px = 65px
 Vì trong CSS, margin theo chiều dọc giữa 2 block liền kề có thể bị gộp lại, gọi là margin collapse. Khi đó trình duyệt không cộng 2 margin, mà chỉ lấy giá trị lớn hơn.
+
+
+# Câu A4 — Specificity (Độ ưu tiên)
+
+## CSS rules đã cho
+
+```css
+p { color: black; }                  
+.price { color: blue; }             
+#main-price { color: red; }         
+p.price { color: green; }
+```
+Element được target:
+```html
+<p class="price" id="main-price">
+```
+1. Tính specificity score
+- Specificity có dạng:
+    (a, b, c)
+- Trong đó:
+    a = số id
+    b = số class, pseudo-class, attribute
+    c = số element
+* Rule A
+```css
+p { color: black; }
+```
+- Có:
+    id: 0
+    class: 0
+    element: 1
+→ Specificity = (0, 0, 1)
+* Rule B
+```css
+.price { color: blue; }
+```
+- Có:
+    id: 0
+    class: 1
+    element: 0
+→ Specificity = (0, 1, 0)
+* Rule C
+```css
+#main-price { color: red; }
+```
+- Có:
+    id: 1
+    class: 0
+    element: 0
+→ Specificity = (1, 0, 0)
+* Rule D
+```css
+p.price { color: green; }
+```
+- Có:
+    id: 0
+    class: 1
+    element: 1
+→ Specificity = (0, 1, 1)
+2. Element sẽ có màu gì?
+- Element:
+```html
+<p class="price" id="main-price">
+```
+Màu cuối cùng là: đỏ
+* Giải thích
+- So sánh specificity:
+    Rule A: (0, 0, 1)
+    Rule B: (0, 1, 0)
+    Rule C: (1, 0, 0)
+    Rule D: (0, 1, 1)
+
+- Rule C có id selector #main-price.
+
+- ID selector có độ ưu tiên cao hơn class selector và element selector.
+- Vì vậy:
+```css 
+#main-price { color: red; }
+```
+thắng.
+3. Nếu thêm inline CSS
+```html
+<p class="price" id="main-price" style="color: orange;">
+```
+- Màu cuối cùng là: cam
+* Giải thích
+- Inline CSS viết trực tiếp trong thẻ HTML bằng thuộc tính `style`.
+- Inline CSS có độ ưu tiên cao hơn các selector thông thường trong file CSS.
+- Vì vậy màu cam sẽ thắng.
+4. Nếu Rule A thêm !important
+```css
+p {
+    color: black !important;
+}
+```
+- Màu cuối cùng là: đen
+* Giải thích
+`!important` làm cho thuộc tính CSS có độ ưu tiên rất cao.
+- Mặc dù selector `p` có specificity thấp hơn `#main-price`, nhưng vì Rule A có `!important` nên nó ghi đè các rule không có `!important`.
+
+Vì vậy element hiển thị màu đen.
