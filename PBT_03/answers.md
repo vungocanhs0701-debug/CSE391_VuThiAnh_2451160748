@@ -390,3 +390,70 @@ p {
 - Mặc dù selector `p` có specificity thấp hơn `#main-price`, nhưng vì Rule A có `!important` nên nó ghi đè các rule không có `!important`.
 
 Vì vậy element hiển thị màu đen.
+
+# Bài B1 — Style trang Profile
+
+## Các file đã tạo
+
+- profile.html
+- style.css
+
+## Các loại selector đã sử dụng trong style.css
+
+### 1. Element selector
+
+Ví dụ:
+
+```css
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+```
+2. Class selector
+
+Ví dụ:
+```css
+.container {
+    width: 80%;
+    margin: 30px auto;
+}
+```
+3. ID selector
+
+Ví dụ:
+```css
+#main-header {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+```
+4. Descendant selector
+
+Ví dụ:
+```css
+#main-header h1 {
+    font-size: 36px;
+}
+```
+5. Pseudo-class selector
+
+Ví dụ:
+```css
+nav a:hover {
+    color: #ffd700;
+    text-decoration: underline;
+}
+```
+* Kết luận
+- Trang profile đã sử dụng external CSS thông qua file style.css.
+- File CSS có dòng đầu tiên là:
+```css
+* {
+    box-sizing: border-box;
+}
+```
+- rang đã có đầy đủ:
+    Typography cơ bản cho body
+    Header dùng background gradient
+    Navigation có hover và active
+    Bảng kỹ năng có border-collapse, zebra striping và hover row
+    Footer có background đậm, chữ nhạt và căn giữa
