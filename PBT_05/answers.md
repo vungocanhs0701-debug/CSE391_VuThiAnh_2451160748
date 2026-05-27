@@ -198,3 +198,174 @@ Thiết kế từ màn hình nhỏ trước giúp:
 - `meta viewport` rất quan trọng với responsive web design.
 - Mobile-First là phương pháp hiện đại và được khuyên dùng.
 - Responsive website nên thiết kế cho mobile trước rồi mở rộng lên desktop.
+
+# Câu A2 — Breakpoints
+
+## Các breakpoints phổ biến
+
+| Breakpoint | Kích thước | Thiết bị đại diện | Ví dụ lưới sản phẩm |
+|---|---|---|---|
+| Extra Small (XS) | < 576px | Điện thoại nhỏ | 1 cột |
+| Small (SM) | ≥ 576px | Điện thoại lớn | 2 cột |
+| Medium (MD) | ≥ 768px | Tablet | 2 hoặc 3 cột |
+| Large (LG) | ≥ 992px | Laptop | 3 hoặc 4 cột |
+| Extra Large (XL) | ≥ 1200px | Desktop lớn | 4 cột |
+| Extra Extra Large (XXL) | ≥ 1400px | Màn hình rất lớn | 5 hoặc 6 cột |
+
+---
+
+# Giải thích từng breakpoint
+
+## 1. XS — Extra Small
+
+```text
+< 576px
+```
+
+### Thiết bị
+- Điện thoại nhỏ
+- iPhone SE
+- Android nhỏ
+
+### Layout phù hợp
+- Menu dọc
+- 1 cột sản phẩm
+- Chữ lớn dễ đọc
+
+Ví dụ:
+
+```text
+┌──────┐
+│Card 1│
+├──────┤
+│Card 2│
+└──────┘
+```
+
+---
+
+## 2. SM — Small
+
+```text
+≥ 576px
+```
+
+### Thiết bị
+- Điện thoại lớn
+
+### Layout phù hợp
+- 2 cột sản phẩm
+
+Ví dụ:
+
+```text
+┌────┬────┐
+│ 1  │ 2  │
+├────┼────┤
+│ 3  │ 4  │
+└────┴────┘
+```
+
+---
+
+## 3. MD — Medium
+
+```text
+≥ 768px
+```
+
+### Thiết bị
+- Tablet
+- iPad
+
+### Layout phù hợp
+- 2 hoặc 3 cột sản phẩm
+- Sidebar có thể bắt đầu xuất hiện
+
+Ví dụ:
+
+```text
+┌────┬────┬────┐
+│ 1  │ 2  │ 3  │
+└────┴────┴────┘
+```
+
+---
+
+## 4. LG — Large
+
+```text
+≥ 992px
+```
+
+### Thiết bị
+- Laptop
+- Desktop nhỏ
+
+### Layout phù hợp
+- 3 hoặc 4 cột
+- Có sidebar và ads
+
+Ví dụ:
+
+```text
+┌────┬────┬────┬────┐
+│ 1  │ 2  │ 3  │ 4  │
+└────┴────┴────┴────┘
+```
+
+---
+
+## 5. XL — Extra Large
+
+```text
+≥ 1200px
+```
+
+### Thiết bị
+- Desktop lớn
+
+### Layout phù hợp
+- 4 cột sản phẩm
+- Khoảng trắng lớn hơn
+
+---
+
+## 6. XXL — Extra Extra Large
+
+```text
+≥ 1400px
+```
+
+### Thiết bị
+- Màn hình ultrawide
+- Monitor lớn
+
+### Layout phù hợp
+- 5 hoặc 6 cột
+- Dashboard lớn
+
+---
+
+# Ví dụ media query
+
+```css
+@media (min-width: 768px) {
+
+    .products {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+```
+
+---
+
+# Kết luận
+
+Breakpoints giúp website responsive trên nhiều thiết bị khác nhau:
+- Mobile
+- Tablet
+- Laptop
+- Desktop
+
+Mỗi kích thước màn hình nên có layout phù hợp để cải thiện trải nghiệm người dùng.
