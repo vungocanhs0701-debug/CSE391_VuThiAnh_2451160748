@@ -697,3 +697,152 @@ grid-template-areas:
 ```
 Hero banner có card sản phẩm nổi bật.
 ![grid layout](screenshots/grid_layout.png)
+
+# PHẦN C — SUY LUẬN
+
+# Câu C1 — Flexbox vs Grid: Khi nào dùng gì?
+
+## 1. Navigation bar ngang
+
+Tình huống:
+
+```text
+Logo + menu + buttons
+```
+
+Nên dùng: **Flexbox**
+
+### Giải thích
+
+Navigation bar là layout theo 1 chiều ngang. Flexbox phù hợp để căn các phần tử trên cùng một hàng, căn giữa theo chiều dọc và tạo khoảng cách giữa logo, menu, button.
+
+Ví dụ:
+
+```css
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+```
+
+---
+
+## 2. Lưới ảnh Instagram
+
+Tình huống:
+
+```text
+3 cột đều nhau, số ảnh không biết trước
+```
+
+Nên dùng: **Grid**
+
+### Giải thích
+
+Lưới ảnh Instagram là layout 2 chiều gồm hàng và cột. CSS Grid phù hợp hơn vì có thể chia cột rõ ràng và tự động đẩy ảnh xuống hàng mới.
+
+Ví dụ:
+
+```css
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+```
+
+---
+
+## 3. Layout blog
+
+Tình huống:
+
+```text
+Main content + sidebar
+```
+
+Nên dùng: **Grid**
+
+### Giải thích
+
+Layout blog gồm nhiều vùng lớn trên trang, ví dụ main content và sidebar. Đây là bố cục theo cột nên Grid phù hợp để chia vùng chính xác hơn.
+
+Ví dụ:
+
+```css
+.blog-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 20px;
+}
+```
+
+---
+
+## 4. Footer với 4 cột thông tin
+
+Tình huống:
+
+```text
+Về chúng tôi | Liên kết | Hỗ trợ | Liên hệ
+```
+
+Nên dùng: **Grid**
+
+### Giải thích
+
+Footer có 4 cột thông tin đều nhau. Grid phù hợp để chia thành nhiều cột ổn định và dễ responsive.
+
+Ví dụ:
+
+```css
+.footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+```
+
+---
+
+## 5. Card sản phẩm
+
+Tình huống:
+
+```text
+Ảnh trên
+Text giữa
+Nút dưới
+Nút luôn dính đáy
+```
+
+Nên dùng: **Flexbox**
+
+### Giải thích
+
+Bên trong card, các phần tử xếp theo một chiều dọc. Flexbox phù hợp để xếp ảnh, text, button theo cột. Có thể dùng `margin-top: auto` để đẩy nút xuống đáy card.
+
+Ví dụ:
+
+```css
+.product-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card button {
+    margin-top: auto;
+}
+```
+
+---
+
+## Kết luận
+
+- Dùng **Flexbox** khi layout theo 1 chiều: ngang hoặc dọc.
+- Dùng **Grid** khi layout theo 2 chiều: hàng và cột.
+- Có thể **kết hợp cả hai** trong một trang web:
+    - Grid để chia bố cục lớn.
+    - Flexbox để căn chỉnh bên trong từng thành phần nhỏ.
+    
