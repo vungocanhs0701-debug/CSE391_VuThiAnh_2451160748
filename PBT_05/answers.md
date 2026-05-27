@@ -771,3 +771,79 @@ SCSS giúp:
 - dễ bảo trì hơn CSS thường
 
 Nhưng cần compile sang CSS trước khi trình duyệt có thể sử dụng.
+
+# Bài B1 — Responsive Product Page
+
+## Các file đã tạo
+
+- responsive.html
+- responsive.css
+
+## Mobile-First
+
+CSS mặc định được viết cho mobile trước:
+
+```css
+.product-grid {
+    grid-template-columns: 1fr;
+}
+
+.sidebar,
+.ads {
+    display: none;
+}
+```
+Mobile hiển thị:
+    hamburger menu
+    1 cột sản phẩm
+    ẩn sidebar và ads
+Tablet breakpoint
+```css 
+@media (min-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+```
+Tablet hiển thị:
+    menu ngang
+    sidebar dạng ngang
+    sản phẩm 2 cột
+Desktop breakpoint
+```css
+@media (min-width: 1024px) {
+    .layout {
+        display: grid;
+        grid-template-columns: 220px 1fr 220px;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+```
+Desktop hiển thị:
+    sidebar trái
+    product grid 4 cột
+    ads bên phải
+Ảnh responsive
+```css
+.card img {
+    max-width: 100%;
+    height: auto;
+}
+```
+Ảnh tự co giãn theo kích thước card.
+## Screenshot
+
+Mobile 375px:
+
+![Mobile 375px](screenshots/responsive_mobile_375.png)
+
+Tablet 768px:
+
+![Tablet 768px](screenshots/responsive_tablet_768.png)
+
+Desktop 1200px:
+
+![Desktop 1200px](screenshots/responsive_desktop_1200.png)
