@@ -847,3 +847,66 @@ Tablet 768px:
 Desktop 1200px:
 
 ![Desktop 1200px](screenshots/responsive_desktop_1200.png)
+
+# Bài B2 — CSS Transitions & Animations
+
+## Các file đã tạo
+
+- animations.html
+- animations.css
+
+## 1. Card hover effect
+
+```css
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.28);
+}
+```
+## 2. Button hover
+```css
+.card button {
+    transition: all 0.3s ease;
+}
+
+.card button:hover {
+    background-color: #facc15;
+    color: #1e293b;
+    transform: scale(1.05);
+}
+```
+## 3. Image zoom
+```css
+.image-box {
+    overflow: hidden;
+}
+
+.image-box img {
+    transition: transform 0.3s ease;
+}
+
+.card:hover .image-box img {
+    transform: scale(1.1);
+}
+```
+## 4. Loading spinner
+```css 
+.spinner {
+    border: 8px solid #ddd;
+    border-top: 8px solid #2563eb;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+```
+## 5. Fade-in animation
+```css 
+.fade-in {
+    animation: fadeIn 1s ease forwards;
+}
+```
+## Screenshot
+![Animations](screenshots/animations.png)
