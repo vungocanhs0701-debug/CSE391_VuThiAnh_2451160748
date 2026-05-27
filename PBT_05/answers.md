@@ -1130,3 +1130,256 @@ VNExpress sử dụng responsive design để thay đổi bố cục theo kích 
 - Desktop: nhiều cột, menu đầy đủ, có sidebar và quảng cáo
 
 Điều này giúp website dễ đọc và dễ sử dụng trên nhiều thiết bị.
+
+# Câu C2 — Thiết kế Responsive Strategy
+
+## Bài toán
+
+Thiết kế trang đặt bàn nhà hàng responsive gồm:
+
+- Header với logo + số điện thoại đặt bàn
+- Hero image toàn trang
+- Grid 6 ảnh món ăn
+- Form đặt bàn
+- Bản đồ Google Maps nhúng
+- Footer
+
+---
+
+# 1. Wireframe Mobile
+
+Kích thước: dưới 768px
+
+```text
+┌──────────────────────┐
+│ HEADER               │
+│ Logo        ☎        │
+├──────────────────────┤
+│ HERO IMAGE           │
+├──────────────────────┤
+│ FORM ĐẶT BÀN         │
+│ Ngày                 │
+│ Giờ                  │
+│ Số người             │
+│ Ghi chú              │
+├──────────────────────┤
+│ GRID ẢNH MÓN ĂN      │
+│ Ảnh 1                │
+│ Ảnh 2                │
+│ Ảnh 3                │
+│ Ảnh 4                │
+│ Ảnh 5                │
+│ Ảnh 6                │
+├──────────────────────┤
+│ GOOGLE MAPS          │
+├──────────────────────┤
+│ FOOTER               │
+└──────────────────────┘
+```
+
+## Mobile: Những gì bị ẩn?
+
+Trên mobile có thể ẩn:
+- Menu dài
+- Sidebar nếu có
+- Text phụ trong hero
+- Một số banner phụ
+
+## Mobile: Form nằm đâu?
+
+Form đặt bàn nên nằm ngay sau hero image để người dùng đặt bàn nhanh.
+
+Layout mobile dùng 1 cột.
+
+---
+
+# 2. Wireframe Tablet
+
+Kích thước: từ 768px đến dưới 1024px
+
+```text
+┌──────────────────────────────┐
+│ HEADER                       │
+│ Logo       Phone đặt bàn     │
+├──────────────────────────────┤
+│ HERO IMAGE                   │
+├──────────────────────────────┤
+│ FORM ĐẶT BÀN                 │
+├──────────────┬───────────────┤
+│ Ảnh 1        │ Ảnh 2         │
+├──────────────┼───────────────┤
+│ Ảnh 3        │ Ảnh 4         │
+├──────────────┼───────────────┤
+│ Ảnh 5        │ Ảnh 6         │
+├──────────────────────────────┤
+│ GOOGLE MAPS                  │
+├──────────────────────────────┤
+│ FOOTER                       │
+└──────────────────────────────┘
+```
+
+## Tablet: Grid ảnh mấy cột?
+
+Grid ảnh món ăn nên hiển thị 2 cột.
+
+## Tablet: Bản đồ nằm đâu?
+
+Bản đồ Google Maps nằm dưới grid ảnh món ăn và chiếm toàn bộ chiều rộng.
+
+---
+
+# 3. Wireframe Desktop
+
+Kích thước: từ 1024px trở lên
+
+```text
+┌────────────────────────────────────────────┐
+│ HEADER                                     │
+│ Logo                      Phone đặt bàn    │
+├────────────────────────────────────────────┤
+│ HERO IMAGE FULL WIDTH                      │
+├───────────────┬────────────────────────────┤
+│ FORM ĐẶT BÀN  │ GRID ẢNH MÓN ĂN            │
+│               │ ┌──────┬──────┬──────┐     │
+│               │ │ Ảnh1 │ Ảnh2 │ Ảnh3 │     │
+│               │ ├──────┼──────┼──────┤     │
+│               │ │ Ảnh4 │ Ảnh5 │ Ảnh6 │     │
+│               │ └──────┴──────┴──────┘     │
+├───────────────┴────────────────────────────┤
+│ GOOGLE MAPS FULL WIDTH                     │
+├────────────────────────────────────────────┤
+│ FOOTER                                     │
+└────────────────────────────────────────────┘
+```
+
+## Desktop: Layout bao nhiêu cột?
+
+Desktop dùng layout 2 cột cho phần nội dung chính:
+
+- Cột trái: Form đặt bàn
+- Cột phải: Grid ảnh món ăn
+
+Grid ảnh món ăn hiển thị 3 cột.
+
+## Desktop: Sidebar có không?
+
+Không cần sidebar riêng. Form đặt bàn đóng vai trò như cột chức năng bên trái.
+
+---
+
+# 4. CSS Skeleton Mobile-First
+
+```css
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+}
+
+.hero {
+    min-height: 300px;
+    background-image: url("hero.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.page-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 16px;
+}
+
+.booking-form {
+    display: grid;
+    gap: 12px;
+}
+
+.food-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.food-grid img {
+    max-width: 100%;
+    height: auto;
+}
+
+.map {
+    width: 100%;
+    min-height: 300px;
+}
+
+.footer {
+    padding: 20px;
+    text-align: center;
+}
+```
+
+---
+
+# 5. Tablet Layout
+
+```css
+@media (min-width: 768px) {
+
+    .food-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .map {
+        min-height: 350px;
+    }
+}
+```
+
+---
+
+# 6. Desktop Layout
+
+```css
+@media (min-width: 1024px) {
+
+    .page-layout {
+        grid-template-columns: 320px 1fr;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .booking-form {
+        align-self: start;
+    }
+
+    .food-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .map {
+        grid-column: 1 / -1;
+        min-height: 400px;
+    }
+}
+```
+
+---
+
+# Kết luận
+
+Chiến lược responsive:
+
+- Mobile: 1 cột, form nằm ngay sau hero
+- Tablet: grid ảnh 2 cột, map nằm dưới grid
+- Desktop: layout 2 cột, form bên trái, ảnh bên phải, map full width
+
+Thiết kế dùng Mobile-First để đảm bảo trải nghiệm tốt trên điện thoại trước, sau đó mở rộng dần cho tablet và desktop.
