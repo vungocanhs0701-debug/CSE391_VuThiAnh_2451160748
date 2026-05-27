@@ -244,3 +244,239 @@ left: 0;
 
 → child tham chiếu `.grandparent`
 vì `.parent` đang là static.
+
+# Câu A2 — Flexbox vs Grid
+
+## Trường hợp 1
+
+```css
+.container {
+    display: flex;
+}
+
+.item {
+    flex: 1;
+}
+```
+
+Có 4 items.
+
+### Dự đoán bố cục
+
+- `display: flex` → mặc định xếp theo hàng ngang
+- `flex: 1` → các item chia đều chiều rộng
+
+Kết quả:
+
+```text
+┌────┬────┬────┬────┐
+│ 1  │ 2  │ 3  │ 4  │
+└────┴────┴────┴────┘
+```
+
+→ 1 hàng, 4 cột  
+→ Mỗi item rộng bằng nhau
+
+---
+
+## Trường hợp 2
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item {
+    width: 45%;
+    margin: 2.5%;
+}
+```
+
+Có 6 items.
+
+### Phân tích
+
+Mỗi item:
+
+```text
+45% + 2.5% + 2.5%
+=
+50%
+```
+
+→ mỗi hàng chứa 2 item
+
+Có 6 item:
+
+```text
+6 ÷ 2 = 3 hàng
+```
+
+### Dự đoán bố cục
+
+```text
+┌────────┬────────┐
+│   1    │   2    │
+├────────┼────────┤
+│   3    │   4    │
+├────────┼────────┤
+│   5    │   6    │
+└────────┴────────┘
+```
+
+→ 3 hàng, 2 cột
+
+---
+
+## Trường hợp 3
+
+```css
+.container {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+```
+
+Có 3 items.
+
+### Phân tích
+
+`justify-content: space-between`
+
+→ item đầu sát trái
+
+→ item cuối sát phải
+
+→ item giữa nằm chính giữa
+
+`align-items: center`
+
+→ căn giữa theo chiều dọc
+
+### Dự đoán bố cục
+
+```text
+┌─────────────────────┐
+│ 1        2        3 │
+│                     │
+│ (căn giữa chiều dọc)│
+└─────────────────────┘
+```
+
+→ 1 hàng
+
+→ khoảng cách đều
+
+---
+
+## Trường hợp 4
+
+```css
+.container {
+    display: grid;
+
+    grid-template-columns:
+    200px
+    1fr
+    200px;
+
+    gap: 20px;
+}
+```
+
+Có 3 items.
+
+### Phân tích
+
+Grid tạo:
+
+```text
+Cột 1 = 200px
+Cột 2 = phần còn lại
+Cột 3 = 200px
+```
+
+### Dự đoán bố cục
+
+```text
+┌──────┬────────────┬──────┐
+│  1   │     2      │  3   │
+└──────┴────────────┴──────┘
+```
+
+→ 1 hàng
+
+→ 3 cột
+
+→ giữa co giãn
+
+---
+
+## Trường hợp 5
+
+```css
+.container {
+    display: grid;
+
+    grid-template-columns:
+    repeat(3, 1fr);
+
+    gap: 10px;
+}
+```
+
+Có 7 items.
+
+### Phân tích
+
+Grid tạo:
+
+```text
+3 cột bằng nhau
+```
+
+Sắp item:
+
+```text
+1 2 3
+4 5 6
+7
+```
+
+### Dự đoán bố cục
+
+```text
+┌────┬────┬────┐
+│ 1  │ 2  │ 3  │
+├────┼────┼────┤
+│ 4  │ 5  │ 6  │
+├────┼────┼────┤
+│ 7  │    │    │
+└────┴────┴────┘
+```
+
+→ 3 hàng
+
+→ 3 cột
+
+→ item cuối nằm:
+
+```text
+Hàng 3 — Cột 1
+```
+
+---
+
+## So sánh nhanh
+
+### Flexbox
+- Phù hợp layout 1 chiều
+- Theo hàng hoặc cột
+
+### Grid
+- Phù hợp layout 2 chiều
+- Điều khiển hàng và cột tốt hơn
