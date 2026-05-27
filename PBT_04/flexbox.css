@@ -1,0 +1,64 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+}
+
+.navbar {
+    height: 70px;
+    background-color: #1e293b;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 40px;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+
+    margin: 0;
+    padding: 0;
+}
+
+.menu a,
+.auth-buttons a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu a:hover,
+.auth-buttons a:hover {
+    color: #facc15;
+    text-decoration: underline;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.register {
+    background-color: #2563eb;
+    padding: 10px 16px;
+    border-radius: 8px;
+}
+
+.register:hover {
+    background-color: #1d4ed8;
+}

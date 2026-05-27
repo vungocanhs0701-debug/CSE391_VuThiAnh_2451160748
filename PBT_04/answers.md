@@ -540,3 +540,49 @@ Sidebar sticky khi scroll:
 Badge HOT trên card:
 
 ![Badge HOT](screenshots/badge_hot.png)
+
+
+# Bài B2 — Flexbox Navigation & Cards
+
+## Phần 1 — Navbar
+
+## Các file đã tạo
+
+- flexbox_layout.html
+- flexbox.css
+
+## Giải thích Flexbox
+
+Navbar sử dụng:
+
+```css
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+```
+Trong đó:
+    `display: flex `giúp các phần tử nằm ngang
+    `align-items: center` giúp căn giữa theo chiều dọc
+    `justify-content: space-between` đẩy logo sang trái, menu ở giữa và nút login/register sang phải
+
+Menu sử dụng:
+```css
+.menu {
+    display: flex;
+    gap: 35px;
+}
+```
+để các item nằm ngang và cách đều nhau.
+Hiệu ứng hover:
+```css
+.menu a:hover,
+.auth-buttons a:hover {
+    color: #facc15;
+    text-decoration: underline;
+}
+```
+Khi rê chuột vào link, link đổi màu và có gạch chân.
+## Screenshot
+![Flexbox Navbar](screenshots/flexbox_navbar.png)
