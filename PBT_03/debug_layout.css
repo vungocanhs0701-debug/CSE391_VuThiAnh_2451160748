@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    padding: 20px;
+}
+
+h1,
+h2 {
+    color: #1e3c72;
+}
+
+.container {
+    width: 960px;
+    margin: 20px auto;
+    border: 3px solid red;
+    overflow: hidden;
+    background-color: white;
+}
+
+.sidebar {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    float: left;
+    background-color: #dbeafe;
+    min-height: 120px;
+}
+
+.content {
+    width: 660px;
+    padding: 30px;
+    border: 1px solid #ccc;
+    float: left;
+    background-color: #fff7ed;
+    min-height: 120px;
+}
+
+/* Cách sửa 1: dùng border-box */
+.fix-border-box .sidebar,
+.fix-border-box .content {
+    box-sizing: border-box;
+}
+
+/* Cách sửa 2: không dùng border-box thì giảm width */
+.fix-no-border-box .sidebar {
+    width: 258px;
+}
+
+.fix-no-border-box .content {
+    width: 598px;
+}

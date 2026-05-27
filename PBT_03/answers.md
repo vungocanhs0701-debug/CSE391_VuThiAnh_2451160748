@@ -696,3 +696,113 @@ có specificity cao nhất là:
 ### Screenshot
 Ảnh kết quả được lưu tại:
 ![Specificity Result](screenshots/specificity_result.png)
+
+# PHẦN C — DEBUG & SUY LUẬN
+
+# Câu C1 — Debug CSS Layout
+
+## CSS ban đầu
+
+```css
+.container {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.sidebar {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    float: left;
+}
+
+.content {
+    width: 660px;
+    padding: 30px;
+    border: 1px solid #ccc;
+    float: left;
+}
+```
+1. Tính chiều rộng thực tế
+Vì mặc định CSS dùng `box-sizing: content-box`, nên chiều rộng thực tế được tính bằng:
+    width + padding-left + padding-right + border-left + border-right
+Sidebar
+    width = 300px
+    padding-left = 20px
+    padding-right = 20px
+    border-left = 1px
+    border-right = 1px
+Tính:
+    300 + 20 + 20 + 1 + 1 = 342px
+→ Chiều rộng thực tế của sidebar = 342px
+
+Content
+    width = 660px
+    padding-left = 30px
+    padding-right = 30px
+    border-left = 1px
+    border-right = 1px
+Tính:
+    660 + 30 + 30 + 1 + 1 = 722px
+→ Chiều rộng thực tế của content = 722px
+
+Tổng chiều rộng thực tế
+    342 + 722 = 1064px
+Container chỉ rộng:
+    960px
+Vì:
+    1064px > 960px
+nên content không đủ chỗ nằm cạnh sidebar và bị đẩy xuống dòng mới.
+2. Giải thích tại sao layout bị vỡ
+Layout bị vỡ vì `sidebar` và `content` đều dùng `float: left`, nhưng tổng chiều rộng thực tế của hai phần tử lớn hơn chiều rộng container.
+Trong `content-box`, thuộc tính `width` chỉ tính phần nội dung. Padding và border được cộng thêm ra ngoài width.
+Vì vậy:
+    sidebar thật = 342px
+    content thật = 722px
+    tổng = 1064px
+Trong khi container chỉ có:
+    960px
+Do đó content bị đẩy xuống dòng mới.
+3. Cách sửa 1: Dùng border-box
+Thêm:
+```css
+.fix-border-box .sidebar,
+.fix-border-box .content {
+    box-sizing: border-box;
+}
+```
+Khi dùng `border-box`, width đã bao gồm cả content, padding và border.
+Khi đó:
+    sidebar = 300px
+    content = 660px
+    tổng = 960px
+Vừa đúng bằng container 960px.
+4. Cách sửa 2: Không dùng border-box
+Nếu không dùng `border-box`, cần giảm width để cộng thêm padding và border vẫn vừa 960px.
+    Sidebar
+Muốn sidebar chiếm 300px thực tế:
+    width + 20 + 20 + 1 + 1 = 300
+    width + 42 = 300
+    width = 258px
+Content
+Muốn content chiếm 660px thực tế:
+    width + 30 + 30 + 1 + 1 = 660
+    width + 62 = 660
+    width = 598px
+CSS sửa:
+```css
+.fix-no-border-box .sidebar {
+    width: 258px;
+}
+
+.fix-no-border-box .content {
+    width: 598px;
+}   
+```
+Khi đó:
+    sidebar thực tế = 258 + 40 + 2 = 300px
+    content thực tế = 598 + 60 + 2 = 660px
+    tổng = 960px
+Layout không bị vỡ nữa.
+5. File kiểm chứng
+![Debug layout](screenshots/debug_layout.png)
