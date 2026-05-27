@@ -1018,3 +1018,115 @@ Bài đã sử dụng:
     Compile SCSS thành CSS trước khi trình duyệt đọc được
 
     
+# PHẦN C — PHÂN TÍCH
+
+# Câu C1 — Phân tích trang web thực
+
+## Trang web được chọn
+
+Trang web được chọn: **VNExpress**
+
+Các kích thước kiểm tra:
+
+- Mobile: 375px
+- Tablet: 768px
+- Desktop: 1440px
+
+---
+
+## 1. Mobile — 375px
+
+### Navigation thay đổi thế nào?
+
+Ở màn hình mobile, navigation được rút gọn. Các mục menu không hiển thị đầy đủ như desktop. Trang ưu tiên hiển thị logo, một số icon chức năng và nội dung chính.
+
+### Lưới content thay đổi mấy cột?
+
+Content chủ yếu hiển thị **1 cột** để phù hợp với màn hình nhỏ.
+
+### Elements nào bị ẩn trên mobile?
+
+Một số thành phần bị ẩn hoặc rút gọn:
+- Menu nhiều chuyên mục
+- Sidebar phụ
+- Một số quảng cáo
+- Một số khối tin phụ
+
+### Font size có thay đổi không?
+
+Font size thường nhỏ hơn desktop nhưng vẫn đủ đọc trên điện thoại. Tiêu đề bài viết nổi bật hơn phần mô tả.
+
+### Screenshot
+
+![VNExpress Mobile](screenshots/vnexpress_mobile_375.png)
+
+---
+
+## 2. Tablet — 768px
+
+### Navigation thay đổi thế nào?
+
+Ở tablet, navigation có thể hiển thị nhiều mục hơn mobile nhưng vẫn chưa đầy đủ như desktop. Một số mục phụ vẫn được ẩn hoặc gom lại.
+
+### Lưới content thay đổi mấy cột?
+
+Content thường chuyển sang **2 cột**:
+- Cột chính hiển thị tin nổi bật
+- Cột phụ hiển thị tin nhỏ hơn hoặc danh sách tin
+
+### Elements nào bị ẩn trên tablet?
+
+Một số quảng cáo hoặc sidebar nhỏ có thể chưa hiển thị đầy đủ như desktop.
+
+### Font size có thay đổi không?
+
+Font size lớn hơn mobile một chút. Khoảng cách giữa các khối nội dung cũng rộng hơn.
+
+### Screenshot
+
+![VNExpress Tablet](screenshots/vnexpress_tablet_768.png)
+
+---
+
+## 3. Desktop — 1440px
+
+### Navigation thay đổi thế nào?
+
+Ở desktop, navigation hiển thị đầy đủ hơn. Các chuyên mục được đặt thành menu ngang, giúp người dùng truy cập nhanh.
+
+### Lưới content thay đổi mấy cột?
+
+Desktop thường có bố cục nhiều cột:
+- Cột tin chính
+- Cột tin phụ
+- Sidebar hoặc quảng cáo
+
+Có thể xem là layout **3 cột**.
+
+### Elements nào bị ẩn trên mobile nhưng hiện trên desktop?
+
+Các element thường xuất hiện trên desktop:
+- Menu chuyên mục đầy đủ
+- Sidebar
+- Quảng cáo
+- Nhiều khối tin phụ
+- Các danh sách tin theo chuyên mục
+
+### Font size có thay đổi không?
+
+Font size desktop thường lớn hơn hoặc có khoảng cách dòng rộng hơn để dễ đọc trên màn hình lớn.
+
+### Screenshot
+
+![VNExpress Desktop](screenshots/vnexpress_desktop_1440.png)
+
+
+## Kết luận
+
+VNExpress sử dụng responsive design để thay đổi bố cục theo kích thước màn hình.
+
+- Mobile: 1 cột, menu rút gọn
+- Tablet: 2 cột, menu hiển thị nhiều hơn
+- Desktop: nhiều cột, menu đầy đủ, có sidebar và quảng cáo
+
+Điều này giúp website dễ đọc và dễ sử dụng trên nhiều thiết bị.
