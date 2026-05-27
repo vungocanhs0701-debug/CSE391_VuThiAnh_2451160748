@@ -586,3 +586,42 @@ Hiệu ứng hover:
 Khi rê chuột vào link, link đổi màu và có gạch chân.
 ## Screenshot
 ![Flexbox Navbar](screenshots/flexbox_navbar.png)
+
+## Phần 2 — Product Cards Grid
+
+Lưới sản phẩm sử dụng Flexbox:
+
+```css
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+Mỗi card sử dụng:
+```css
+.product-card {
+    flex: 0 0 calc(25% - 20px);
+}
+```
+Điều này giúp tạo bố cục 4 cột.
+Bên trong card cũng dùng Flexbox theo chiều dọc:
+```css
+.product-card {
+    display: flex;
+    flex-direction: column;
+}
+```
+Nút mua được đẩy xuống đáy card bằng:
+```css
+.product-card button {
+    margin-top: auto;
+}
+```
+Hiệu ứng hover:
+```css
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+}
+```
+![product cards grid](screenshots/product_cards_grid.png)
