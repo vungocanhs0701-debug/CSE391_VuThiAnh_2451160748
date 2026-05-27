@@ -910,3 +910,111 @@ Desktop 1200px:
 ```
 ## Screenshot
 ![Animations](screenshots/animations.png)
+
+# Bài B3 — SCSS Refactor
+
+## Cấu trúc file
+
+```text
+scss/
+├── _variables.scss
+├── _mixins.scss
+├── _components.scss
+└── style.scss
+```
+## Variables
+
+File _variables.scss có các biến:
+```scss
+$primary-color: #2563eb;
+$secondary-color: #facc15;
+$danger-color: #dc2626;
+$dark-color: #1e293b;
+$light-color: #f4f6f8;
+$white-color: #ffffff;
+$font-primary: Arial, sans-serif;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 32px;
+$border-radius: 12px;
+```
+## Nesting
+
+Ví dụ nesting trong `.card`:
+```css
+.card {
+    .card-image {
+        max-width: 100%;
+    }
+
+    .card-title {
+        font-size: 20px;
+    }
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    &.featured {
+        border: 2px solid $secondary-color;
+    }
+}
+```
+## Mixins
+
+Có 3 mixins:
+```scss
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == tablet {
+        @media (min-width: $breakpoint-tablet) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == desktop {
+        @media (min-width: $breakpoint-desktop) {
+            @content;
+        }
+    }
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin card-shadow {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+```
+## Partial & Import
+
+File chính style.scss import các partial:
+```scss
+@import "variables";
+@import "mixins";
+@import "components";
+```
+## Lệnh compile SCSS sang CSS
+
+Nếu dùng Sass CLI:
+
+sass scss/style.scss style.css
+
+Hoặc nếu muốn tự động theo dõi thay đổi:
+
+sass --watch scss/style.scss:style.css
+## Kết luận
+
+Bài đã sử dụng:
+
+    Variables để quản lý màu, font, spacing, breakpoint
+    Nesting để viết CSS gọn hơn
+    Mixins cho responsive, flex center và shadow
+    Partials để chia file SCSS rõ ràng
+    Compile SCSS thành CSS trước khi trình duyệt đọc được
+
+    

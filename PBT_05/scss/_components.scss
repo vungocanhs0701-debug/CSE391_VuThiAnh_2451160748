@@ -1,0 +1,167 @@
+body {
+    margin: 0;
+    font-family: $font-primary;
+    background-color: $light-color;
+    color: $dark-color;
+}
+
+.header {
+    background-color: $dark-color;
+    color: $white-color;
+    padding: $spacing-md;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .hamburger {
+        display: block;
+        background: none;
+        border: none;
+        color: $white-color;
+        font-size: 28px;
+    }
+
+    .nav-menu {
+        display: none;
+
+        a {
+            color: $white-color;
+            text-decoration: none;
+            font-weight: bold;
+
+            &:hover {
+                color: $secondary-color;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    @include respond-to(tablet) {
+        .hamburger {
+            display: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+        }
+    }
+}
+
+.layout {
+    padding: $spacing-md;
+
+    @include respond-to(desktop) {
+        display: grid;
+        grid-template-columns: 220px 1fr 220px;
+        gap: $spacing-md;
+        max-width: 1200px;
+        margin: $spacing-md auto;
+    }
+}
+
+.sidebar {
+    display: none;
+
+    @include respond-to(tablet) {
+        display: flex;
+        gap: $spacing-md;
+        background-color: #dbeafe;
+        padding: $spacing-md;
+        margin-bottom: $spacing-md;
+        border-radius: $border-radius;
+        align-items: center;
+    }
+
+    @include respond-to(desktop) {
+        display: block;
+        margin-bottom: 0;
+
+        label {
+            display: block;
+            margin-bottom: 12px;
+        }
+    }
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+
+    @include respond-to(tablet) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to(desktop) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.card {
+    background-color: $white-color;
+    padding: $spacing-md;
+    border-radius: $border-radius;
+    @include card-shadow;
+
+    transition: all 0.3s ease;
+
+    .card-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: $border-radius;
+    }
+
+    .card-title {
+        font-size: 20px;
+        color: $dark-color;
+    }
+
+    .card-price {
+        color: $danger-color;
+        font-weight: bold;
+    }
+
+    .card-btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        background-color: $primary-color;
+        color: $white-color;
+        border-radius: $spacing-sm;
+        font-weight: bold;
+    }
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    &.featured {
+        border: 2px solid $secondary-color;
+    }
+}
+
+.ads {
+    display: none;
+
+    @include respond-to(desktop) {
+        display: block;
+        background-color: #fef3c7;
+        padding: $spacing-md;
+        border-radius: $border-radius;
+    }
+}
+
+.footer {
+    background-color: $dark-color;
+    color: $white-color;
+    text-align: center;
+    padding: $spacing-md;
+}
