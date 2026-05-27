@@ -480,3 +480,63 @@ Hàng 3 — Cột 1
 ### Grid
 - Phù hợp layout 2 chiều
 - Điều khiển hàng và cột tốt hơn
+
+# Bài B1 — Positioning Playground
+## Các file đã tạo
+- positioning.html
+- positioning.css
+
+## Các kỹ thuật position đã sử dụng
+### 1. Fixed header
+```css
+.fixed-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+}
+```
+Header luôn nằm trên cùng màn hình khi cuộn trang.
+2. Sticky sidebar
+```css
+.sidebar {
+    position: sticky;
+    top: 80px;
+}
+```
+Sidebar sẽ dính lại khi cuộn xuống và nằm dưới header.
+3. Badge HOT dùng absolute
+```css
+.product-card {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+}
+```
+Card là mốc định vị, badge HOT nằm ở góc phải trên của card.
+4. Scroll to top button
+```css
+.scroll-top {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+}
+```
+Nút luôn cố định ở góc phải dưới màn hình.
+## Screenshot
+
+Header fixed khi scroll:
+
+![Header Fixed](screenshots/header_fixed.png)
+
+Sidebar sticky khi scroll:
+
+![Sidebar Sticky](screenshots/sidebar_sticky.png)
+
+Badge HOT trên card:
+
+![Badge HOT](screenshots/badge_hot.png)

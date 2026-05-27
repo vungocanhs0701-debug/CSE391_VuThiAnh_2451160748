@@ -1,0 +1,122 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #1e293b;
+    color: white;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.fixed-header nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.fixed-header nav a:hover {
+    color: #facc15;
+}
+
+.page-layout {
+    display: flex;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 90px auto 40px;
+    padding: 0 20px;
+}
+
+.sidebar {
+    width: 250px;
+    height: 250px;
+    background-color: #dbeafe;
+    padding: 20px;
+    border-radius: 10px;
+
+    position: sticky;
+    top: 80px;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+}
+
+.content {
+    flex: 1;
+}
+
+.product-card {
+    position: relative;
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+.badge {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+
+    width: 55px;
+    height: 55px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: bold;
+}
+
+.long-content {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.scroll-top {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+
+    width: 50px;
+    height: 50px;
+    background-color: #1e293b;
+    color: white;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+}
