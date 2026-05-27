@@ -369,3 +369,161 @@ Breakpoints giúp website responsive trên nhiều thiết bị khác nhau:
 - Desktop
 
 Mỗi kích thước màn hình nên có layout phù hợp để cải thiện trải nghiệm người dùng.
+# Câu A3 — Media Queries
+
+## CSS đề bài
+
+```css
+.container {
+    width: 100%;
+    padding: 10px;
+}
+
+@media (min-width: 576px) {
+    .container {
+        width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1140px;
+    }
+}
+```
+
+---
+
+# Bảng kết quả
+
+| Chiều rộng màn hình | .container width |
+|---|---|
+| 375px (iPhone SE) | 100% |
+| 600px | 540px |
+| 800px | 720px |
+| 1000px | 960px |
+| 1400px | 1140px |
+
+---
+
+# Giải thích từng trường hợp
+
+## 1. Màn hình 375px
+
+```text
+375px < 576px
+```
+
+Không media query nào hoạt động.
+
+Áp dụng CSS mặc định:
+
+```css
+.container {
+    width: 100%;
+}
+```
+
+→ `.container width = 100%`
+
+---
+
+## 2. Màn hình 600px
+
+```text
+600px ≥ 576px
+```
+
+Media query đầu tiên hoạt động:
+
+```css
+@media (min-width: 576px) {
+    .container {
+        width: 540px;
+    }
+}
+```
+
+→ `.container width = 540px`
+
+---
+
+## 3. Màn hình 800px
+
+```text
+800px ≥ 768px
+```
+
+Media query 768px ghi đè media query trước.
+
+```css
+@media (min-width: 768px) {
+    .container {
+        width: 720px;
+    }
+}
+```
+
+→ `.container width = 720px`
+
+---
+
+## 4. Màn hình 1000px
+
+```text
+1000px ≥ 992px
+```
+
+Media query 992px hoạt động:
+
+```css
+@media (min-width: 992px) {
+    .container {
+        width: 960px;
+    }
+}
+```
+
+→ `.container width = 960px`
+
+---
+
+## 5. Màn hình 1400px
+
+```text
+1400px ≥ 1200px
+```
+
+Media query cuối cùng hoạt động:
+
+```css
+@media (min-width: 1200px) {
+    .container {
+        width: 1140px;
+    }
+}
+```
+
+→ `.container width = 1140px`
+
+---
+
+# Kết luận
+
+Trong Mobile-First:
+
+- CSS mặc định áp dụng cho mobile
+- Media queries với `min-width` sẽ ghi đè dần khi màn hình lớn hơn
+- Rule viết sau sẽ ghi đè rule trước nếu cùng target
