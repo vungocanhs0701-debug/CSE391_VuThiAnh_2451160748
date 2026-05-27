@@ -625,3 +625,75 @@ Hiệu ứng hover:
 }
 ```
 ![product cards grid](screenshots/product_cards_grid.png)
+
+# Bài B3 — Grid Layout — Trang E-Commerce
+
+## Các file đã tạo
+
+- grid_layout.html
+- grid.css
+
+## Layout chính dùng CSS Grid
+
+```css
+.page-grid {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr) 200px;
+    grid-template-areas:
+        "header header header"
+        "hero hero hero"
+        "sidebar main ads"
+        "footer footer footer";
+    gap: 20px;
+}
+```
+Layout chính gồm 3 cột:
+    200px 1fr 200px
+
+Trong đó:
+    Cột trái là sidebar
+    Cột giữa là main content
+    Cột phải là ads
+Header, Hero, Footer full width
+```css
+.header,
+.hero,
+.footer {
+    grid-column: 1 / -1;
+}
+```
+Nghĩa là các phần này kéo dài từ cột đầu tiên đến cột cuối cùng.
+Sidebar
+
+Sidebar chứa các checkbox giả lập bộ lọc:
+```html
+<label><input type="checkbox"> Điện thoại</label>
+<label><input type="checkbox"> Laptop</label>
+<label><input type="checkbox"> Tai nghe</label>
+<label><input type="checkbox"> Phụ kiện</label>
+```
+Main content có Grid con 3 cột
+```css
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+}
+```
+Main content hiển thị 6 product cards theo dạng 3 cột, 2 hàng.
+
+Ads
+Khu vực ads là aside bên phải, chứa banner quảng cáo giả lập.
+
+Bonus
+
+Bài có sử dụng grid-template-areas với named areas:
+```css
+grid-template-areas:
+    "header header header"
+    "hero hero hero"
+    "sidebar main ads"
+    "footer footer footer";
+```
+Hero banner có card sản phẩm nổi bật.
+![grid layout](screenshots/grid_layout.png)

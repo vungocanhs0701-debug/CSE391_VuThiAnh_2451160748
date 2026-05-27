@@ -1,0 +1,167 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+.page-grid {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr) 200px;
+    grid-template-areas:
+        "header header header"
+        "hero hero hero"
+        "sidebar main ads"
+        "footer footer footer";
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    grid-area: header;
+    grid-column: 1 / -1;
+    background-color: #1e293b;
+    color: white;
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.header nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.header nav a:hover {
+    color: #facc15;
+    text-decoration: underline;
+}
+
+.hero {
+    grid-area: hero;
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #2563eb, #9333ea);
+    color: white;
+    padding: 35px;
+    border-radius: 12px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.featured-card {
+    grid-column: span 1;
+    background-color: white;
+    color: #333;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: #dbeafe;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.sidebar label {
+    display: block;
+    margin-bottom: 12px;
+}
+
+.main-content {
+    grid-area: main;
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.product-card {
+    background-color: #f8fafc;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.image {
+    height: 90px;
+    background-color: #dbeafe;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+    color: #1e3a8a;
+}
+
+.product-card h3 {
+    margin-bottom: 5px;
+}
+
+.product-card p {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.product-card button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #2563eb;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.ads {
+    grid-area: ads;
+    background-color: #fef3c7;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.ad-box {
+    height: 250px;
+    background-color: #facc15;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    font-weight: bold;
+}
+
+.footer {
+    grid-area: footer;
+    grid-column: 1 / -1;
+    background-color: #1e293b;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
