@@ -845,4 +845,131 @@ Ví dụ:
 - Có thể **kết hợp cả hai** trong một trang web:
     - Grid để chia bố cục lớn.
     - Flexbox để căn chỉnh bên trong từng thành phần nhỏ.
-    
+
+# Câu C2 — Debug Flexbox
+
+## Lỗi 1: Cards không đều chiều cao — nút "Mua" bị nhảy lên/xuống
+
+### Nguyên nhân
+
+Các card có nội dung dài ngắn khác nhau nên chiều cao card không đều. Nút "Mua" nằm ngay sau nội dung nên bị nhảy lên hoặc xuống tùy độ dài text.
+
+### Code sửa
+
+```css
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 30%;
+    margin: 1.5%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.card img {
+    width: 100%;
+}
+
+.card .btn {
+    padding: 10px;
+    margin-top: auto;
+}
+```
+
+### Giải thích
+
+Dùng `display: flex` và `flex-direction: column` cho card để các phần tử bên trong xếp dọc.  
+Dùng `margin-top: auto` cho nút để đẩy nút xuống đáy card.
+
+---
+
+## Lỗi 2: Items không nằm giữa container 100vh
+
+### Nguyên nhân
+
+`.hero` đã có `display: flex`, nhưng chưa có thuộc tính căn giữa. Vì vậy mặc định item vẫn nằm ở góc trái trên.
+
+### Code sửa
+
+```css
+.hero {
+    height: 100vh;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-content {
+    text-align: center;
+}
+```
+
+### Giải thích
+
+- `justify-content: center` căn giữa theo chiều ngang.
+- `align-items: center` căn giữa theo chiều dọc.
+- `text-align: center` căn giữa nội dung chữ bên trong.
+
+---
+
+## Lỗi 3: Sidebar bị co lại khi content quá dài
+
+### Nguyên nhân
+
+Trong flexbox, item có thể bị co lại theo mặc định vì `flex-shrink: 1`. Khi content quá dài, sidebar bị ép nhỏ lại.
+
+### Code sửa
+
+```css
+.layout {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.content {
+    flex: 1;
+    min-width: 0;
+}
+```
+
+### Giải thích
+
+- `flex-shrink: 0` giúp sidebar không bị co lại.
+- `min-width: 0` giúp content được phép co trong không gian còn lại, tránh làm vỡ layout.
+
+---
+
+## Screenshot trước/sau
+
+Lỗi 1 trước khi sửa:
+
+![Cards Before](screenshots/cards_before.png)
+
+Lỗi 1 sau khi sửa:
+
+![Cards After](screenshots/cards_after.png)
+
+Lỗi 2 trước khi sửa:
+
+![Hero Before](screenshots/hero_before.png)
+
+Lỗi 2 sau khi sửa:
+
+![Hero After](screenshots/hero_after.png)
+
+Lỗi 3 trước khi sửa:
+
+![Sidebar Before](screenshots/sidebar_before.png)
+
+Lỗi 3 sau khi sửa:
+
+![Sidebar After](screenshots/sidebar_after.png)

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Debug Flexbox</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    padding:20px;
+}
+
+/* ===================== */
+/* LỖI 1 */
+/* ===================== */
+
+.card-container{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.card{
+    width:30%;
+    border:1px solid #ccc;
+    padding:15px;
+}
+
+.card img{
+    width:100%;
+    height:120px;
+    background:#ddd;
+}
+
+.btn{
+    background:#2563eb;
+    color:white;
+    padding:10px;
+    text-align:center;
+    margin-top:10px;
+}
+
+/* FIX */
+.fixed-cards .card{
+    display:flex;
+    flex-direction:column;
+}
+
+.fixed-cards .btn{
+    margin-top:auto;
+}
+
+/* ===================== */
+/* LỖI 2 */
+/* ===================== */
+
+.hero{
+    height:300px;
+    display:flex;
+    border:2px solid red;
+    margin-top:40px;
+}
+
+.hero-content{
+    background:#dbeafe;
+    padding:20px;
+}
+
+/* FIX */
+.fixed-hero{
+    justify-content:center;
+    align-items:center;
+}
+
+/* ===================== */
+/* LỖI 3 */
+/* ===================== */
+
+.layout{
+    display:flex;
+    border:2px solid red;
+    margin-top:40px;
+}
+
+.sidebar{
+    width:250px;
+    background:#dbeafe;
+    padding:20px;
+}
+
+.content{
+    flex:1;
+    background:#fef3c7;
+    padding:20px;
+}
+
+/* FIX */
+.fixed-layout .sidebar{
+    flex-shrink:0;
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>Lỗi 1 - BEFORE</h1>
+
+<div class="card-container">
+
+<div class="card">
+<img>
+<h3>Sản phẩm ngắn</h3>
+<div class="btn">Mua</div>
+</div>
+
+<div class="card">
+<img>
+<h3>Sản phẩm có nội dung rất dài để làm card cao hơn card bên cạnh</h3>
+<div class="btn">Mua</div>
+</div>
+
+<div class="card">
+<img>
+<h3>Sản phẩm</h3>
+<div class="btn">Mua</div>
+</div>
+
+</div>
+
+<h1>Lỗi 1 - AFTER</h1>
+
+<div class="card-container fixed-cards">
+
+<div class="card">
+<img>
+<h3>Sản phẩm ngắn</h3>
+<div class="btn">Mua</div>
+</div>
+
+<div class="card">
+<img>
+<h3>Sản phẩm có nội dung rất dài để làm card cao hơn card bên cạnh</h3>
+<div class="btn">Mua</div>
+</div>
+
+<div class="card">
+<img>
+<h3>Sản phẩm</h3>
+<div class="btn">Mua</div>
+</div>
+
+</div>
+
+<h1>Lỗi 2 - BEFORE</h1>
+
+<div class="hero">
+
+<div class="hero-content">
+HELLO WORLD
+</div>
+
+</div>
+
+<h1>Lỗi 2 - AFTER</h1>
+
+<div class="hero fixed-hero">
+
+<div class="hero-content">
+HELLO WORLD
+</div>
+
+</div>
+
+<h1>Lỗi 3 - BEFORE</h1>
+
+<div class="layout">
+
+<div class="sidebar">
+SIDEBAR
+</div>
+
+<div class="content">
+Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài
+</div>
+
+</div>
+
+<h1>Lỗi 3 - AFTER</h1>
+
+<div class="layout fixed-layout">
+
+<div class="sidebar">
+SIDEBAR
+</div>
+
+<div class="content">
+Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài Nội dung rất dài
+</div>
+
+</div>
+
+</body>
+</html>
