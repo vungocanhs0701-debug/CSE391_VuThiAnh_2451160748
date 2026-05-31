@@ -984,3 +984,81 @@ Kết quả kiểm tra:
 - debounce chỉ chạy lần gọi cuối cùng.
 - retry thử lại đến khi task thành công hoặc hết số lần thử.
 ![higher order result](screenshots/higher_order_result.png)
+
+# PHẦN C — SUY LUẬN
+
+# Câu C1 — Refactor Code
+
+## Code sau khi refactor
+
+```js
+const processOrders = (orders) =>
+    orders
+        .filter(({ status, total }) => status === "completed" && total > 100000)
+        .map(({ id, customer, total }) => {
+            const discount = total * 0.1;
+            return {
+                id,
+                customer,
+                total,
+                discount,
+                finalTotal: total - discount
+            };
+        })
+        .sort((a, b) => b.finalTotal - a.finalTotal);
+```
+
+## Giải thích
+
+### 1. filter()
+
+```js
+.filter(({ status, total }) => status === "completed" && total > 100000)
+```
+
+Dùng để lọc các đơn hàng:
+
+- Có trạng thái `completed`
+- Có tổng tiền lớn hơn `100000`
+
+---
+
+### 2. map()
+
+```js
+.map(({ id, customer, total }) => { ... })
+```
+
+Dùng để tạo mảng mới chỉ gồm các thông tin cần thiết:
+
+- id
+- customer
+- total
+- discount
+- finalTotal
+### 3. destructuring
+
+```js
+({ id, customer, total })
+```
+
+Dùng để lấy nhanh các thuộc tính từ object `order`.
+### 4. sort()
+
+```js
+.sort((a, b) => b.finalTotal - a.finalTotal)
+```
+
+Dùng để sắp xếp theo `finalTotal` giảm dần.
+
+## Kết luận
+
+Code mới ngắn gọn hơn vì sử dụng:
+
+- Arrow function
+- filter()
+- map()
+- sort()
+- Destructuring
+
+Thay vì dùng nhiều vòng lặp `for`, nhiều `if` lồng nhau và thuật toán sort thủ công.
