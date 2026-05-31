@@ -1,41 +1,37 @@
-import { useState } from "react";
+function SimpleVariables() {
+  const ten = "Vũ Thị Anh";
+  const tuoi = 19;
+  const queQuan = "Thanh Hóa";
 
-function FlowDemo() {
-    console.log("🔄 Component render!");
+  const canNang = 50;
+  const chieuCao = 1.6;
 
-    const [step, setStep] = useState(1);
+  const bmi = (canNang / (chieuCao * chieuCao)).toFixed(2);
 
-    return (
-        <div style={{ padding: "20px" }}>
-            <h2>Luồng hoạt động React</h2>
+  const gio = new Date().getHours();
 
-            <p>Bước hiện tại: {step}</p>
+  const loiChao =
+      gio < 12
+          ? "Chào buổi sáng"
+          : gio < 18
+          ? "Chào buổi chiều"
+          : "Chào buổi tối";
 
-            <button onClick={() => setStep(step + 1)}>
-                Bước tiếp theo →
-            </button>
+  return (
+      <div style={{ padding: "20px" }}>
+          <h1>{loiChao}</h1>
 
-            <button
-                onClick={() => setStep(1)}
-                style={{ marginLeft: "10px" }}
-            >
-                Quay lại đầu
-            </button>
+          <p>Họ tên: {ten}</p>
 
-            <div
-                style={{
-                    marginTop: "20px",
-                    padding: "10px",
-                    background: "#f0f0f0"
-                }}
-            >
-                {step === 1 && <p>👋 Bước 1: Xin chào!</p>}
-                {step === 2 && <p>📖 Bước 2: Đang học React</p>}
-                {step === 3 && <p>🎯 Bước 3: Hiểu useState</p>}
-                {step === 4 && <p>🎉 Bước 4: Hoàn thành!</p>}
-            </div>
-        </div>
-    );
+          <p>Tuổi: {tuoi}</p>
+
+          <p>Năm sau: {tuoi + 1}</p>
+
+          <p>Quê quán: {queQuan}</p>
+
+          <p>BMI: {bmi}</p>
+      </div>
+  );
 }
 
-export default FlowDemo;
+export default SimpleVariables;

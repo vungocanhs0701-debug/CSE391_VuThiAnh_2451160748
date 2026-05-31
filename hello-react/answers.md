@@ -353,3 +353,77 @@ UI cập nhật
 React không cập nhật giao diện trực tiếp.
 
 Khi state thay đổi bằng `setState`, React sẽ render lại component và cập nhật phần giao diện thay đổi.
+
+# Bài 2.1 — Hiển thị biến đơn giản
+
+Đã sử dụng:
+
+- Biến string
+- Biến number
+- Tính toán trong JSX
+- Ternary trong JSX
+
+Ví dụ:
+
+```jsx
+<p>Tuổi: {tuoi}</p>
+<p>Năm sau: {tuoi + 1}</p>
+<p>BMI: {bmi}</p>
+```
+Dùng {} để nhúng JavaScript vào JSX.
+# Bài 2.2 — Conditional Rendering
+
+Đã sử dụng:
+
+### Ternary
+
+```jsx
+{isLoggedIn ? "Chào mừng bạn!" : "Vui lòng đăng nhập"}
+```
+### Toán tử &&
+```jsx
+{stock === 0 && <h3>Hết hàng</h3>}
+```
+### Kết quả:
+
+Hiển thị Online bằng icon 🟢
+Hiển thị Hết hàng khi stock = 0
+# Bài 2.3 — Render danh sách
+
+Đã dùng:
+
+```jsx
+products.map(...)
+```
+để render danh sách sản phẩm.
+
+Mỗi phần tử có:
+```jsx
+key={product.id}
+```
+để React nhận diện phần tử.
+
+Đã tô màu đỏ cho sản phẩm có giá > 1.000.000đ.
+Đã tính tổng giá bằng:
+```jsx
+products.reduce(...)
+```
+
+---
+
+## Kết luận Tier 2
+
+Ghi thêm:
+
+```md
+# Kết luận Tier 2
+
+Đã hiểu:
+
+- Dùng {} để nhúng JavaScript vào JSX
+- Hiển thị biến
+- Tính toán trong JSX
+- Conditional Rendering bằng ternary
+- Conditional Rendering bằng &&
+- Render danh sách bằng map()
+- Sử dụng key khi render list
