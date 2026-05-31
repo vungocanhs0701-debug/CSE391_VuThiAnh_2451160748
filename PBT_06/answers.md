@@ -321,3 +321,24 @@ Nghĩa là:
 ![bootstrap mobile](screenshots/bootstrap_mobile.png)
 ![bootstrap tablet](screenshots/bootstrap_tablet.png)
 ![bootstrap desktop](screenshots/bootstrap_desktop.png)
+
+# Bài B2 — Dashboard Layout
+
+## File đã tạo
+
+- bootstrap_dashboard.html
+
+## Thành phần Bootstrap đã sử dụng
+
+- Sidebar cố định: `position-fixed`
+- Menu dọc: `list-group`
+- Topbar: `breadcrumb`, `dropdown`
+- Stat cards: `card`, `bg-primary`, `bg-success`, `bg-warning`, `bg-danger`
+- Table: `table`, `table-striped`, `table-hover`
+- Form tìm kiếm: `input-group`, `form-select`
+- FAQ: `accordion`
+- Thông báo: `alert alert-success`
+
+## Screenshot
+
+![Bootstrap Dashboard](screenshots/bootstrap_dashboard.png)
