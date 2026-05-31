@@ -1,0 +1,200 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+}
+
+h1 {
+    text-align: center;
+    color: #1e3a8a;
+}
+
+.top-bar {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+button {
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#btnAdd {
+    background-color: #2563eb;
+    color: white;
+}
+
+#message {
+    margin-bottom: 15px;
+    color: green;
+    font-weight: bold;
+}
+
+.stats {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.stats div {
+    flex: 1;
+    min-width: 180px;
+    background-color: #dbeafe;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.task-list {
+    display: grid;
+    gap: 15px;
+}
+
+.task-card {
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: #f9fafb;
+    transition: 0.3s;
+}
+
+.task-card.done {
+    background-color: #dcfce7;
+    opacity: 0.8;
+}
+
+.task-card.done h3 {
+    text-decoration: line-through;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.priority {
+    padding: 5px 10px;
+    border-radius: 999px;
+    color: white;
+    font-size: 13px;
+}
+
+.priority.Thấp {
+    background-color: #22c55e;
+}
+
+.priority.Trung {
+    background-color: #f59e0b;
+}
+
+.priority.Cao {
+    background-color: #ef4444;
+}
+
+.task-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-edit {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #ef4444;
+    color: white;
+}
+
+.btn-toggle {
+    background-color: #10b981;
+    color: white;
+}
+
+.empty {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.45);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    width: 420px;
+    max-width: 90%;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #1e3a8a;
+}
+
+label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.form-actions {
+    margin-top: 18px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+#btnSave {
+    background-color: #2563eb;
+    color: white;
+}
+
+#btnClose {
+    background-color: #6b7280;
+    color: white;
+}
