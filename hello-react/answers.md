@@ -455,3 +455,46 @@ Mỗi phần nên là một component riêng.
 - Dễ bảo trì
 - Tái sử dụng được
 - Dễ làm việc nhóm
+# Bài 3.2
+
+Đã tạo:
+
+src/components/ProductCard.jsx
+
+Đã import vào:
+
+App.jsx
+
+Sử dụng:
+
+```jsx
+<ProductCard />
+```
+để tái sử dụng component.
+## Bài 3.3
+Props là gì?
+
+Props là dữ liệu truyền từ component cha xuống component con.
+
+Ví dụ:
+
+Component cha:
+```jsx
+<UserCard
+    name="Minh"
+    email="minh@gmail.com"
+/>
+```
+Component con:
+```jsx 
+function UserCard({ name, email })
+```
+Các loại props
+String
+Number
+Boolean
+Array
+Object
+### Kết luận
+
+Props giúp component tái sử dụng với dữ liệu khác nhau.

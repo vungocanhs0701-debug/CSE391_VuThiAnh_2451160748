@@ -1,56 +1,46 @@
-import ProductCard from "./components/ProductCard";
+function UserCard({ name, email, avatar }) {
+  return (
+      <div
+          style={{
+              border: "1px solid #ddd",
+              margin: "10px",
+              padding: "10px"
+          }}
+      >
+          <img
+              src={avatar}
+              alt={name}
+          />
+
+          <h3>{name}</h3>
+
+          <p>{email}</p>
+      </div>
+  );
+}
 
 function App() {
-    const products = [
-        {
-            id: 1,
-            name: "iPhone 15",
-            price: "25.000.000",
-            image: "https://placehold.co/200"
-        },
+  return (
+      <div>
+          <UserCard
+              name="Vũ Thị Anh"
+              email="anh@gmail.com"
+              avatar="https://placehold.co/100"
+          />
 
-        {
-            id: 2,
-            name: "Samsung S24",
-            price: "22.000.000",
-            image: "https://placehold.co/200"
-        },
+          <UserCard
+              name="Minh"
+              email="minh@gmail.com"
+              avatar="https://placehold.co/100"
+          />
 
-        {
-            id: 3,
-            name: "Xiaomi 14",
-            price: "15.000.000",
-            image: "https://placehold.co/200"
-        }
-    ];
-
-    return (
-        <div>
-            <h1
-                style={{
-                    textAlign: "center"
-                }}
-            >
-                Cửa hàng điện thoại
-            </h1>
-
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "center"
-                }}
-            >
-                {products.map(product => (
-                    <ProductCard
-                        key={product.id}
-                        name={product.name}
-                        price={product.price}
-                        image={product.image}
-                    />
-                ))}
-            </div>
-        </div>
-    );
+          <UserCard
+              name="Linh"
+              email="linh@gmail.com"
+              avatar="https://placehold.co/100"
+          />
+      </div>
+  );
 }
 
 export default App;
