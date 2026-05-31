@@ -637,3 +637,267 @@ Chức năng đã hoàn thành:
 - Focus ring visible
 - Có aria-label trên các interactive elements
 ![keyboard app](screenshots/keyboard_app.png)
+
+# Câu C1 — Debug DOM Code
+
+## Các lỗi trong code
+
+### Lỗi 1: Dùng `innerHTML` không cần thiết
+
+Code lỗi:
+
+```js
+countDisplay.innerHTML = count;
+```
+
+Nên dùng:
+
+```js
+countDisplay.textContent = count;
+```
+
+Vì chỉ hiển thị text, không cần render HTML.
+
+---
+
+### Lỗi 2: Sai tên event `onclick`
+
+Code lỗi:
+
+```js
+addEventListener("onclick", function() {
+```
+
+`addEventListener` phải dùng:
+
+```js
+"click"
+```
+
+Sửa:
+
+```js
+addEventListener("click", function() {
+```
+
+---
+
+### Lỗi 3: Gán lại biến const
+
+Code lỗi:
+
+```js
+countDisplay = count;
+```
+
+`countDisplay` là `const`, không được gán lại.
+
+Sửa:
+
+```js
+countDisplay.textContent = count;
+```
+
+---
+
+### Lỗi 4: Xóa history sai cách
+
+Code lỗi:
+
+```js
+historyList.innerHTML = null;
+```
+
+Nên dùng:
+
+```js
+historyList.textContent = "";
+```
+
+hoặc:
+
+```js
+historyList.innerHTML = "";
+```
+
+---
+
+### Lỗi 5: Gọi remove sai
+
+Code lỗi:
+
+```js
+item.remove;
+```
+
+Đây chỉ là tham chiếu hàm, chưa gọi hàm.
+
+Sửa:
+
+```js
+item.remove();
+```
+
+---
+
+### Lỗi 6: Lưu history bằng innerHTML không an toàn
+
+Code lỗi:
+
+```js
+localStorage.setItem("history", historyList.innerHTML);
+```
+
+Nên lưu dạng mảng dữ liệu thay vì lưu HTML.
+
+Ví dụ:
+
+```js
+localStorage.setItem("history", JSON.stringify(history));
+```
+
+---
+
+### Lỗi 7: Load count từ localStorage là string
+
+Code lỗi:
+
+```js
+count = localStorage.getItem("count");
+```
+
+Giá trị lấy từ localStorage luôn là string.
+
+Sửa:
+
+```js
+count = Number(localStorage.getItem("count")) || 0;
+```
+
+---
+
+### Lỗi 8: Không load lại history từ localStorage
+
+Code lỗi:
+
+```js
+window.addEventListener("load", () => {
+    count = localStorage.getItem("count");
+    countDisplay.textContent = count;
+});
+```
+
+Đoạn này chỉ load count, chưa load history.
+
+---
+
+### Lỗi 9: Bind event click trực tiếp lên từng li
+
+Code cũ:
+
+```js
+li.addEventListener("click", function() {
+    deleteHistory(this);
+});
+```
+
+Không sai hoàn toàn, nhưng không tối ưu. Nên dùng event delegation trên `historyList`.
+
+---
+
+# Code sau khi sửa
+
+```js
+const countDisplay = document.querySelector(".count");
+const historyList = document.getElementById("history");
+
+let count = 0;
+let history = [];
+
+function updateDisplay() {
+    countDisplay.textContent = count;
+}
+
+function saveData() {
+    localStorage.setItem("count", count);
+    localStorage.setItem("history", JSON.stringify(history));
+}
+
+function renderHistory() {
+    historyList.textContent = "";
+
+    history.forEach((text, index) => {
+        const li = document.createElement("li");
+        li.textContent = text;
+        li.dataset.index = index;
+        historyList.appendChild(li);
+    });
+}
+
+function addHistory(text) {
+    history.push(text);
+    renderHistory();
+    saveData();
+}
+
+document.querySelector("#incrementBtn").addEventListener("click", function() {
+    count++;
+    updateDisplay();
+    addHistory("Count changed to " + count);
+});
+
+document.querySelector("#decrementBtn").addEventListener("click", function() {
+    count--;
+    updateDisplay();
+    addHistory("Count changed to " + count);
+});
+
+document.querySelector("#resetBtn").addEventListener("click", () => {
+    count = 0;
+    history = [];
+    updateDisplay();
+    renderHistory();
+    saveData();
+});
+
+historyList.addEventListener("click", function(e) {
+    if (e.target.tagName === "LI") {
+        const index = Number(e.target.dataset.index);
+        history.splice(index, 1);
+        renderHistory();
+        saveData();
+    }
+});
+
+document.querySelector("#clearHistory").addEventListener("click", () => {
+    history = [];
+    renderHistory();
+    saveData();
+});
+
+window.addEventListener("load", () => {
+    count = Number(localStorage.getItem("count")) || 0;
+
+    const savedHistory = localStorage.getItem("history");
+
+    if (savedHistory) {
+        history = JSON.parse(savedHistory);
+    }
+
+    updateDisplay();
+    renderHistory();
+});
+```
+
+## Kết luận
+
+Code đã sửa các lỗi chính:
+
+- Sửa `"onclick"` thành `"click"`
+- Không gán lại biến `const`
+- Dùng `textContent` thay vì `innerHTML`
+- Gọi đúng `remove()`
+- Chuyển count từ string sang number
+- Load lại history từ localStorage
+- Lưu history bằng JSON
+- Dùng event delegation cho danh sách history
