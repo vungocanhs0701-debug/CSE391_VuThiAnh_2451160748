@@ -1062,3 +1062,213 @@ Code mới ngắn gọn hơn vì sử dụng:
 - Destructuring
 
 Thay vì dùng nhiều vòng lặp `for`, nhiều `if` lồng nhau và thuật toán sort thủ công.
+# Câu C2 — Thiết kế API miniArray
+
+## Yêu cầu
+
+Thiết kế thư viện nhỏ `miniArray` gồm 3 hàm tự viết:
+
+- map()
+- filter()
+- reduce()
+
+Không dùng built-in:
+
+```js
+Array.prototype.map()
+Array.prototype.filter()
+Array.prototype.reduce()
+```
+
+---
+
+## Code
+
+```js
+const miniArray = {
+    map(arr, fn) {
+        const result = [];
+
+        for (let i = 0; i < arr.length; i++) {
+            result.push(fn(arr[i], i, arr));
+        }
+
+        return result;
+    },
+
+    filter(arr, fn) {
+        const result = [];
+
+        for (let i = 0; i < arr.length; i++) {
+            if (fn(arr[i], i, arr)) {
+                result.push(arr[i]);
+            }
+        }
+
+        return result;
+    },
+
+    reduce(arr, fn, initialValue) {
+        let accumulator = initialValue;
+
+        for (let i = 0; i < arr.length; i++) {
+            accumulator = fn(accumulator, arr[i], i, arr);
+        }
+
+        return accumulator;
+    }
+};
+
+console.log(miniArray.map([1, 2, 3], x => x * 2));
+console.log(miniArray.filter([1, 2, 3, 4], x => x > 2));
+console.log(miniArray.reduce([1, 2, 3, 4], (a, b) => a + b, 0));
+```
+
+---
+
+## Kết quả
+
+```text
+[2, 4, 6]
+[3, 4]
+10
+```
+
+---
+
+# Giải thích
+
+## 1. miniArray.map()
+
+```js
+map(arr, fn) {
+    const result = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        result.push(fn(arr[i], i, arr));
+    }
+
+    return result;
+}
+```
+
+### Cách hoạt động
+
+- Tạo mảng rỗng `result`
+- Duyệt từng phần tử của `arr`
+- Gọi hàm `fn` với từng phần tử
+- Đẩy kết quả vào `result`
+- Trả về mảng mới
+
+Ví dụ:
+
+```js
+miniArray.map([1, 2, 3], x => x * 2)
+```
+
+Kết quả:
+
+```js
+[2, 4, 6]
+```
+
+---
+
+## 2. miniArray.filter()
+
+```js
+filter(arr, fn) {
+    const result = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        if (fn(arr[i], i, arr)) {
+            result.push(arr[i]);
+        }
+    }
+
+    return result;
+}
+```
+
+### Cách hoạt động
+
+- Tạo mảng rỗng `result`
+- Duyệt từng phần tử
+- Nếu `fn()` trả về `true`, thêm phần tử đó vào `result`
+- Trả về mảng đã lọc
+
+Ví dụ:
+
+```js
+miniArray.filter([1, 2, 3, 4], x => x > 2)
+```
+
+Kết quả:
+
+```js
+[3, 4]
+```
+
+---
+
+## 3. miniArray.reduce()
+
+```js
+reduce(arr, fn, initialValue) {
+    let accumulator = initialValue;
+
+    for (let i = 0; i < arr.length; i++) {
+        accumulator = fn(accumulator, arr[i], i, arr);
+    }
+
+    return accumulator;
+}
+```
+
+### Cách hoạt động
+
+- `accumulator` nhận giá trị ban đầu là `initialValue`
+- Duyệt từng phần tử của mảng
+- Cập nhật `accumulator` bằng kết quả của `fn`
+- Trả về giá trị cuối cùng
+
+Ví dụ:
+
+```js
+miniArray.reduce([1, 2, 3, 4], (a, b) => a + b, 0)
+```
+
+Quá trình:
+
+```text
+0 + 1 = 1
+1 + 2 = 3
+3 + 3 = 6
+6 + 4 = 10
+```
+
+Kết quả:
+
+```text
+10
+```
+
+---
+
+# Kết luận
+
+`miniArray` mô phỏng lại các phương thức mảng phổ biến trong JavaScript bằng vòng lặp `for`.
+
+Các hàm này là higher-order functions vì chúng nhận một function khác làm tham số:
+
+```js
+fn
+```
+
+Ví dụ:
+
+```js
+x => x * 2
+```
+
+là callback function truyền vào `miniArray.map()`.
