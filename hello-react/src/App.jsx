@@ -1,37 +1,56 @@
-function SimpleVariables() {
-  const ten = "Vũ Thị Anh";
-  const tuoi = 19;
-  const queQuan = "Thanh Hóa";
+import ProductCard from "./components/ProductCard";
 
-  const canNang = 50;
-  const chieuCao = 1.6;
+function App() {
+    const products = [
+        {
+            id: 1,
+            name: "iPhone 15",
+            price: "25.000.000",
+            image: "https://placehold.co/200"
+        },
 
-  const bmi = (canNang / (chieuCao * chieuCao)).toFixed(2);
+        {
+            id: 2,
+            name: "Samsung S24",
+            price: "22.000.000",
+            image: "https://placehold.co/200"
+        },
 
-  const gio = new Date().getHours();
+        {
+            id: 3,
+            name: "Xiaomi 14",
+            price: "15.000.000",
+            image: "https://placehold.co/200"
+        }
+    ];
 
-  const loiChao =
-      gio < 12
-          ? "Chào buổi sáng"
-          : gio < 18
-          ? "Chào buổi chiều"
-          : "Chào buổi tối";
+    return (
+        <div>
+            <h1
+                style={{
+                    textAlign: "center"
+                }}
+            >
+                Cửa hàng điện thoại
+            </h1>
 
-  return (
-      <div style={{ padding: "20px" }}>
-          <h1>{loiChao}</h1>
-
-          <p>Họ tên: {ten}</p>
-
-          <p>Tuổi: {tuoi}</p>
-
-          <p>Năm sau: {tuoi + 1}</p>
-
-          <p>Quê quán: {queQuan}</p>
-
-          <p>BMI: {bmi}</p>
-      </div>
-  );
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center"
+                }}
+            >
+                {products.map(product => (
+                    <ProductCard
+                        key={product.id}
+                        name={product.name}
+                        price={product.price}
+                        image={product.image}
+                    />
+                ))}
+            </div>
+        </div>
+    );
 }
 
-export default SimpleVariables;
+export default App;
