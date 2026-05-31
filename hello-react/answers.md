@@ -427,3 +427,31 @@ Ghi thêm:
 - Conditional Rendering bằng &&
 - Render danh sách bằng map()
 - Sử dụng key khi render list
+
+# Bài 3.1
+
+## Tại sao phải chia component?
+
+Nếu viết tất cả giao diện trong App.jsx:
+
+- File rất dài
+- Khó sửa
+- Khó tái sử dụng
+- Khó làm việc nhóm
+
+Ví dụ:
+
+Trang web gồm:
+
+- Header
+- ProductCard
+- Footer
+
+Mỗi phần nên là một component riêng.
+
+## Lợi ích
+
+- Code ngắn hơn
+- Dễ bảo trì
+- Tái sử dụng được
+- Dễ làm việc nhóm
