@@ -901,3 +901,28 @@ Kết quả cuối cùng:
 ```text
 16
 ```
+## Bài B1 — Quản lý Sản phẩm E-Commerce
+
+Đã tạo file:
+
+product_manager.js
+
+Sử dụng đầy đủ:
+
+- filter()
+- map()
+- reduce()
+- sort()
+- find()/includes()
+
+Chức năng:
+
+1. Lọc sản phẩm còn hàng
+2. Lọc theo danh mục và khoảng giá
+3. Sắp xếp theo giá
+4. Tìm sản phẩm rẻ nhất mỗi danh mục
+5. Tính tổng giá trị kho
+6. Định dạng danh sách sản phẩm
+7. Tính rating trung bình
+8. Tìm kiếm sản phẩm theo từ khóa
+![product manager result](screenshots/product_manager_result.png)
