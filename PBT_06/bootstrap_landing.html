@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Landing Page</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">ShopTLU</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" href="#">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Sản phẩm</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Khuyến mãi</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>
+            </ul>
+
+            <form class="d-flex me-3">
+                <input class="form-control me-2" type="search" placeholder="Tìm kiếm">
+                <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+
+            <a href="#" class="btn btn-warning">🛒 Cart</a>
+        </div>
+    </div>
+</nav>
+
+<section id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+    </div>
+
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="bg-primary text-white d-flex align-items-center justify-content-center" style="height: 420px;">
+                <div class="text-center">
+                    <h1 class="display-4 fw-bold">Big Sale 2026</h1>
+                    <p class="lead">Giảm giá cực sốc cho sản phẩm công nghệ</p>
+                    <a href="#" class="btn btn-light btn-lg">Mua ngay</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="bg-success text-white d-flex align-items-center justify-content-center" style="height: 420px;">
+                <div class="text-center">
+                    <h1 class="display-4 fw-bold">New Collection</h1>
+                    <p class="lead">Sản phẩm mới nhất đã có mặt</p>
+                    <a href="#" class="btn btn-light btn-lg">Khám phá</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <div class="bg-danger text-white d-flex align-items-center justify-content-center" style="height: 420px;">
+                <div class="text-center">
+                    <h1 class="display-4 fw-bold">Flash Deal</h1>
+                    <p class="lead">Ưu đãi chỉ trong hôm nay</p>
+                    <a href="#" class="btn btn-light btn-lg">Xem deal</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</section>
+
+<main class="container my-5">
+    <h2 class="text-center mb-4">Sản phẩm nổi bật</h2>
+
+    <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card h-100">
+                <div class="position-relative">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product">
+                    <span class="badge bg-danger position-absolute top-0 end-0 m-2">Sale</span>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">iPhone 16</h5>
+                    <p class="card-text text-danger fw-bold">25.990.000đ</p>
+                    <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#quickViewModal">
+                        Xem nhanh
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card h-100">
+                <div class="position-relative">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product">
+                    <span class="badge bg-danger position-absolute top-0 end-0 m-2">Sale</span>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">MacBook Pro</h5>
+                    <p class="card-text text-danger fw-bold">45.990.000đ</p>
+                    <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#quickViewModal">
+                        Xem nhanh
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card h-100">
+                <div class="position-relative">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product">
+                    <span class="badge bg-danger position-absolute top-0 end-0 m-2">Sale</span>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">AirPods Pro</h5>
+                    <p class="card-text text-danger fw-bold">5.990.000đ</p>
+                    <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#quickViewModal">
+                        Xem nhanh
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card h-100">
+                <div class="position-relative">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product">
+                    <span class="badge bg-danger position-absolute top-0 end-0 m-2">Sale</span>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">iPad Air</h5>
+                    <p class="card-text text-danger fw-bold">16.990.000đ</p>
+                    <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#quickViewModal">
+                        Xem nhanh
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="modal fade" id="quickViewModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Chi tiết sản phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <img src="https://via.placeholder.com/300x200" class="img-fluid mb-3" alt="Product">
+                <p>Sản phẩm công nghệ chất lượng cao, giá tốt, bảo hành chính hãng.</p>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button class="btn btn-primary">Thêm vào giỏ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark text-white mt-5 py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-12 col-md-6 col-lg-3">
+                <h5>ShopTLU</h5>
+                <p>Website thương mại điện tử demo bằng Bootstrap 5.</p>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <h5>Liên kết</h5>
+                <p>Trang chủ</p>
+                <p>Sản phẩm</p>
+                <p>Khuyến mãi</p>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <h5>Hỗ trợ</h5>
+                <p>FAQ</p>
+                <p>Chính sách đổi trả</p>
+                <p>Bảo hành</p>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <h5>Liên hệ</h5>
+                <p>Email: contact@shoptlu.vn</p>
+                <p>Hotline: 0123 456 789</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

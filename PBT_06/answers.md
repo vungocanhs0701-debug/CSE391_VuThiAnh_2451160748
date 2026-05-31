@@ -290,3 +290,34 @@ Bootstrap giúp xây dựng responsive layout nhanh bằng:
 - Breakpoints như md, lg
 - Utility classes cho spacing, display, layout
 - Components có sẵn
+
+# Bài B1 — Landing Page Bootstrap
+
+## File đã tạo
+
+- bootstrap_landing.html
+
+## Các Bootstrap components đã dùng
+
+- Navbar: `navbar navbar-expand-lg`
+- Carousel: `carousel slide`
+- Product cards: `card`, `card-img-top`, `card-body`
+- Badge sale: `badge bg-danger`
+- Modal: Bootstrap modal
+- Footer grid: `row`, `col-12`, `col-md-6`, `col-lg-3`
+
+## Responsive
+
+Product grid sử dụng:
+
+```html
+col-12 col-md-6 col-lg-3
+```
+Nghĩa là:
+    Mobile: 1 cột
+    Tablet: 2 cột
+    Desktop: 4 cột
+## Screenshot
+![bootstrap mobile](screenshots/bootstrap_mobile.png)
+![bootstrap tablet](screenshots/bootstrap_tablet.png)
+![bootstrap desktop](screenshots/bootstrap_desktop.png)
