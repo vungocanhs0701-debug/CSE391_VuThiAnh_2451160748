@@ -1500,3 +1500,24 @@ default:
 ```
 
 sẽ trả về thông báo lỗi.
+
+## Bài B2 — Xử lý dữ liệu sinh viên
+
+Đã tạo file:
+
+```text
+student_data.js
+```
+Chương trình thực hiện:
+
+Tính điểm trung bình theo công thức:
+TB = math × 0.4 + physics × 0.3 + cs × 0.3
+Xếp loại sinh viên
+In bảng kết quả
+Đếm số lượng mỗi xếp loại
+Tìm sinh viên có điểm TB cao nhất
+Tìm sinh viên có điểm TB thấp nhất
+Tính điểm trung bình toàn lớp cho từng môn
+Bonus: Tính điểm trung bình theo giới tính
+
+![student data result](screenshots/student_data_result.png)
