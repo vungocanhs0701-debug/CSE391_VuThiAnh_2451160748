@@ -1,323 +1,160 @@
 import { useState } from "react";
 
-function ListBasics() {
-    const [students] = useState([
-        { id: 1, name: "Minh", age: 20 },
-        { id: 2, name: "An", age: 21 },
-        { id: 3, name: "Linh", age: 19 }
-    ]);
+import TodoItem from "./components/TodoItem";
+import TodoFilter from "./components/TodoFilter";
 
-    const avgAge =
-        students.reduce(
-            (sum, s) => sum + s.age,
-            0
-        ) / students.length;
+function App() {
+    const [todos, setTodos] = useState([]);
+
+    const [inputValue, setInputValue] =
+        useState("");
+
+    const [filter, setFilter] =
+        useState("all");
+
+    function addTodo() {
+        if (
+            inputValue.trim() === ""
+        ) {
+            return;
+        }
+
+        const newTodo = {
+            id: Date.now(),
+            text: inputValue,
+            done: false
+        };
+
+        setTodos([
+            ...todos,
+            newTodo
+        ]);
+
+        setInputValue("");
+    }
+
+    function toggleTodo(id) {
+        setTodos(
+            todos.map(todo =>
+                todo.id === id
+                    ? {
+                          ...todo,
+                          done: !todo.done
+                      }
+                    : todo
+            )
+        );
+    }
+
+    function deleteTodo(id) {
+        setTodos(
+            todos.filter(
+                todo =>
+                    todo.id !== id
+            )
+        );
+    }
+
+    function handleKeyDown(event) {
+        if (
+            event.key === "Enter"
+        ) {
+            addTodo();
+        }
+    }
+
+    const filteredTodos =
+        todos.filter(todo => {
+            if (
+                filter ===
+                "active"
+            ) {
+                return !todo.done;
+            }
+
+            if (
+                filter ===
+                "completed"
+            ) {
+                return todo.done;
+            }
+
+            return true;
+        });
+
+    const activeCount =
+        todos.filter(
+            todo => !todo.done
+        ).length;
 
     return (
-        <div>
-            <h2>Danh sách sinh viên</h2>
+        <div
+            style={{
+                maxWidth: "500px",
+                margin: "0 auto",
+                padding: "20px"
+            }}
+        >
+            <h1>
+                📋 Todo App
+            </h1>
 
-            {students.map((student, index) => (
-                <div
-                    key={student.id}
-                    style={{
-                        color:
-                            student.age >= 20
-                                ? "green"
-                                : "black"
-                    }}
+            <div>
+                <input
+                    value={
+                        inputValue
+                    }
+                    onChange={(e) =>
+                        setInputValue(
+                            e.target.value
+                        )
+                    }
+                    onKeyDown={
+                        handleKeyDown
+                    }
+                    placeholder="Nhập công việc..."
+                />
+
+                <button
+                    onClick={
+                        addTodo
+                    }
                 >
-                    {index + 1}. {student.name} - {student.age} tuổi
-                </div>
-            ))}
+                    Thêm
+                </button>
+            </div>
+
+            <br />
+
+            <TodoFilter
+                filter={filter}
+                setFilter={setFilter}
+            />
+
+            {filteredTodos.map(
+                todo => (
+                    <TodoItem
+                        key={todo.id}
+                        todo={todo}
+                        onToggle={
+                            toggleTodo
+                        }
+                        onDelete={
+                            deleteTodo
+                        }
+                    />
+                )
+            )}
+
+            <hr />
 
             <p>
-                Tuổi trung bình:
-                {avgAge.toFixed(2)}
+                Còn lại:
+                {activeCount}
+                công việc
             </p>
         </div>
     );
-}
-function CreateItem() {
-  const [items, setItems] = useState([
-      { id: 1, name: "HTML" },
-      { id: 2, name: "CSS" }
-  ]);
-
-  const [newName, setNewName] =
-      useState("");
-
-  const [message, setMessage] =
-      useState("");
-
-  function handleAdd() {
-      if (
-          newName.trim() === ""
-      ) {
-          return;
-      }
-
-      const newItem = {
-          id: Date.now(),
-          name: newName
-      };
-
-      setItems([
-          ...items,
-          newItem
-      ]);
-
-      setNewName("");
-
-      setMessage(
-          "Đã thêm thành công!"
-      );
-  }
-
-  return (
-      <div>
-          <h2>Thêm môn học</h2>
-
-          <input
-              value={newName}
-              onChange={(e) =>
-                  setNewName(
-                      e.target.value
-                  )
-              }
-          />
-
-          <button
-              onClick={
-                  handleAdd
-              }
-          >
-              Thêm
-          </button>
-
-          <p>{message}</p>
-
-          {items.map(item => (
-              <div key={item.id}>
-                  {item.name}
-              </div>
-          ))}
-      </div>
-  );
-}
-function DeleteItem() {
-  const [items, setItems] =
-      useState([
-          {
-              id: 1,
-              name: "Minh"
-          },
-          {
-              id: 2,
-              name: "An"
-          },
-          {
-              id: 3,
-              name: "Linh"
-          }
-      ]);
-
-  const [deletedName,
-      setDeletedName]
-      = useState("");
-
-  function handleDelete(
-      item
-  ) {
-      const confirmDelete =
-          window.confirm(
-              `Xóa ${item.name}?`
-          );
-
-      if (
-          !confirmDelete
-      ) return;
-
-      setDeletedName(
-          item.name
-      );
-
-      setItems(
-          items.filter(
-              i =>
-                  i.id !==
-                  item.id
-          )
-      );
-  }
-
-  return (
-      <div>
-          <h2>
-              Xóa sinh viên
-          </h2>
-
-          {deletedName && (
-              <p>
-                  Đã xóa:
-                  {deletedName}
-              </p>
-          )}
-
-          {items.map(item => (
-              <div
-                  key={item.id}
-              >
-                  {item.name}
-
-                  <button
-                      onClick={() =>
-                          handleDelete(
-                              item
-                          )
-                      }
-                  >
-                      Xóa
-                  </button>
-              </div>
-          ))}
-      </div>
-  );
-}
-function UpdateItem() {
-  const [items, setItems] =
-      useState([
-          {
-              id: 1,
-              name: "Minh",
-              age: 20
-          },
-          {
-              id: 2,
-              name: "An",
-              age: 21
-          }
-      ]);
-
-  const [editingId,
-      setEditingId]
-      = useState(null);
-
-  const [editName,
-      setEditName]
-      = useState("");
-
-  function startEdit(
-      item
-  ) {
-      setEditingId(
-          item.id
-      );
-
-      setEditName(
-          item.name
-      );
-  }
-
-  function saveEdit() {
-      if (
-          editName.trim() ===
-          ""
-      ) {
-          return;
-      }
-
-      setItems(
-          items.map(item =>
-              item.id ===
-              editingId
-                  ? {
-                        ...item,
-                        name: editName
-                    }
-                  : item
-          )
-      );
-
-      setEditingId(
-          null
-      );
-  }
-
-  return (
-      <div>
-          <h2>
-              Sửa thông tin
-          </h2>
-
-          {items.map(item => (
-              <div
-                  key={item.id}
-              >
-                  {editingId ===
-                  item.id ? (
-                      <>
-                          <input
-                              value={
-                                  editName
-                              }
-                              onChange={(
-                                  e
-                              ) =>
-                                  setEditName(
-                                      e
-                                          .target
-                                          .value
-                                  )
-                              }
-                          />
-
-                          <button
-                              onClick={
-                                  saveEdit
-                              }
-                          >
-                              Lưu
-                          </button>
-                      </>
-                  ) : (
-                      <>
-                          {item.name}
-
-                          <button
-                              onClick={() =>
-                                  startEdit(
-                                      item
-                                  )
-                              }
-                          >
-                              Sửa
-                          </button>
-                      </>
-                  )}
-              </div>
-          ))}
-      </div>
-  );
-}
-function App() {
-  return (
-      <div style={{ padding: "20px" }}>
-          <ListBasics />
-
-          <hr />
-
-          <CreateItem />
-
-          <hr />
-
-          <DeleteItem />
-
-          <hr />
-
-          <UpdateItem />
-      </div>
-  );
 }
 
 export default App;
