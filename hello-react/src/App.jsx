@@ -1,65 +1,41 @@
 import { useState } from "react";
 
-function BadCounter() {
-    let count = 0;
+function FlowDemo() {
+    console.log("🔄 Component render!");
 
-    console.log("BadCounter render");
-
-    function handleClick() {
-        count = count + 1;
-        console.log("Count:", count);
-    }
+    const [step, setStep] = useState(1);
 
     return (
-        <div style={{ padding: "20px", border: "2px solid red", marginBottom: "20px" }}>
-            <h2>❌ Counter tệ dùng biến thường</h2>
+        <div style={{ padding: "20px" }}>
+            <h2>Luồng hoạt động React</h2>
 
-            <p>Bộ đếm: {count}</p>
+            <p>Bước hiện tại: {step}</p>
 
-            <button onClick={handleClick}>
-                Tăng (+1)
+            <button onClick={() => setStep(step + 1)}>
+                Bước tiếp theo →
             </button>
 
-            <p style={{ color: "red" }}>
-                Nhấn nút thì Console tăng, nhưng số trên màn hình không đổi.
-            </p>
-        </div>
-    );
-}
-
-function GoodCounter() {
-    const [count, setCount] = useState(0);
-
-    console.log("GoodCounter render");
-
-    function handleClick() {
-        setCount(count + 1);
-    }
-
-    return (
-        <div style={{ padding: "20px", border: "2px solid green" }}>
-            <h2>✅ Counter tốt dùng useState</h2>
-
-            <p>Bộ đếm: {count}</p>
-
-            <button onClick={handleClick}>
-                Tăng (+1)
+            <button
+                onClick={() => setStep(1)}
+                style={{ marginLeft: "10px" }}
+            >
+                Quay lại đầu
             </button>
 
-            <p style={{ color: "green" }}>
-                Nhấn nút thì số trên màn hình cập nhật.
-            </p>
+            <div
+                style={{
+                    marginTop: "20px",
+                    padding: "10px",
+                    background: "#f0f0f0"
+                }}
+            >
+                {step === 1 && <p>👋 Bước 1: Xin chào!</p>}
+                {step === 2 && <p>📖 Bước 2: Đang học React</p>}
+                {step === 3 && <p>🎯 Bước 3: Hiểu useState</p>}
+                {step === 4 && <p>🎉 Bước 4: Hoàn thành!</p>}
+            </div>
         </div>
     );
 }
 
-function App() {
-    return (
-        <div>
-            <BadCounter />
-            <GoodCounter />
-        </div>
-    );
-}
-
-export default App;
+export default FlowDemo;

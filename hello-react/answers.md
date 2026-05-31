@@ -299,3 +299,57 @@ Re-render	Không xảy ra	Xảy ra khi gọi setCount
 ### Kết luận
 
 Muốn dữ liệu thay đổi và giao diện React cập nhật theo, cần dùng `useState.`
+
+## Bài 1.3 — Luồng hoạt động của React
+```jsx
+import { useState } from "react"; 
+function FlowDemo() { 
+    console.log("🔄 Component render!"); 
+    const [step, setStep] = useState(1); 
+    return ( 
+        <div> 
+            <p>Bước hiện tại: {step}</p> 
+            <button onClick={() => setStep(step + 1)}>
+                  Bước tiếp theo
+                  </button> 
+                  </div> 
+            );
+}
+export default FlowDemo;
+```
+### Kết quả
+
+Khi nhấn nút:
+
+Bước tiếp theo
+
+giá trị `step` thay đổi.
+
+React sẽ:
+
+Gọi `setStep()`
+State thay đổi
+Component render lại
+JSX mới được tạo
+Giao diện được cập nhật
+### Luồng hoạt động React
+Component được gọi
+↓
+Return JSX
+↓
+Hiển thị lên màn hình
+↓
+Người dùng tương tác
+↓
+Gọi setState()
+↓
+React re-render
+↓
+Return JSX mới
+↓
+UI cập nhật
+### Kết luận
+
+React không cập nhật giao diện trực tiếp.
+
+Khi state thay đổi bằng `setState`, React sẽ render lại component và cập nhật phần giao diện thay đổi.
