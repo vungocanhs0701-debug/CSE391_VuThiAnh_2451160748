@@ -407,3 +407,157 @@ var
 ```
 
 trong vòng lặp.
+# Câu A3 — Array Methods
+
+## Mảng ban đầu
+
+```js
+const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+```
+
+## 1. Lấy các số chẵn
+
+Kết quả:
+
+```js
+[2, 4, 6, 8, 10]
+```
+
+Code:
+
+```js
+nums.filter(n => n % 2 === 0);
+```
+
+## 2. Nhân mỗi số với 3
+
+Kết quả:
+
+```js
+[3, 6, 9, 12, 15, 18, 21, 24, 27, 30]
+```
+
+Code:
+
+```js
+nums.map(n => n * 3);
+```
+
+
+## 3. Tính tổng tất cả
+
+Kết quả:
+
+```js
+55
+```
+
+Code:
+
+```js
+nums.reduce((sum, n) => sum + n, 0);
+```
+
+## 4. Tìm số đầu tiên lớn hơn 7
+
+Kết quả:
+
+```js
+8
+```
+
+Code:
+
+```js
+nums.find(n => n > 7);
+```
+
+## 5. Kiểm tra có số nào lớn hơn 10 không
+
+Kết quả:
+
+```js
+false
+```
+
+Code:
+
+```js
+nums.some(n => n > 10);
+```
+
+## 6. Kiểm tra tất cả đều lớn hơn 0
+
+Kết quả:
+
+```js
+true
+```
+
+Code:
+
+```js
+nums.every(n => n > 0);
+```
+
+## 7. Tạo mảng "Số X là chẵn/lẻ"
+
+Kết quả:
+
+```js
+[
+  "Số 1 là lẻ",
+  "Số 2 là chẵn",
+  "Số 3 là lẻ",
+  ...
+]
+```
+
+Code:
+
+```js
+nums.map(n => `Số ${n} là ${n % 2 === 0 ? "chẵn" : "lẻ"}`);
+```
+
+## 8. Đảo ngược mảng (không làm thay đổi mảng gốc)
+
+Kết quả:
+
+```js
+[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+```
+
+Code:
+
+```js
+[...nums].reverse();
+```
+
+# Bảng tổng hợp
+
+| Yêu cầu | Array Method |
+|----------|-------------|
+| Lọc số chẵn | filter() |
+| Nhân mỗi phần tử | map() |
+| Tính tổng | reduce() |
+| Tìm phần tử đầu tiên | find() |
+| Kiểm tra tồn tại | some() |
+| Kiểm tra tất cả | every() |
+| Chuyển đổi dữ liệu | map() |
+| Đảo mảng không mutate | spread + reverse() |
+
+
+# Kết luận
+
+Các phương thức mảng quan trọng nhất:
+
+```js
+filter()
+map()
+reduce()
+find()
+some()
+every()
+```
+
+Giúp xử lý dữ liệu ngắn gọn, dễ đọc và thường được sử dụng trong JavaScript hiện đại.
