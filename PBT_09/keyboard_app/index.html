@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Keyboard App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+    <header>
+        <h1>Keyboard Gallery</h1>
+        <p>← → chuyển ảnh | 1-9 chọn ảnh | Space play/pause | Ctrl+K mở command</p>
+    </header>
+
+    <main>
+        <div class="gallery">
+            <button id="prevBtn" aria-label="Ảnh trước">←</button>
+
+            <img id="mainImage" src="https://placehold.co/600x350?text=Image+1" alt="Gallery image">
+
+            <button id="nextBtn" aria-label="Ảnh tiếp theo">→</button>
+        </div>
+
+        <div class="actions">
+            <button id="playBtn" aria-label="Play hoặc pause slideshow">Play</button>
+            <button id="openModalBtn" aria-label="Mở ảnh trong modal">Open Modal</button>
+            <button id="commandBtn" aria-label="Mở command palette">Ctrl + K</button>
+        </div>
+    </main>
+</div>
+
+<div id="imageModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+        <button id="closeModalBtn" aria-label="Đóng modal">X</button>
+        <img id="modalImage" src="" alt="Ảnh phóng to">
+    </div>
+</div>
+
+<div id="commandPalette" class="palette hidden" role="dialog" aria-modal="true">
+    <div class="palette-box">
+        <input id="commandInput" type="text" placeholder="Gõ command..." aria-label="Tìm kiếm command">
+        <ul id="commandList"></ul>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

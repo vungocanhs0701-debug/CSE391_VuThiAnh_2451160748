@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+.app {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    text-align: center;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.gallery img {
+    width: 600px;
+    max-width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+}
+
+button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.actions {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+button:focus,
+input:focus {
+    outline: 4px solid #facc15;
+    outline-offset: 3px;
+}
+
+.modal,
+.palette {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    position: relative;
+}
+
+.modal-content img {
+    max-width: 80vw;
+    max-height: 75vh;
+    border-radius: 12px;
+}
+
+#closeModalBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ef4444;
+}
+
+.palette-box {
+    width: 420px;
+    max-width: 90%;
+    background: white;
+    padding: 18px;
+    border-radius: 16px;
+}
+
+#commandInput {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+#commandList {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+}
+
+#commandList li {
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#commandList li:hover,
+#commandList li.active {
+    background: #dbeafe;
+}

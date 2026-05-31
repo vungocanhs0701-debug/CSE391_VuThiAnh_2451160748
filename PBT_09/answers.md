@@ -609,3 +609,31 @@ Chức năng đã hoàn thành:
 - Submit button disabled cho đến khi tất cả field hợp lệ
 - Submit thành công hiển thị modal thông tin đã nhập
 ![form validator](screenshots/form_validator.png)
+
+# Bài B4 — Keyboard Shortcuts & Accessibility
+
+Đã tạo folder:
+
+keyboard_app/
+
+Gồm 3 file:
+
+- index.html
+- style.css
+- app.js
+
+Chức năng đã hoàn thành:
+
+- Gallery ảnh
+- Phím ← → để chuyển ảnh
+- Phím 1-9 để nhảy đến ảnh tương ứng
+- Space để play/pause slideshow
+- Escape để đóng modal
+- Ctrl + K mở command palette
+- Gõ keyword để lọc command
+- Enter để chọn command
+- Escape để đóng command palette
+- Tab di chuyển qua các element
+- Focus ring visible
+- Có aria-label trên các interactive elements
+![keyboard app](screenshots/keyboard_app.png)
