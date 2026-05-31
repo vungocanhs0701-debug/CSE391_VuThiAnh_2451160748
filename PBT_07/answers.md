@@ -1587,3 +1587,273 @@ Kết quả:
 105 = FizzBuzzJazz
 ```
 ![fizzbuzz result](screenshots/fizzbuzz_result.png)
+
+# PHẦN C — SUY LUẬN
+
+# Câu C1 — Debug JavaScript
+
+## Code ban đầu
+
+```js
+function tinhGiaGiamGia(giaBan, phanTramGiam) {
+    if (phanTramGiam < 0 || phanTramGiam > 100) {
+        return "Phần trăm giảm không hợp lệ"
+    }
+    
+    var giamGia = giaBan * phanTramGiam / 100
+    let giaSauGiam = giaBan - giamGia
+    
+    if (giaSauGiam = 0) {
+        console.log("Sản phẩm miễn phí!")
+    }
+    
+    return giaSauGiam
+}
+```
+## Lỗi 1: Thiếu dấu chấm phẩy
+
+### Vị trí lỗi
+
+```js
+return "Phần trăm giảm không hợp lệ"
+```
+
+```js
+var giamGia = giaBan * phanTramGiam / 100
+```
+
+```js
+return giaSauGiam
+```
+
+### Giải thích
+
+JavaScript có cơ chế tự động thêm dấu chấm phẩy, nhưng vẫn nên viết rõ `;` để code dễ đọc và tránh lỗi không mong muốn.
+
+### Cách sửa
+
+```js
+return "Phần trăm giảm không hợp lệ";
+```
+
+## Lỗi 2: Không kiểm tra giaBan có phải số không
+
+### Vị trí lỗi
+
+```js
+const gia = tinhGiaGiamGia("100000", 20)
+```
+
+`giaBan` đang là chuỗi:
+
+```js
+"100000"
+```
+
+### Giải thích
+
+Hàm tính giá nên kiểm tra input có phải number không. Nếu nhập chuỗi hoặc dữ liệu sai, kết quả có thể không đúng hoặc gây lỗi logic.
+
+### Cách sửa
+
+```js
+if (typeof giaBan !== "number" || isNaN(giaBan)) {
+    return "Giá bán không hợp lệ";
+}
+```
+
+## Lỗi 3: Không kiểm tra phanTramGiam có phải số không
+
+### Vị trí lỗi
+
+```js
+phanTramGiam
+```
+
+### Giải thích
+
+Nếu `phanTramGiam` là chuỗi hoặc giá trị không phải số, phép so sánh và phép tính có thể sai.
+
+### Cách sửa
+
+```js
+if (typeof phanTramGiam !== "number" || isNaN(phanTramGiam)) {
+    return "Phần trăm giảm không hợp lệ";
+}
+```
+
+## Lỗi 4: Dùng toán tử gán `=` thay vì toán tử so sánh
+
+### Vị trí lỗi
+
+```js
+if (giaSauGiam = 0) {
+```
+
+### Giải thích
+
+Dấu `=` là phép gán, không phải phép so sánh.
+
+Dòng trên đang gán:
+
+```js
+giaSauGiam = 0
+```
+
+Điều này làm sai giá trị của biến.
+
+### Cách sửa
+
+```js
+if (giaSauGiam === 0) {
+```
+
+## Lỗi 5: Dùng `var` không cần thiết
+
+### Vị trí lỗi
+
+```js
+var giamGia = giaBan * phanTramGiam / 100;
+```
+
+### Giải thích
+
+`var` có function scope và dễ gây lỗi do hoisting. Trong JavaScript hiện đại nên dùng `let` hoặc `const`.
+
+Biến `giamGia` không bị gán lại nên dùng `const`.
+
+### Cách sửa
+
+```js
+const giamGia = giaBan * phanTramGiam / 100;
+```
+
+## Lỗi 6: Test truyền sai kiểu dữ liệu
+
+### Vị trí lỗi
+
+```js
+const gia = tinhGiaGiamGia("100000", 20)
+```
+
+### Giải thích
+
+`"100000"` là string, không phải number.
+
+### Cách sửa
+
+```js
+const gia = tinhGiaGiamGia(100000, 20);
+```
+
+## Lỗi 7: Dùng var trong vòng lặp với setTimeout
+
+### Vị trí lỗi
+
+```js
+for (var i = 0; i < 5; i++) {
+    setTimeout(function() {
+        console.log("Item " + i)
+    }, 1000)
+}
+```
+
+### Giải thích
+
+`var` có function scope, không có block scope.  
+Sau khi vòng lặp chạy xong, `i` đã bằng 5.
+
+Các hàm trong `setTimeout` chạy sau 1 giây nên tất cả đều dùng cùng một biến `i`.
+
+Vì vậy kết quả sẽ là:
+
+```text
+Item 5
+Item 5
+Item 5
+Item 5
+Item 5
+```
+
+### Cách sửa
+
+Dùng `let` vì `let` có block scope, mỗi vòng lặp sẽ có một giá trị `i` riêng.
+
+```js
+for (let i = 0; i < 5; i++) {
+    setTimeout(function() {
+        console.log("Item " + i);
+    }, 1000);
+}
+```
+
+Kết quả đúng:
+
+```text
+Item 0
+Item 1
+Item 2
+Item 3
+Item 4
+```
+
+# Code sau khi sửa
+
+```js
+function tinhGiaGiamGia(giaBan, phanTramGiam) {
+    if (typeof giaBan !== "number" || isNaN(giaBan) || giaBan < 0) {
+        return "Giá bán không hợp lệ";
+    }
+
+    if (typeof phanTramGiam !== "number" || isNaN(phanTramGiam)) {
+        return "Phần trăm giảm không hợp lệ";
+    }
+
+    if (phanTramGiam < 0 || phanTramGiam > 100) {
+        return "Phần trăm giảm không hợp lệ";
+    }
+
+    const giamGia = giaBan * phanTramGiam / 100;
+    const giaSauGiam = giaBan - giamGia;
+
+    if (giaSauGiam === 0) {
+        console.log("Sản phẩm miễn phí!");
+    }
+
+    return giaSauGiam;
+}
+
+// Test
+const gia = tinhGiaGiamGia(100000, 20);
+console.log("Giá sau giảm: " + gia + "đ");
+
+const gia2 = tinhGiaGiamGia(50000, 110);
+console.log("Giá: " + gia2);
+
+for (let i = 0; i < 5; i++) {
+    setTimeout(function() {
+        console.log("Item " + i);
+    }, 1000);
+}
+```
+# Kết quả sau khi sửa
+
+```text
+Giá sau giảm: 80000đ
+Giá: Phần trăm giảm không hợp lệ
+Item 0
+Item 1
+Item 2
+Item 3
+Item 4
+```
+# Kết luận
+
+Các lỗi chính gồm:
+
+- Thiếu kiểm tra kiểu dữ liệu đầu vào
+- Dùng `=` thay vì `===`
+- Truyền sai kiểu dữ liệu khi test
+- Dùng `var` trong vòng lặp gây lỗi closure với `setTimeout`
+- Nên dùng `const` hoặc `let` thay cho `var`
+- Nên thêm dấu `;` để code rõ ràng hơn
