@@ -1,0 +1,160 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+body.dark-mode {
+    background: #111827;
+    color: #f9fafb;
+}
+
+.app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.cart {
+    position: relative;
+    font-size: 26px;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -10px;
+    right: -14px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 8px;
+    font-size: 13px;
+}
+
+.toolbar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+input,
+select,
+button {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    cursor: pointer;
+    background: #2563eb;
+    color: white;
+    border: none;
+}
+
+.category-btn.active {
+    background: #111827;
+}
+
+body.dark-mode .category-btn.active {
+    background: #facc15;
+    color: #111827;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.card {
+    background: white;
+    color: #222;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    transition: 0.3s;
+}
+
+body.dark-mode .card {
+    background: #1f2937;
+    color: #f9fafb;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.price {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.stock {
+    font-weight: bold;
+}
+
+.out {
+    color: #ef4444;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background: white;
+    color: #222;
+    max-width: 420px;
+    width: 90%;
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+}
+
+body.dark-mode .modal {
+    background: #1f2937;
+    color: white;
+}
+
+.close-modal {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #ef4444;
+}
+
+@media (max-width: 900px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+}

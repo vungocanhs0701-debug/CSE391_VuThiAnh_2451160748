@@ -555,3 +555,33 @@ Chức năng đã làm:
 - Dùng createElement để tạo todo item
 - Dùng Event Delegation trên #todoList
 ![todo app](screenshots/todo_app.png)
+
+# Bài B2 — Interactive Product Catalog
+
+Đã tạo folder:
+
+product_catalog/
+
+Gồm 3 file:
+
+- index.html
+- style.css
+- app.js
+
+Chức năng đã hoàn thành:
+
+- Render sản phẩm từ mảng JavaScript
+- Tạo card bằng createElement
+- Search realtime bằng event input
+- Filter theo category
+- Sort theo giá tăng, giá giảm, tên A-Z, rating cao nhất
+- Click card mở modal chi tiết
+- Click "Thêm giỏ" tăng badge giỏ hàng
+- Dark mode toggle
+- Tách function rõ ràng:
+  - renderProducts()
+  - filterByCategory()
+  - searchProducts()
+  - sortProducts()
+![product catalog](screenshots/product_catalog.png)
+
