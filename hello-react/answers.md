@@ -178,3 +178,42 @@ JSX:
 <img src="photo.jpg" />
 <input type="email" />
 ```
+
+## Tier 1 — React Flow
+### Bài 1.1 — Component render lần đầu
+```jsx
+function LifecycleDemo() { 
+    console.log("1️⃣ Component được gọi!"); 
+    return ( 
+        <div> 
+            <h2>Lifecycle Demo</h2> 
+        </div> 
+        ); 
+    }
+    export default LifecycleDemo;
+```
+### Kết quả
+
+Khi mở trang hoặc refresh:
+
+1️⃣ Component được gọi!
+
+xuất hiện trong Console.
+
+### Câu hỏi 1
+
+Tại sao component chỉ render 1 lần?
+
+Vì React gọi component một lần khi trang được tải lần đầu. Quá trình này gọi là Mount.
+
+### Câu hỏi 2
+
+Khi nào component render lại?
+
+Component sẽ render lại khi:
+
+    State thay đổi
+    Props thay đổi
+
+Khi đó React sẽ cập nhật giao diện mới lên màn hình.
+
