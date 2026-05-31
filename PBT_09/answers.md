@@ -528,3 +528,30 @@ BUTTON
 ```
 
 vì sự kiện không tiếp tục nổi bọt lên các phần tử cha.
+
+# Bài B1 — Todo App hoàn chỉnh
+
+Đã tạo folder:
+
+todo_app/
+
+Gồm 3 file:
+
+- index.html
+- style.css
+- app.js
+
+Chức năng đã làm:
+
+- Thêm todo bằng Enter hoặc nút Add
+- Xóa todo bằng nút ❌
+- Toggle completed khi click vào text
+- Đếm số todo chưa hoàn thành
+- Filter: All / Active / Completed
+- Clear completed
+- Edit todo bằng double-click
+- Lưu dữ liệu bằng localStorage
+- Dùng addEventListener
+- Dùng createElement để tạo todo item
+- Dùng Event Delegation trên #todoList
+![todo app](screenshots/todo_app.png)
