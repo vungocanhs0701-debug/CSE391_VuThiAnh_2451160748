@@ -641,3 +641,338 @@ Kết quả:
 ```
 
 Đây là ví dụ nổi tiếng cho thấy JavaScript có cơ chế ép kiểu khá phức tạp.
+
+# Câu A3 — So sánh == vs ===
+
+## Dự đoán kết quả
+
+### 1.
+
+```js
+console.log(5 == "5");
+```
+
+Kết quả:
+
+```text
+true
+```
+
+### Giải thích
+
+Toán tử `==` cho phép ép kiểu.
+
+JavaScript chuyển:
+
+```js
+"5" -> 5
+```
+
+Sau đó so sánh:
+
+```js
+5 == 5
+```
+
+Kết quả:
+
+```text
+true
+```
+
+### 2.
+
+```js
+console.log(5 === "5");
+```
+
+Kết quả:
+
+```text
+false
+```
+
+### Giải thích
+
+`===` so sánh:
+
+- Giá trị
+- Kiểu dữ liệu
+
+Ở đây:
+
+```js
+5        // number
+"5"      // string
+```
+
+Khác kiểu dữ liệu.
+
+Kết quả:
+
+```text
+false
+```
+
+### 3.
+
+```js
+console.log(null == undefined);
+```
+
+Kết quả:
+
+```text
+true
+```
+
+### Giải thích
+
+JavaScript có quy tắc đặc biệt:
+
+```js
+null == undefined
+```
+
+luôn trả về:
+
+```text
+true
+```
+
+### 4.
+
+```js
+console.log(null === undefined);
+```
+
+Kết quả:
+
+```text
+false
+```
+
+### Giải thích
+
+Kiểu dữ liệu khác nhau:
+
+```js
+null
+undefined
+```
+
+nên:
+
+```text
+false
+```
+
+### 5.
+
+```js
+console.log(NaN == NaN);
+```
+
+Kết quả:
+
+```text
+false
+```
+
+### Giải thích
+
+Đây là một tính chất đặc biệt của NaN.
+
+Trong JavaScript:
+
+```js
+NaN != NaN
+```
+
+và
+
+```js
+NaN !== NaN
+```
+
+đều đúng.
+
+Muốn kiểm tra NaN phải dùng:
+
+```js
+Number.isNaN(value)
+```
+
+### 6.
+
+```js
+console.log(0 == false);
+```
+
+Kết quả:
+
+```text
+true
+```
+
+### Giải thích
+
+JavaScript ép kiểu:
+
+```js
+false -> 0
+```
+
+nên:
+
+```js
+0 == 0
+```
+
+Kết quả:
+
+```text
+true
+```
+
+### 7.
+
+```js
+console.log(0 === false);
+```
+
+Kết quả:
+
+```text
+false
+```
+
+### Giải thích
+
+Khác kiểu dữ liệu:
+
+```js
+0       // number
+false   // boolean
+```
+
+nên:
+
+```text
+false
+```
+
+### 8.
+
+```js
+console.log("" == false);
+```
+
+Kết quả:
+
+```text
+true
+```
+
+### Giải thích
+
+JavaScript ép kiểu:
+
+```js
+""      -> 0
+false   -> 0
+```
+
+nên:
+
+```js
+0 == 0
+```
+
+Kết quả:
+
+```text
+true
+```
+
+# Bảng tổng hợp
+
+| Biểu thức | Kết quả |
+|------------|----------|
+| 5 == "5" | true |
+| 5 === "5" | false |
+| null == undefined | true |
+| null === undefined | false |
+| NaN == NaN | false |
+| 0 == false | true |
+| 0 === false | false |
+| "" == false | true |
+
+# Nên dùng == hay === ?
+
+Nên dùng:
+
+```js
+===
+```
+
+# Tại sao nên dùng === ?
+
+## 1. Không ép kiểu tự động
+
+Ví dụ:
+
+```js
+5 === "5"
+```
+
+Kết quả:
+
+```text
+false
+```
+
+vì khác kiểu dữ liệu.
+
+Điều này giúp chương trình dễ hiểu hơn.
+
+## 2. Tránh lỗi khó phát hiện
+
+Ví dụ:
+
+```js
+0 == false
+```
+
+trả về:
+
+```text
+true
+```
+
+Trong nhiều trường hợp đây không phải điều lập trình viên mong muốn.
+
+## 3. Code rõ ràng hơn
+
+Khi dùng:
+
+```js
+===
+```
+
+JavaScript kiểm tra:
+
+- Giá trị
+- Kiểu dữ liệu
+
+nên kết quả đáng tin cậy hơn.
+
+# Kết luận
+
+Quy tắc thực tế:
+
+```text
+Luôn ưu tiên dùng === và !==
+```
+
+Chỉ sử dụng `==` khi thực sự hiểu rõ cơ chế ép kiểu của JavaScript và chủ động muốn sử dụng nó.
