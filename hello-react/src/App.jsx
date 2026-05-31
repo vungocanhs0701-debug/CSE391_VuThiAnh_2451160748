@@ -1,416 +1,321 @@
 import { useState } from "react";
 
-function ClickEvents() {
-    const [message, setMessage] = useState("Chưa click");
-    const [clickCount, setClickCount] = useState(0);
-    const [liked, setLiked] = useState(false);
-    const [color, setColor] = useState("#ddd");
+function ListBasics() {
+    const [students] = useState([
+        { id: 1, name: "Minh", age: 20 },
+        { id: 2, name: "An", age: 21 },
+        { id: 3, name: "Linh", age: 19 }
+    ]);
 
-    function handleClick() {
-        setMessage(
-            "Đã click lúc " +
-            new Date().toLocaleTimeString()
-        );
-
-        setClickCount(clickCount + 1);
-    }
-
-    function handleReset() {
-        setMessage("Đã reset!");
-        setClickCount(0);
-    }
-
-    function randomColor() {
-        const colors = [
-            "red",
-            "green",
-            "blue",
-            "orange",
-            "purple"
-        ];
-
-        const random =
-            colors[
-                Math.floor(Math.random() * colors.length)
-            ];
-
-        setColor(random);
-    }
+    const avgAge =
+        students.reduce(
+            (sum, s) => sum + s.age,
+            0
+        ) / students.length;
 
     return (
-        <div style={{ padding: "20px" }}>
-            <h2>Bài 5.1 - Click Events</h2>
+        <div>
+            <h2>Danh sách sinh viên</h2>
 
-            <p>{message}</p>
+            {students.map((student, index) => (
+                <div
+                    key={student.id}
+                    style={{
+                        color:
+                            student.age >= 20
+                                ? "green"
+                                : "black"
+                    }}
+                >
+                    {index + 1}. {student.name} - {student.age} tuổi
+                </div>
+            ))}
 
-            <p>Số lần click: {clickCount}</p>
-
-            <button onClick={handleClick}>
-                Click me
-            </button>
-
-            <button onClick={handleReset}>
-                Reset
-            </button>
-
-            <button onClick={randomColor}>
-                Đổi màu ngẫu nhiên
-            </button>
-
-            <button
-                onClick={() =>
-                    setLiked(!liked)
-                }
-            >
-                {liked
-                    ? "❤️ Đã thích"
-                    : "🤍 Thích"}
-            </button>
-
-            <div
-                style={{
-                    width: "120px",
-                    height: "120px",
-                    backgroundColor: color,
-                    marginTop: "10px"
-                }}
-            />
+            <p>
+                Tuổi trung bình:
+                {avgAge.toFixed(2)}
+            </p>
         </div>
     );
 }
-function InputEvents() {
-  const [text, setText] = useState("");
-  const [email, setEmail] = useState("");
+function CreateItem() {
+  const [items, setItems] = useState([
+      { id: 1, name: "HTML" },
+      { id: 2, name: "CSS" }
+  ]);
 
-  function handleChange(e) {
-      setText(e.target.value);
-  }
-
-  const wordCount =
-      text.trim() === ""
-          ? 0
-          : text.trim().split(/\s+/).length;
-
-  return (
-      <div style={{ padding: "20px" }}>
-          <h2>Bài 5.2 - Input Events</h2>
-
-          <input
-              value={text}
-              onChange={handleChange}
-              maxLength={100}
-              placeholder="Nhập gì đó..."
-          />
-
-          <p>
-              Ký tự:
-              {text.length}/100
-          </p>
-
-          <p>
-              Số từ:
-              {wordCount}
-          </p>
-
-          <p>
-              Preview:
-              {text}
-          </p>
-
-          {text.length > 80 && (
-              <p style={{ color: "red" }}>
-                  ⚠️ Sắp hết ký tự!
-              </p>
-          )}
-
-          <hr />
-
-          <input
-              placeholder="Nhập email..."
-              value={email}
-              onChange={(e) =>
-                  setEmail(e.target.value)
-              }
-          />
-
-          <p
-              style={{
-                  color: email.includes("@")
-                      ? "green"
-                      : "red"
-              }}
-          >
-              {email.includes("@")
-                  ? "Email hợp lệ"
-                  : "Email chưa hợp lệ"}
-          </p>
-      </div>
-  );
-}
-function KeyboardEvents() {
-  const [lastKey, setLastKey] =
+  const [newName, setNewName] =
       useState("");
 
-  const [log, setLog] =
-      useState([]);
-
-  const [inputValue, setInputValue] =
+  const [message, setMessage] =
       useState("");
 
-  function handleKeyDown(event) {
-      setLastKey(event.key);
+  function handleAdd() {
+      if (
+          newName.trim() === ""
+      ) {
+          return;
+      }
 
-      setLog((prev) => [
-          ...prev.slice(-4),
-          event.key
+      const newItem = {
+          id: Date.now(),
+          name: newName
+      };
+
+      setItems([
+          ...items,
+          newItem
       ]);
-  }
 
-  function handleInputKeyDown(event) {
-      if (
-          event.key === "Enter"
-      ) {
-          alert(
-              "Bạn nhập: " +
-              inputValue
-          );
+      setNewName("");
 
-          setInputValue("");
-      }
-
-      if (
-          event.key === "Escape"
-      ) {
-          setInputValue("");
-      }
-  }
-
-  return (
-      <div
-          style={{ padding: "20px" }}
-          tabIndex={0}
-          onKeyDown={
-              handleKeyDown
-          }
-      >
-          <h2>
-              Bài 5.3 - Keyboard Events
-          </h2>
-
-          <p>
-              Phím cuối:
-              {lastKey}
-          </p>
-
-          <p>
-              Log:
-              {log.join(" → ")}
-          </p>
-
-          <input
-              value={inputValue}
-              onChange={(e) =>
-                  setInputValue(
-                      e.target.value
-                  )
-              }
-              onKeyDown={
-                  handleInputKeyDown
-              }
-              placeholder="Nhập rồi Enter..."
-          />
-
-          <p>
-              Enter để gửi,
-              Escape để xóa
-          </p>
-      </div>
-  );
-}
-function FormEvents() {
-  const [formData, setFormData] =
-      useState({
-          name: "",
-          email: "",
-          password: "",
-          confirmPassword: ""
-      });
-
-  const [submitted, setSubmitted] =
-      useState(false);
-
-  function handleChange(e) {
-      const {
-          name,
-          value
-      } = e.target;
-
-      setFormData({
-          ...formData,
-          [name]: value
-      });
-  }
-
-  function handleSubmit(event) {
-      event.preventDefault();
-
-      if (
-          !formData.email.includes("@")
-      ) {
-          alert(
-              "Email không hợp lệ"
-          );
-          return;
-      }
-
-      if (
-          formData.password !==
-          formData.confirmPassword
-      ) {
-          alert(
-              "Mật khẩu không khớp"
-          );
-          return;
-      }
-
-      setSubmitted(true);
-  }
-
-  function handleReset() {
-      setFormData({
-          name: "",
-          email: "",
-          password: "",
-          confirmPassword: ""
-      });
-
-      setSubmitted(false);
-  }
-
-  if (submitted) {
-      return (
-          <div
-              style={{
-                  background:
-                      "#d4edda",
-                  padding:
-                      "15px"
-              }}
-          >
-              <h3>
-                  ✅ Đã gửi thành công
-              </h3>
-
-              <p>
-                  Tên:
-                  {formData.name}
-              </p>
-
-              <p>
-                  Email:
-                  {formData.email}
-              </p>
-
-              <button
-                  onClick={
-                      handleReset
-                  }
-              >
-                  Gửi lại
-              </button>
-          </div>
+      setMessage(
+          "Đã thêm thành công!"
       );
   }
 
   return (
-      <form
-          onSubmit={
-              handleSubmit
-          }
-      >
-          <h2>
-              Bài 5.4 - Form Events
-          </h2>
+      <div>
+          <h2>Thêm môn học</h2>
 
           <input
-              name="name"
-              placeholder="Tên"
-              value={
-                  formData.name
-              }
-              onChange={
-                  handleChange
+              value={newName}
+              onChange={(e) =>
+                  setNewName(
+                      e.target.value
+                  )
               }
           />
-
-          <br />
-
-          <input
-              name="email"
-              placeholder="Email"
-              value={
-                  formData.email
-              }
-              onChange={
-                  handleChange
-              }
-          />
-
-          <br />
-
-          <input
-              type="password"
-              name="password"
-              placeholder="Mật khẩu"
-              value={
-                  formData.password
-              }
-              onChange={
-                  handleChange
-              }
-          />
-
-          <br />
-
-          <input
-              type="password"
-              name="confirmPassword"
-              placeholder="Xác nhận mật khẩu"
-              value={
-                  formData.confirmPassword
-              }
-              onChange={
-                  handleChange
-              }
-          />
-
-          <br />
-
-          <button type="submit">
-              Gửi
-          </button>
 
           <button
-              type="button"
               onClick={
-                  handleReset
+                  handleAdd
               }
           >
-              Xóa
+              Thêm
           </button>
-      </form>
+
+          <p>{message}</p>
+
+          {items.map(item => (
+              <div key={item.id}>
+                  {item.name}
+              </div>
+          ))}
+      </div>
+  );
+}
+function DeleteItem() {
+  const [items, setItems] =
+      useState([
+          {
+              id: 1,
+              name: "Minh"
+          },
+          {
+              id: 2,
+              name: "An"
+          },
+          {
+              id: 3,
+              name: "Linh"
+          }
+      ]);
+
+  const [deletedName,
+      setDeletedName]
+      = useState("");
+
+  function handleDelete(
+      item
+  ) {
+      const confirmDelete =
+          window.confirm(
+              `Xóa ${item.name}?`
+          );
+
+      if (
+          !confirmDelete
+      ) return;
+
+      setDeletedName(
+          item.name
+      );
+
+      setItems(
+          items.filter(
+              i =>
+                  i.id !==
+                  item.id
+          )
+      );
+  }
+
+  return (
+      <div>
+          <h2>
+              Xóa sinh viên
+          </h2>
+
+          {deletedName && (
+              <p>
+                  Đã xóa:
+                  {deletedName}
+              </p>
+          )}
+
+          {items.map(item => (
+              <div
+                  key={item.id}
+              >
+                  {item.name}
+
+                  <button
+                      onClick={() =>
+                          handleDelete(
+                              item
+                          )
+                      }
+                  >
+                      Xóa
+                  </button>
+              </div>
+          ))}
+      </div>
+  );
+}
+function UpdateItem() {
+  const [items, setItems] =
+      useState([
+          {
+              id: 1,
+              name: "Minh",
+              age: 20
+          },
+          {
+              id: 2,
+              name: "An",
+              age: 21
+          }
+      ]);
+
+  const [editingId,
+      setEditingId]
+      = useState(null);
+
+  const [editName,
+      setEditName]
+      = useState("");
+
+  function startEdit(
+      item
+  ) {
+      setEditingId(
+          item.id
+      );
+
+      setEditName(
+          item.name
+      );
+  }
+
+  function saveEdit() {
+      if (
+          editName.trim() ===
+          ""
+      ) {
+          return;
+      }
+
+      setItems(
+          items.map(item =>
+              item.id ===
+              editingId
+                  ? {
+                        ...item,
+                        name: editName
+                    }
+                  : item
+          )
+      );
+
+      setEditingId(
+          null
+      );
+  }
+
+  return (
+      <div>
+          <h2>
+              Sửa thông tin
+          </h2>
+
+          {items.map(item => (
+              <div
+                  key={item.id}
+              >
+                  {editingId ===
+                  item.id ? (
+                      <>
+                          <input
+                              value={
+                                  editName
+                              }
+                              onChange={(
+                                  e
+                              ) =>
+                                  setEditName(
+                                      e
+                                          .target
+                                          .value
+                                  )
+                              }
+                          />
+
+                          <button
+                              onClick={
+                                  saveEdit
+                              }
+                          >
+                              Lưu
+                          </button>
+                      </>
+                  ) : (
+                      <>
+                          {item.name}
+
+                          <button
+                              onClick={() =>
+                                  startEdit(
+                                      item
+                                  )
+                              }
+                          >
+                              Sửa
+                          </button>
+                      </>
+                  )}
+              </div>
+          ))}
+      </div>
   );
 }
 function App() {
   return (
-      <div>
-          <ClickEvents />
+      <div style={{ padding: "20px" }}>
+          <ListBasics />
+
           <hr />
-          <InputEvents />
+
+          <CreateItem />
+
           <hr />
-          <KeyboardEvents />
+
+          <DeleteItem />
+
           <hr />
-          <FormEvents />
+
+          <UpdateItem />
       </div>
   );
 }
