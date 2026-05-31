@@ -926,3 +926,40 @@ Chức năng:
 7. Tính rating trung bình
 8. Tìm kiếm sản phẩm theo từ khóa
 ![product manager result](screenshots/product_manager_result.png)
+
+## Bài B2 — Shopping Cart
+
+Đã tạo file:
+
+shopping_cart.js
+
+Áp dụng Closure:
+
+```js
+function createCart() {
+    let items = [];
+}
+```
+Private data:
+
+items
+discount
+freeShip
+
+Các chức năng:
+
+addItem()
+removeItem()
+updateQuantity()
+getTotal()
+applyDiscount()
+printCart()
+getItemCount()
+clearCart()
+
+Mã giảm giá:
+
+SALE10 → giảm 10%
+SALE20 → giảm 20%
+FREESHIP → giảm 30.000đ
+![shopping cart result](screenshots/shopping_cart_result.png)
