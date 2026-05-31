@@ -963,3 +963,24 @@ SALE10 → giảm 10%
 SALE20 → giảm 20%
 FREESHIP → giảm 30.000đ
 ![shopping cart result](screenshots/shopping_cart_result.png)
+
+## Bài B3 — Higher-Order Functions Challenge
+
+Đã tạo file:
+
+higher_order.js
+
+Các hàm đã viết:
+
+- pipe(...fns): nối nhiều hàm lại thành một pipeline xử lý dữ liệu.
+- memoize(fn): cache kết quả để không tính lại nếu input giống nhau.
+- debounce(fn, delay): chỉ chạy hàm sau khi người dùng ngừng gọi trong một khoảng thời gian.
+- retry(fn, maxAttempts): thử chạy lại hàm async nếu bị lỗi.
+
+Kết quả kiểm tra:
+
+- pipe(5) trả về "Kết quả: 20"
+- memoize chỉ in "Đang tính..." ở lần gọi đầu tiên.
+- debounce chỉ chạy lần gọi cuối cùng.
+- retry thử lại đến khi task thành công hoặc hết số lần thử.
+![higher order result](screenshots/higher_order_result.png)
