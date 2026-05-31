@@ -217,3 +217,85 @@ Component sẽ render lại khi:
 
 Khi đó React sẽ cập nhật giao diện mới lên màn hình.
 
+
+
+# Bài 1.2 — Biến bình thường vs useState
+
+## Code đã chạy
+
+```jsx
+import { useState } from "react";
+
+function BadCounter() {
+    let count = 0;
+
+    console.log("BadCounter render");
+
+    function handleClick() {
+        count = count + 1;
+        console.log("Count:", count);
+    }
+
+    return (
+        <div>
+            <h2>Counter tệ dùng biến thường</h2>
+            <p>Bộ đếm: {count}</p>
+            <button onClick={handleClick}>Tăng (+1)</button>
+        </div>
+    );
+}
+
+function GoodCounter() {
+    const [count, setCount] = useState(0);
+
+    console.log("GoodCounter render");
+
+    function handleClick() {
+        setCount(count + 1);
+    }
+
+    return (
+        <div>
+            <h2>Counter tốt dùng useState</h2>
+            <p>Bộ đếm: {count}</p>
+            <button onClick={handleClick}>Tăng (+1)</button>
+        </div>
+    );
+}
+
+function App() {
+    return (
+        <div>
+            <BadCounter />
+            <GoodCounter />
+        </div>
+    );
+}
+
+export default App;
+```
+### Thử nghiệm BadCounter
+
+Khi nhấn nút tăng ở BadCounter:
+
+    Console có hiện Count: 1, Count: 2, Count: 3
+    Nhưng số trên màn hình vẫn là 0
+
+Lý do: count là biến bình thường. Khi thay đổi biến bình thường, React không biết cần cập nhật giao diện.
+### Thử nghiệm GoodCounter
+
+Khi nhấn nút tăng ở GoodCounter:
+
+    Số trên màn hình tăng từ 0 lên 1, 2, 3
+    Console hiện `GoodCounter render`
+
+Lý do: `count` là state được tạo bằng `useState`. Khi gọi `setCount`, React biết dữ liệu thay đổi và render lại giao diện.
+### So sánh
+Nội dung	Biến bình thường	useState
+Khai báo	`let count = 0`	`const [count, setCount] = useState(0)`
+Thay đổi	`count = count + 1`	`setCount(count + 1)`
+UI cập nhật	Không	Có
+Re-render	Không xảy ra	Xảy ra khi gọi setCount
+### Kết luận
+
+Muốn dữ liệu thay đổi và giao diện React cập nhật theo, cần dùng `useState.`
