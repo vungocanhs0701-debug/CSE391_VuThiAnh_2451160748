@@ -976,3 +976,262 @@ Luôn ưu tiên dùng === và !==
 ```
 
 Chỉ sử dụng `==` khi thực sự hiểu rõ cơ chế ép kiểu của JavaScript và chủ động muốn sử dụng nó.
+
+# Câu A4 — Truthy & Falsy
+
+## Tất cả giá trị Falsy trong JavaScript
+
+JavaScript chỉ có **8 giá trị Falsy**:
+
+```js
+false
+0
+-0
+0n
+""
+null
+undefined
+NaN
+```
+
+Chi tiết:
+
+| Giá trị | Giải thích |
+|----------|------------|
+| false | Giá trị boolean false |
+| 0 | Số 0 |
+| -0 | Số âm 0 |
+| 0n | BigInt 0 |
+| "" | Chuỗi rỗng |
+| null | Không có giá trị |
+| undefined | Chưa được gán giá trị |
+| NaN | Not a Number |
+
+
+## Các giá trị còn lại
+
+Tất cả các giá trị không nằm trong danh sách trên đều là Truthy.
+
+Ví dụ:
+
+```js
+"0"
+"false"
+[]
+{}
+1
+-1
+" "
+true
+```
+
+đều là Truthy.
+
+
+# Dự đoán kết quả
+
+## 1.
+
+```js
+if ("0") console.log("A");
+```
+
+Kết quả:
+
+```text
+A
+```
+
+### Giải thích
+
+```js
+"0"
+```
+
+là chuỗi có ký tự.
+
+Không phải chuỗi rỗng.
+
+→ Truthy
+
+## 2.
+
+```js
+if ("") console.log("B");
+```
+
+Kết quả:
+
+```text
+Không in
+```
+
+### Giải thích
+
+```js
+""
+```
+
+là chuỗi rỗng.
+
+→ Falsy
+
+## 3.
+
+```js
+if ([]) console.log("C");
+```
+
+Kết quả:
+
+```text
+C
+```
+
+### Giải thích
+
+Mảng rỗng:
+
+```js
+[]
+```
+
+vẫn là object.
+
+→ Truthy
+## 4.
+
+```js
+if ({}) console.log("D");
+```
+
+Kết quả:
+
+```text
+D
+```
+
+### Giải thích
+
+Object rỗng:
+
+```js
+{}
+```
+
+vẫn là object.
+
+→ Truthy
+
+## 5.
+
+```js
+if (null) console.log("E");
+```
+
+Kết quả:
+
+```text
+Không in
+```
+
+### Giải thích
+
+```js
+null
+```
+
+là Falsy.
+## 6.
+
+```js
+if (0) console.log("F");
+```
+
+Kết quả:
+
+```text
+Không in
+```
+
+### Giải thích
+
+```js
+0
+```
+
+là Falsy.
+
+## 7.
+
+```js
+if (-1) console.log("G");
+```
+
+Kết quả:
+
+```text
+G
+```
+
+### Giải thích
+
+```js
+-1
+```
+
+không phải Falsy.
+
+→ Truthy
+
+## 8.
+
+```js
+if (" ") console.log("H");
+```
+
+Kết quả:
+
+```text
+H
+```
+
+### Giải thích
+
+```js
+" "
+```
+
+là chuỗi chứa 1 dấu cách.
+
+Không phải chuỗi rỗng.
+
+→ Truthy
+
+# Bảng tổng hợp
+
+| Biểu thức | Kết quả |
+|------------|----------|
+| if("0") | In A |
+| if("") | Không in |
+| if([]) | In C |
+| if({}) | In D |
+| if(null) | Không in |
+| if(0) | Không in |
+| if(-1) | In G |
+| if(" ") | In H |
+
+# Kết luận
+
+Những trường hợp dễ nhầm nhất:
+
+```js
+"0"     // Truthy
+[]      // Truthy
+{}      // Truthy
+" "     // Truthy
+```
+
+Nhiều người nghĩ chúng là Falsy nhưng thực tế JavaScript coi tất cả các giá trị trên là Truthy.
+
+Chỉ có 8 giá trị Falsy đã liệt kê ở đầu bài.
