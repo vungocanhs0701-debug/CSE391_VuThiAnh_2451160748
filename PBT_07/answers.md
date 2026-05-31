@@ -1235,3 +1235,158 @@ Những trường hợp dễ nhầm nhất:
 Nhiều người nghĩ chúng là Falsy nhưng thực tế JavaScript coi tất cả các giá trị trên là Truthy.
 
 Chỉ có 8 giá trị Falsy đã liệt kê ở đầu bài.
+
+# Câu A5 — Template Literals
+
+## Cách 1
+
+### Code gốc
+
+```js
+var greeting = "Xin chào " + name + "! Bạn " + age + " tuổi.";
+```
+
+### Viết bằng Template Literal
+
+```js
+var greeting = `Xin chào ${name}! Bạn ${age} tuổi.`;
+```
+
+## Cách 2
+
+### Code gốc
+
+```js
+var url = "https://api.example.com/users/" + userId + "/orders?page=" + page;
+```
+
+### Viết bằng Template Literal
+
+```js
+var url = `https://api.example.com/users/${userId}/orders?page=${page}`;
+```
+
+## Cách 3
+
+### Code gốc
+
+```js
+var html = "<div class=\"card\">" +
+    "<h2>" + title + "</h2>" +
+    "<p>" + description + "</p>" +
+    "<span>Giá: " + price + "đ</span>" +
+    "</div>";
+```
+
+### Viết bằng Template Literal
+
+```js
+var html = `
+<div class="card">
+    <h2>${title}</h2>
+    <p>${description}</p>
+    <span>Giá: ${price}đ</span>
+</div>
+`;
+```
+
+# Ưu điểm của Template Literals
+
+## 1. Code dễ đọc hơn
+
+Thay vì:
+
+```js
+"Xin chào " + name + "! Bạn " + age + " tuổi."
+```
+
+ta viết:
+
+```js
+`Xin chào ${name}! Bạn ${age} tuổi.`
+```
+
+ngắn gọn và dễ hiểu hơn
+
+## 2. Hỗ trợ chèn biến trực tiếp
+
+Cú pháp:
+
+```js
+${variable}
+```
+
+Ví dụ:
+
+```js
+let name = "Anh";
+
+console.log(`Xin chào ${name}`);
+```
+
+Kết quả:
+
+```text
+Xin chào Anh
+```
+
+## 3. Hỗ trợ nhiều dòng
+
+Ví dụ:
+
+```js
+let text = `
+Dòng 1
+Dòng 2
+Dòng 3
+`;
+```
+
+Không cần dùng:
+
+```js
+"\n"
+```
+
+hoặc nối chuỗi bằng dấu `+`.
+
+## 4. Có thể nhúng biểu thức
+
+Ví dụ:
+
+```js
+let a = 5;
+let b = 3;
+
+console.log(`Tổng = ${a + b}`);
+```
+
+Kết quả:
+
+```text
+Tổng = 8
+```
+# Kết luận
+
+Template Literals sử dụng dấu:
+
+```js
+`
+```
+
+(backtick)
+
+và cú pháp:
+
+```js
+${...}
+```
+
+để:
+
+- Nối chuỗi dễ dàng
+- Chèn biến trực tiếp
+- Viết chuỗi nhiều dòng
+- Nhúng biểu thức JavaScript
+
+Đây là cách được khuyến nghị sử dụng trong JavaScript hiện đại thay cho nối chuỗi bằng dấu `+`.
