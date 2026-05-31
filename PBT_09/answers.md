@@ -585,3 +585,27 @@ Chức năng đã hoàn thành:
   - sortProducts()
 ![product catalog](screenshots/product_catalog.png)
 
+
+# Bài B3 — Form Validator
+
+Đã tạo folder:
+
+form_validator/
+
+Gồm 3 file:
+
+- index.html
+- style.css
+- app.js
+
+Chức năng đã hoàn thành:
+
+- Validate tên realtime từ 2 đến 50 ký tự
+- Validate email bằng regex
+- Password strength meter: yếu, trung bình, mạnh
+- Progress bar đổi màu theo độ mạnh mật khẩu
+- Confirm password kiểm tra realtime
+- Phone tự format dạng 0901-234-567
+- Submit button disabled cho đến khi tất cả field hợp lệ
+- Submit thành công hiển thị modal thông tin đã nhập
+![form validator](screenshots/form_validator.png)
