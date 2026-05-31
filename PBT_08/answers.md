@@ -561,3 +561,343 @@ every()
 ```
 
 Giúp xử lý dữ liệu ngắn gọn, dễ đọc và thường được sử dụng trong JavaScript hiện đại.
+
+# Câu A4 — Object Destructuring & Spread
+
+## Code
+
+```js
+const product = {
+    name: "iPhone 16",
+    price: 25990000,
+    specs: {
+        ram: 8,
+        storage: 256,
+        color: "Titan"
+    }
+};
+
+// Destructuring
+const {
+    name,
+    price,
+    specs: { ram, color }
+} = product;
+
+console.log(name, price, ram, color);
+console.log(specs);
+
+// Spread
+const updated = {
+    ...product,
+    price: 23990000,
+    sale: true
+};
+
+console.log(updated.price);
+console.log(updated.sale);
+console.log(product.price);
+
+// Spread gotcha
+const copy = { ...product };
+
+copy.specs.ram = 16;
+
+console.log(product.specs.ram);
+```
+# 1. Destructuring
+
+```js
+const {
+    name,
+    price,
+    specs: { ram, color }
+} = product;
+```
+
+## Output
+
+```js
+console.log(name, price, ram, color);
+```
+
+Kết quả:
+
+```text
+iPhone 16 25990000 8 Titan
+```
+
+### Giải thích
+
+Từ object:
+
+```js
+product = {
+    name: "iPhone 16",
+    price: 25990000,
+    specs: {
+        ram: 8,
+        color: "Titan"
+    }
+}
+```
+
+Destructuring lấy:
+
+```js
+name = "iPhone 16"
+price = 25990000
+ram = 8
+color = "Titan"
+```
+
+# 2. console.log(specs)
+
+```js
+console.log(specs);
+```
+
+## Output
+
+```text
+ReferenceError: specs is not defined
+```
+
+### Giải thích
+
+Ta chỉ destructure:
+
+```js
+specs: { ram, color }
+```
+
+Nghĩa là chỉ tạo biến:
+
+```js
+ram
+color
+```
+
+Không tạo biến:
+
+```js
+specs
+```
+
+Vì vậy:
+
+```js
+console.log(specs);
+```
+
+sẽ lỗi.
+
+# 3. Spread Operator
+
+```js
+const updated = {
+    ...product,
+    price: 23990000,
+    sale: true
+};
+```
+
+## Output
+
+```js
+console.log(updated.price);
+```
+
+Kết quả:
+
+```text
+23990000
+```
+
+## Output
+
+```js
+console.log(updated.sale);
+```
+
+Kết quả:
+
+```text
+true
+```
+
+## Output
+
+```js
+console.log(product.price);
+```
+
+Kết quả:
+
+```text
+25990000
+```
+
+### Giải thích
+
+Spread tạo object mới:
+
+```js
+updated
+```
+
+nên thay đổi:
+
+```js
+price: 23990000
+```
+
+không làm ảnh hưởng object gốc.
+
+# 4. Spread Gotcha
+
+```js
+const copy = { ...product };
+```
+
+Nhiều người nghĩ đây là copy hoàn toàn.
+
+Thực tế:
+
+```js
+Spread chỉ copy nông (shallow copy)
+```
+
+## Sau đó
+
+```js
+copy.specs.ram = 16;
+```
+
+Ta thay đổi:
+
+```js
+specs.ram
+```
+
+
+## Output
+
+```js
+console.log(product.specs.ram);
+```
+
+Kết quả:
+
+```text
+16
+```
+
+## Tại sao?
+
+Vì:
+
+```js
+product.specs
+```
+
+và
+
+```js
+copy.specs
+```
+
+đang cùng trỏ tới một object trong bộ nhớ.
+
+Minh họa:
+
+```text
+product
+ └─ specs ─┐
+           │
+copy   ────┘
+```
+
+Nên khi sửa:
+
+```js
+copy.specs.ram = 16;
+```
+
+thì:
+
+```js
+product.specs.ram
+```
+
+cũng đổi thành:
+
+```text
+16
+```
+
+# Bảng tổng hợp
+
+| Câu lệnh | Kết quả |
+|-----------|----------|
+| console.log(name, price, ram, color) | iPhone 16 25990000 8 Titan |
+| console.log(specs) | ReferenceError |
+| console.log(updated.price) | 23990000 |
+| console.log(updated.sale) | true |
+| console.log(product.price) | 25990000 |
+| console.log(product.specs.ram) | 16 |
+
+# Kết luận
+
+## Destructuring
+
+Cho phép lấy nhanh dữ liệu từ object:
+
+```js
+const { name, price } = product;
+```
+
+## Spread Operator
+
+```js
+const copy = { ...product };
+```
+
+chỉ tạo:
+
+```text
+Shallow Copy
+```
+
+không phải:
+
+```text
+Deep Copy
+```
+## Lưu ý quan trọng
+
+Với object lồng nhau:
+
+```js
+specs
+```
+
+spread sẽ sao chép tham chiếu.
+
+Do đó:
+
+```js
+copy.specs.ram = 16;
+```
+
+sẽ làm thay đổi cả:
+
+```js
+product.specs.ram
+```
+
+Kết quả cuối cùng:
+
+```text
+16
+```
