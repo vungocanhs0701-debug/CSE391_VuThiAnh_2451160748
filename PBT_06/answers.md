@@ -131,3 +131,162 @@ col-lg-3
 ```
 
 Vì vậy không cần viết thêm `col-sm-12`.
+
+# Câu A2 — Utilities & Components
+
+## 1. Giải thích class d-none d-md-block
+
+```html
+<div class="d-none d-md-block">
+    Nội dung
+</div>
+```
+
+### d-none
+
+```text
+display: none;
+```
+
+Element bị ẩn mặc định trên màn hình nhỏ.
+
+### d-md-block
+
+```text
+Từ breakpoint md trở lên, display: block;
+```
+
+Breakpoint `md` của Bootstrap là từ 768px.
+
+### Kết luận
+
+Element sẽ:
+
+- Ẩn trên mobile dưới 768px
+- Hiển thị từ tablet 768px trở lên
+
+## 2. Liệt kê 5 spacing utilities
+
+### 1. mt-3
+
+```text
+margin-top mức 3
+```
+
+Dùng để tạo khoảng cách phía trên.
+
+Ví dụ:
+
+```html
+<div class="mt-3">Box</div>
+```
+
+### 2. mb-4
+
+```text
+margin-bottom mức 4
+```
+
+Tạo khoảng cách phía dưới.
+
+Ví dụ:
+
+```html
+<div class="mb-4">Box</div>
+```
+### 3. ms-2
+
+```text
+margin-start mức 2
+```
+
+Tạo khoảng cách phía bên trái trong giao diện LTR.
+
+Ví dụ:
+
+```html
+<div class="ms-2">Box</div>
+```
+
+### 4. px-4
+
+```text
+padding-left và padding-right mức 4
+```
+
+Tạo padding ngang.
+
+Ví dụ:
+
+```html
+<div class="px-4">Box</div>
+```
+
+### 5. py-3
+
+```text
+padding-top và padding-bottom mức 3
+```
+
+Tạo padding dọc.
+
+Ví dụ:
+
+```html
+<div class="py-3">Box</div>
+```
+
+### 6. mb-auto
+
+```text
+margin-bottom: auto;
+```
+
+Dùng khi cần đẩy phần tử trong flex layout.
+
+Ví dụ:
+
+```html
+<div class="mb-auto">Box</div>
+```
+
+## 3. Sự khác nhau giữa .container, .container-fluid, .container-md
+
+### .container
+
+```html
+<div class="container">
+```
+
+- Có max-width thay đổi theo breakpoint
+- Căn giữa nội dung
+- Phù hợp layout web thông thường
+
+### .container-fluid
+
+```html
+<div class="container-fluid">
+```
+
+- Luôn rộng 100% màn hình
+- Không bị giới hạn max-width
+- Phù hợp banner full width, layout toàn màn hình
+
+### .container-md
+
+```html
+<div class="container-md">
+```
+
+- Dưới breakpoint `md`, nó rộng 100%
+- Từ `md` trở lên, nó hoạt động giống container có max-width
+
+Phù hợp khi muốn mobile full width nhưng tablet/desktop có giới hạn chiều rộng.
+
+# Kết luận
+
+Bootstrap giúp xây dựng responsive layout nhanh bằng:
+- Grid system 12 cột
+- Breakpoints như md, lg
+- Utility classes cho spacing, display, layout
+- Components có sẵn
