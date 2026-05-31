@@ -1521,3 +1521,24 @@ Tính điểm trung bình toàn lớp cho từng môn
 Bonus: Tính điểm trung bình theo giới tính
 
 ![student data result](screenshots/student_data_result.png)
+
+## Bài B3 — Mini Game: Đoán số
+
+Đã tạo 2 file:
+
+```text
+guess_number.html
+guess.js
+```
+Chương trình thực hiện:
+
+Máy random 1 số từ 1 đến 100
+Người chơi nhập số bằng prompt()
+Nếu đoán thấp hơn đáp án thì hiện "Cao hơn!"
+Nếu đoán cao hơn đáp án thì hiện "Thấp hơn!"
+Nếu đoán đúng thì hiện số lần đoán
+Giới hạn tối đa 7 lần đoán
+Nếu hết lượt thì thông báo thua và hiển thị đáp án
+Validate input: chỉ nhận số từ 1 đến 100
+Nếu nhập trùng số đã đoán thì cảnh báo "Bạn đã đoán số này rồi!"
+![guess number game](screenshots/guess_number_game.png)
