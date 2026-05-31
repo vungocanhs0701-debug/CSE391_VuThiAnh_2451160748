@@ -1857,3 +1857,190 @@ Các lỗi chính gồm:
 - Dùng `var` trong vòng lặp gây lỗi closure với `setTimeout`
 - Nên dùng `const` hoặc `let` thay cho `var`
 - Nên thêm dấu `;` để code rõ ràng hơn
+
+# Câu C2 — Bài toán thực tế
+
+## Phân tích bài toán
+
+### Input
+
+Danh sách món ăn gồm:
+
+- Tên món
+- Giá
+- Số lượng
+
+Ví dụ:
+
+```js
+const menu = [
+    { name: "Phở bò", price: 65000, quantity: 2 },
+    { name: "Trà đá", price: 5000, quantity: 3 },
+    { name: "Bún chả", price: 55000, quantity: 1 }
+];
+```
+
+## Quy tắc tính tiền
+
+### Giảm giá theo tổng hóa đơn
+
+| Điều kiện | Giảm giá |
+|------------|-----------|
+| > 500.000đ | 10% |
+| > 1.000.000đ | 15% |
+
+### Khuyến mãi thứ 4 (Wednesday)
+
+Giảm thêm:
+
+```text
+5%
+```
+
+### VAT
+
+```text
+8%
+```
+
+### Tip
+
+```text
+5%
+```
+
+(Có thể bật hoặc tắt)
+
+## Chương trình
+
+```js
+const menu = [
+    { name: "Phở bò", price: 65000, quantity: 2 },
+    { name: "Trà đá", price: 5000, quantity: 3 },
+    { name: "Bún chả", price: 55000, quantity: 1 }
+];
+
+const isWednesday = true;
+const hasTip = true;
+
+let tongTien = 0;
+
+console.log("======================================");
+console.log("          HÓA ĐƠN NHÀ HÀNG");
+console.log("======================================");
+
+for (let i = 0; i < menu.length; i++) {
+
+    const item = menu[i];
+    const thanhTien = item.price * item.quantity;
+
+    tongTien += thanhTien;
+
+    console.log(
+        (i + 1) + ". " +
+        item.name +
+        " x" +
+        item.quantity +
+        " = " +
+        thanhTien.toLocaleString() +
+        "đ"
+    );
+}
+
+let tyLeGiam = 0;
+
+if (tongTien > 1000000) {
+    tyLeGiam = 15;
+}
+else if (tongTien > 500000) {
+    tyLeGiam = 10;
+}
+
+if (isWednesday) {
+    tyLeGiam += 5;
+}
+
+const tienGiam = tongTien * tyLeGiam / 100;
+
+const sauGiam = tongTien - tienGiam;
+
+const vat = sauGiam * 0.08;
+
+let tip = 0;
+
+if (hasTip) {
+    tip = sauGiam * 0.05;
+}
+
+const thanhToan = sauGiam + vat + tip;
+
+console.log("--------------------------------------");
+console.log(
+    "Tổng cộng:      ",
+    tongTien.toLocaleString() + "đ"
+);
+
+console.log(
+    "Giảm giá:       ",
+    tienGiam.toLocaleString() + "đ"
+);
+
+console.log(
+    "VAT (8%):       ",
+    vat.toLocaleString() + "đ"
+);
+
+console.log(
+    "Tip (5%):       ",
+    tip.toLocaleString() + "đ"
+);
+
+console.log("--------------------------------------");
+
+console.log(
+    "THANH TOÁN:     ",
+    thanhToan.toLocaleString() + "đ"
+);
+
+console.log("======================================");
+```
+## Ví dụ kết quả
+
+```text
+======================================
+          HÓA ĐƠN NHÀ HÀNG
+======================================
+
+1. Phở bò x2 = 130,000đ
+2. Trà đá x3 = 15,000đ
+3. Bún chả x1 = 55,000đ
+
+--------------------------------------
+
+Tổng cộng:       200,000đ
+Giảm giá:        10,000đ
+VAT (8%):        15,200đ
+Tip (5%):        9,500đ
+
+--------------------------------------
+
+THANH TOÁN:      214,700đ
+
+======================================
+```
+
+## Độ phức tạp
+
+- Duyệt danh sách món ăn: O(n)
+- Bộ nhớ phụ: O(1)
+## Kết luận
+
+Chương trình thực hiện:
+
+- Tính tổng tiền món ăn
+- Áp dụng giảm giá theo mức hóa đơn
+- Áp dụng khuyến mãi thứ 4
+- Tính VAT 8%
+- Tính tip 5% (tùy chọn)
+- In hóa đơn chi tiết dạng bảng
+![restaurant bill result](screenshots/restaurant_bill_result.png)
