@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý sinh viên</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Quản lý sinh viên</h1>
+
+    <div class="top">
+        <button id="btnAdd">Thêm sinh viên</button>
+    </div>
+
+    <div id="message"></div>
+
+    <div class="statistics">
+        <p>Tổng số sinh viên: <span id="totalStudents">0</span></p>
+        <p>Điểm trung bình cả lớp: <span id="avgScore">0</span></p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Mã SV</th>
+                <th>Họ tên</th>
+                <th>Ngày sinh</th>
+                <th>Lớp</th>
+                <th>Điểm TB</th>
+                <th>Email</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody id="studentTableBody"></tbody>
+    </table>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2 id="formTitle">Thêm sinh viên</h2>
+
+            <form id="studentForm">
+                <input type="text" id="studentId" placeholder="Mã sinh viên" required>
+                <input type="text" id="fullName" placeholder="Họ và tên" required>
+                <input type="date" id="birthDate" required>
+                <input type="text" id="className" placeholder="Lớp học" required>
+                <input type="number" id="score" placeholder="Điểm trung bình" step="0.1" min="0" max="10" required>
+                <input type="email" id="email" placeholder="Email" required>
+
+                <div class="form-actions">
+                    <button type="submit" id="btnSave">Lưu</button>
+                    <button type="button" id="btnClose">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

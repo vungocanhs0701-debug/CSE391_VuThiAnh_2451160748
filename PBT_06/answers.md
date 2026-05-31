@@ -342,3 +342,302 @@ Nghĩa là:
 ## Screenshot
 
 ![Bootstrap Dashboard](screenshots/bootstrap_dashboard.png)
+
+# PHẦN C — PHÂN TÍCH
+
+# Câu C1 — Tùy biến Bootstrap
+
+## Đổi màu $primary sang #E63946
+
+Muốn đổi màu `$primary` của Bootstrap từ xanh mặc định sang màu:
+
+```text
+#E63946
+```
+
+thì nên tùy biến bằng SASS/SCSS.
+
+## Quy trình thực hiện
+
+### Bước 1: Cần công cụ
+
+Cần có:
+
+- Bootstrap source SCSS
+- Sass compiler
+- Node.js / npm nếu dùng Bootstrap qua npm
+
+Cài Bootstrap và Sass:
+
+```bash
+npm install bootstrap sass
+```
+
+### Bước 2: Tạo file SCSS riêng
+
+Ví dụ tạo file:
+
+```text
+custom.scss
+```
+### Bước 3: Override biến trước khi import Bootstrap
+
+Trong `custom.scss`:
+
+```scss
+$primary: #E63946;
+
+@import "bootstrap/scss/bootstrap";
+```
+
+Lưu ý: phải đặt `$primary` trước khi import Bootstrap.
+
+### Bước 4: Compile SCSS sang CSS
+
+Chạy lệnh:
+
+```bash
+sass custom.scss custom.css
+```
+
+Sau đó trong HTML dùng file CSS đã compile:
+
+```html
+<link rel="stylesheet" href="custom.css">
+```
+
+## Tại sao không nên override trực tiếp .btn-primary?
+
+Không nên làm như sau:
+
+```css
+.btn-primary {
+    background: red;
+}
+```
+
+vì cách này chỉ sửa riêng class `.btn-primary`.
+
+Trong Bootstrap, màu `$primary` không chỉ dùng cho button mà còn dùng ở nhiều component khác như:
+
+- `.btn-primary`
+- `.bg-primary`
+- `.text-primary`
+- `.border-primary`
+- alert
+- badge
+- link
+- form focus
+
+Nếu chỉ override `.btn-primary`, các component khác vẫn giữ màu xanh cũ, làm giao diện không đồng bộ.
+
+## Vì sao nên dùng SASS variables?
+
+Dùng biến:
+
+```scss
+$primary: #E63946;
+```
+
+giúp Bootstrap tự tạo lại toàn bộ hệ thống class liên quan đến màu primary.
+
+Ưu điểm:
+
+- Giao diện đồng bộ
+- Dễ bảo trì
+- Không cần ghi đè nhiều class
+- Giảm CSS thừa
+- Theo đúng cách tùy biến của Bootstrap
+
+# Câu C2 — So sánh CSS thuần và Bootstrap
+
+## 1. CSS thuần tạo navbar responsive + product card
+
+### HTML ví dụ
+
+```html
+<header class="navbar">
+    <div class="logo">ShopTLU</div>
+
+    <button class="hamburger">☰</button>
+
+    <nav class="menu">
+        <a href="#">Home</a>
+        <a href="#">Products</a>
+        <a href="#">About</a>
+    </nav>
+</header>
+
+<div class="card">
+    <img src="product.jpg" alt="Product">
+    <div class="card-body">
+        <h3>iPhone 16</h3>
+        <p>25.990.000đ</p>
+        <button>Mua ngay</button>
+    </div>
+</div>
+```
+
+### CSS thuần
+
+```css
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #1e293b;
+    color: white;
+    padding: 16px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.hamburger {
+    display: block;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+}
+
+.menu {
+    display: none;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.card {
+    width: 300px;
+    margin: 30px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.card img {
+    width: 100%;
+    display: block;
+}
+
+.card-body {
+    padding: 16px;
+}
+
+.card-body p {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.card-body button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: #2563eb;
+    color: white;
+    border-radius: 8px;
+}
+
+@media (min-width: 768px) {
+
+    .hamburger {
+        display: none;
+    }
+
+    .menu {
+        display: flex;
+    }
+}
+```
+
+## 2. Bootstrap version
+
+### Navbar Bootstrap
+
+```html
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">ShopTLU</a>
+
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+```
+
+### Product card Bootstrap
+
+```html
+<div class="card" style="width: 18rem;">
+    <img src="product.jpg" class="card-img-top" alt="Product">
+
+    <div class="card-body">
+        <h5 class="card-title">iPhone 16</h5>
+        <p class="card-text text-danger fw-bold">25.990.000đ</p>
+        <button class="btn btn-primary w-100">Mua ngay</button>
+    </div>
+</div>
+```
+# Bảng so sánh
+
+| Tiêu chí | CSS thuần | Bootstrap |
+|---|---|---|
+| Số dòng CSS cần viết | Nhiều, khoảng 60-100 dòng | Ít hoặc gần như không cần CSS |
+| Thời gian phát triển | Lâu hơn | Nhanh hơn |
+| Responsive | Phải tự viết media queries | Có sẵn grid và breakpoint |
+| Khả năng tùy biến | Cao, tự do hoàn toàn | Nhanh nhưng dễ giống Bootstrap mặc định |
+| Độ khó | Cần hiểu CSS kỹ | Dễ hơn khi đã nhớ class |
+| Phù hợp | Website cần thiết kế riêng | Prototype, admin, landing page nhanh |
+
+## Khi nào nên dùng Bootstrap?
+
+Nên dùng Bootstrap khi:
+
+- Cần làm giao diện nhanh
+- Làm dashboard/admin
+- Làm landing page
+- Làm prototype
+- Project không yêu cầu thiết kế quá khác biệt
+- Muốn responsive nhanh
+
+## Khi nào không nên dùng Bootstrap?
+
+Không nên dùng Bootstrap khi:
+
+- Website cần giao diện rất riêng
+- Muốn tối ưu CSS nhẹ nhất
+- Không muốn HTML nhiều class
+- Project yêu cầu design system riêng
+- Muốn kiểm soát toàn bộ style
+
+# Kết luận
+
+Bootstrap giúp làm giao diện nhanh và responsive tốt với ít CSS.  
+Tuy nhiên CSS thuần cho khả năng tùy biến cao hơn và phù hợp khi cần giao diện độc đáo.

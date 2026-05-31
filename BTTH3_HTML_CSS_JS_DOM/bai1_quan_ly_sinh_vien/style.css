@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background-color: #f4f6f8;
+}
+
+h1 {
+    text-align: center;
+    color: #1f2937;
+}
+
+.top {
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#btnAdd,
+#btnSave {
+    background-color: #2563eb;
+    color: white;
+}
+
+#btnClose {
+    background-color: #6b7280;
+    color: white;
+}
+
+.btn-edit {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #dc2626;
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #2563eb;
+    color: white;
+}
+
+.statistics {
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+}
+
+#message {
+    margin: 10px 0;
+    color: green;
+    font-weight: bold;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: white;
+    width: 400px;
+    margin: 80px auto;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 9px;
+    margin: 8px 0;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
