@@ -127,3 +127,171 @@ Cho phép chọn phần tử bằng:
 - ID
 - CSS selector
 - Pseudo selector
+
+# Câu A2 — innerHTML vs textContent
+
+## 1. innerHTML là gì?
+
+`innerHTML` dùng để lấy hoặc gán **nội dung HTML** bên trong một element.
+
+Nếu chuỗi có thẻ HTML, trình duyệt sẽ hiểu và render thành HTML thật.
+
+### Ví dụ
+
+```html
+<div id="result"></div>
+```
+
+```js
+document.querySelector("#result").innerHTML = "<strong>Hello</strong>";
+```
+
+Kết quả hiển thị:
+
+```text
+Hello
+```
+
+Chữ `Hello` được in đậm vì `<strong>` được hiểu là thẻ HTML.
+
+
+## 2. textContent là gì?
+
+`textContent` dùng để lấy hoặc gán **nội dung dạng text thuần**.
+
+Nếu chuỗi có thẻ HTML, trình duyệt không render thẻ đó mà hiển thị như chữ bình thường.
+
+### Ví dụ
+
+```html
+<div id="result"></div>
+```
+
+```js
+document.querySelector("#result").textContent = "<strong>Hello</strong>";
+```
+
+Kết quả hiển thị:
+
+```text
+<strong>Hello</strong>
+```
+
+
+# Khi nào dùng innerHTML?
+
+Dùng `innerHTML` khi mình **chủ động tạo HTML an toàn**.
+
+Ví dụ:
+
+```js
+document.querySelector("#result").innerHTML = `
+    <h2>Danh sách sản phẩm</h2>
+    <p>Sản phẩm đang giảm giá</p>
+`;
+```
+
+Nên dùng khi dữ liệu không đến trực tiếp từ người dùng.
+
+
+# Khi nào dùng textContent?
+
+Dùng `textContent` khi hiển thị dữ liệu do người dùng nhập vào.
+
+Ví dụ:
+
+```js
+const userInput = document.querySelector("#search").value;
+
+document.querySelector("#result").textContent = userInput;
+```
+
+Cách này an toàn hơn vì trình duyệt chỉ coi dữ liệu là text.
+
+# Bảng so sánh
+
+| Tiêu chí | innerHTML | textContent |
+|----------|-----------|-------------|
+| Hiểu thẻ HTML | Có | Không |
+| Render HTML | Có | Không |
+| Hiển thị text thuần | Có thể | Có |
+| Nguy cơ XSS | Cao hơn | An toàn hơn |
+| Nên dùng với input user | Không nên | Nên |
+
+# Câu hỏi bảo mật: Vì sao innerHTML có thể gây XSS?
+
+XSS là lỗ hổng cho phép kẻ tấn công chèn mã độc vào trang web.
+
+Nếu đưa dữ liệu người dùng nhập trực tiếp vào `innerHTML`, trình duyệt có thể hiểu chuỗi đó như HTML thật.
+
+
+## Ví dụ nguy hiểm
+
+Giả sử user nhập:
+
+```html
+<img src=x onerror="alert('Hacked!')">
+```
+
+Code nguy hiểm:
+
+```js
+const userInput = document.querySelector("#search").value;
+
+document.querySelector("#result").innerHTML = userInput;
+```
+
+Khi đó trình duyệt sẽ tạo thẻ:
+
+```html
+<img>
+```
+
+và chạy sự kiện:
+
+```js
+onerror="alert('Hacked!')"
+```
+
+Điều này gây nguy hiểm vì mã JavaScript của người dùng có thể được thực thi.
+
+# Cách sửa an toàn
+
+Thay `innerHTML` bằng `textContent`.
+
+```js
+const userInput = document.querySelector("#search").value;
+
+document.querySelector("#result").textContent = userInput;
+```
+
+Khi đó chuỗi:
+
+```html
+<img src=x onerror="alert('Hacked!')">
+```
+
+sẽ chỉ được hiển thị như text bình thường, không chạy mã độc.
+
+
+# Cách khác: tạo element bằng DOM API
+
+```js
+const userInput = document.querySelector("#search").value;
+
+const result = document.querySelector("#result");
+result.textContent = "";
+
+const p = document.createElement("p");
+p.textContent = userInput;
+
+result.appendChild(p);
+```
+
+Cách này cũng an toàn vì dữ liệu user được đưa vào bằng `textContent`.
+
+# Kết luận
+
+- Dùng `innerHTML` khi nội dung HTML do lập trình viên kiểm soát.
+- Dùng `textContent` khi hiển thị dữ liệu người dùng nhập.
+- Không nên đưa trực tiếp input của user vào `innerHTML` vì có thể gây XSS.
