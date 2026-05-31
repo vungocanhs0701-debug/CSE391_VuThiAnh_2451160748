@@ -176,3 +176,234 @@ ReferenceError
 - Function Declaration được hoisting hoàn toàn nên có thể gọi trước khi khai báo.
 - Function Expression và Arrow Function không thể gọi trước khi khai báo.
 - Trong JavaScript hiện đại, Arrow Function thường được sử dụng nhiều nhất vì cú pháp ngắn gọn và dễ đọc.
+
+# Câu A2 — Scope & Closure
+
+## Đoạn 1
+
+```js
+function counter() {
+    let count = 0;
+
+    return {
+        increment: () => ++count,
+        decrement: () => --count,
+        getCount: () => count
+    };
+}
+
+const c = counter();
+
+console.log(c.increment());
+console.log(c.increment());
+console.log(c.increment());
+console.log(c.decrement());
+console.log(c.getCount());
+```
+
+## Dự đoán output
+
+```text
+1
+2
+3
+2
+2
+```
+
+## Giải thích
+
+Khi gọi:
+
+```js
+const c = counter();
+```
+
+hàm `counter()` tạo ra biến:
+
+```js
+let count = 0;
+```
+
+Sau đó trả về object gồm 3 hàm:
+
+```js
+increment
+decrement
+getCount
+```
+
+Ba hàm này vẫn nhớ và sử dụng được biến `count` bên trong `counter()`.
+
+Đây gọi là **closure**.
+
+## Phân tích từng dòng
+
+```js
+console.log(c.increment());
+```
+
+`count` tăng từ 0 lên 1.
+
+Kết quả:
+
+```text
+1
+```
+```js
+console.log(c.increment());
+```
+
+`count` tăng từ 1 lên 2.
+
+Kết quả:
+
+```text
+2
+```
+```js
+console.log(c.increment());
+```
+
+`count` tăng từ 2 lên 3.
+
+Kết quả:
+
+```text
+3
+```
+```js
+console.log(c.decrement());
+```
+
+`count` giảm từ 3 xuống 2.
+
+Kết quả:
+
+```text
+2
+```
+```js
+console.log(c.getCount());
+```
+
+Lấy giá trị hiện tại của `count`.
+
+Kết quả:
+
+```text
+2
+```
+
+# Đoạn 2
+
+```js
+for (var i = 0; i < 3; i++) {
+    setTimeout(() => console.log("var:", i), 100);
+}
+
+for (let j = 0; j < 3; j++) {
+    setTimeout(() => console.log("let:", j), 200);
+}
+```
+
+## Dự đoán output sau 200ms
+
+```text
+var: 3
+var: 3
+var: 3
+let: 0
+let: 1
+let: 2
+```
+# Giải thích var trong setTimeout
+
+Vòng lặp:
+
+```js
+for (var i = 0; i < 3; i++)
+```
+
+`var` có **function scope**, không có block scope.
+
+Điều đó có nghĩa là cả 3 lần `setTimeout` đều dùng chung một biến `i`.
+
+Khi vòng lặp chạy xong:
+
+```js
+i = 3
+```
+
+Sau 100ms, các callback mới chạy. Lúc đó `i` đã bằng 3.
+
+Vì vậy in ra:
+
+```text
+var: 3
+var: 3
+var: 3
+```
+
+# Giải thích let trong setTimeout
+
+Vòng lặp:
+
+```js
+for (let j = 0; j < 3; j++)
+```
+
+`let` có **block scope**.
+
+Mỗi lần lặp sẽ tạo ra một biến `j` riêng.
+
+Nên các callback ghi nhớ từng giá trị khác nhau:
+
+```text
+j = 0
+j = 1
+j = 2
+```
+
+Sau 200ms, kết quả là:
+
+```text
+let: 0
+let: 1
+let: 2
+```
+# Kết luận
+
+## var
+
+```js
+var
+```
+
+- Có function scope
+- Dùng chung một biến trong vòng lặp
+- Dễ gây lỗi khi dùng với callback bất đồng bộ như `setTimeout`
+
+## let
+
+```js
+let
+```
+
+- Có block scope
+- Mỗi vòng lặp có một biến riêng
+- Phù hợp hơn khi dùng trong vòng lặp
+
+Vì vậy trong JavaScript hiện đại, nên dùng:
+
+```js
+let
+```
+
+thay cho:
+
+```js
+var
+```
+
+trong vòng lặp.
