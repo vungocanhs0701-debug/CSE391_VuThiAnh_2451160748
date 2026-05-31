@@ -1542,3 +1542,48 @@ Nếu hết lượt thì thông báo thua và hiển thị đáp án
 Validate input: chỉ nhận số từ 1 đến 100
 Nếu nhập trùng số đã đoán thì cảnh báo "Bạn đã đoán số này rồi!"
 ![guess number game](screenshots/guess_number_game.png)
+
+## Bài B4 — FizzBuzz nâng cao
+
+Đã tạo file:
+
+```text
+fizzbuzz.js
+```
+
+### Version 1 — Classic FizzBuzz
+
+- In các số từ 1 đến 100
+- Chia hết cho 3 → Fizz
+- Chia hết cho 5 → Buzz
+- Chia hết cho cả 3 và 5 → FizzBuzz
+
+### Version 2 — Custom FizzBuzz
+
+Viết hàm:
+
+```js
+customFizzBuzz(n, rules)
+```
+
+Cho phép sử dụng bất kỳ bộ quy tắc nào.
+
+Ví dụ:
+
+```js
+[
+    { divisor: 3, word: "Fizz" },
+    { divisor: 5, word: "Buzz" },
+    { divisor: 7, word: "Jazz" }
+]
+```
+
+Kết quả:
+
+```text
+15 = FizzBuzz
+21 = FizzJazz
+35 = BuzzJazz
+105 = FizzBuzzJazz
+```
+![fizzbuzz result](screenshots/fizzbuzz_result.png)
