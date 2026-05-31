@@ -295,3 +295,236 @@ Cách này cũng an toàn vì dữ liệu user được đưa vào bằng `textC
 - Dùng `innerHTML` khi nội dung HTML do lập trình viên kiểm soát.
 - Dùng `textContent` khi hiển thị dữ liệu người dùng nhập.
 - Không nên đưa trực tiếp input của user vào `innerHTML` vì có thể gây XSS.
+
+# Câu A3 — Event Bubbling
+
+## Code
+
+```js
+document.querySelector("#outer").addEventListener("click", () => {
+    console.log("OUTER");
+});
+
+document.querySelector("#inner").addEventListener("click", () => {
+    console.log("INNER");
+});
+
+document.querySelector("#btn").addEventListener("click", (e) => {
+    console.log("BUTTON");
+
+    // e.stopPropagation();
+});
+```
+
+```html
+<div id="outer">
+    <div id="inner">
+        <button id="btn">Click me</button>
+    </div>
+</div>
+```
+
+# Khi click vào button
+
+Phần tử được click là:
+
+```html
+<button id="btn">
+```
+
+Sau khi xử lý ở button, sự kiện sẽ nổi bọt (**Event Bubbling**) từ trong ra ngoài:
+
+```text
+btn
+↑
+inner
+↑
+outer
+```
+
+## Output
+
+```text
+BUTTON
+INNER
+OUTER
+```
+
+# Giải thích
+
+### Bước 1
+
+Click vào:
+
+```html
+<button id="btn">
+```
+
+Listener của button chạy trước:
+
+```js
+console.log("BUTTON");
+```
+
+Kết quả:
+
+```text
+BUTTON
+```
+### Bước 2
+
+Event nổi bọt lên parent:
+
+```html
+<div id="inner">
+```
+
+Chạy:
+
+```js
+console.log("INNER");
+```
+
+Kết quả:
+
+```text
+INNER
+```
+
+### Bước 3
+
+Event tiếp tục nổi bọt lên:
+
+```html
+<div id="outer">
+```
+
+Chạy:
+
+```js
+console.log("OUTER");
+```
+
+Kết quả:
+
+```text
+OUTER
+```
+
+# Kết quả cuối cùng
+
+```text
+BUTTON
+INNER
+OUTER
+```
+
+# Nếu bỏ comment stopPropagation()
+
+```js
+document.querySelector("#btn").addEventListener("click", (e) => {
+    console.log("BUTTON");
+
+    e.stopPropagation();
+});
+```
+
+## Output
+
+```text
+BUTTON
+```
+# Tại sao?
+
+`stopPropagation()` dừng quá trình Event Bubbling.
+
+Sau khi xử lý ở button:
+
+```js
+console.log("BUTTON");
+```
+
+sự kiện sẽ không truyền lên:
+
+```html
+#inner
+```
+
+và:
+
+```html
+#outer
+```
+
+nữa.
+
+Do đó:
+
+```text
+INNER
+```
+
+và:
+
+```text
+OUTER
+```
+
+không được in ra.
+
+# So sánh
+
+| Trường hợp | Output |
+|------------|---------|
+| Không dùng stopPropagation() | BUTTON → INNER → OUTER |
+| Có stopPropagation() | BUTTON |
+
+# Event Bubbling là gì?
+
+Event Bubbling là cơ chế mặc định của DOM:
+
+```text
+Phần tử con
+    ↑
+Phần tử cha
+    ↑
+Ông nội
+    ↑
+document
+```
+
+Sự kiện được kích hoạt ở phần tử được click trước, sau đó lan dần lên các phần tử cha.
+
+Ví dụ:
+
+```html
+button
+→ div
+→ body
+→ html
+→ document
+```
+
+# Kết luận
+
+Khi click button:
+
+```text
+BUTTON
+INNER
+OUTER
+```
+
+Khi dùng:
+
+```js
+e.stopPropagation();
+```
+
+thì:
+
+```text
+BUTTON
+```
+
+vì sự kiện không tiếp tục nổi bọt lên các phần tử cha.
