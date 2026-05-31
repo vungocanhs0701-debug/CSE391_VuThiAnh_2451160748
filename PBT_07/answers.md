@@ -1390,3 +1390,113 @@ ${...}
 - Nhúng biểu thức JavaScript
 
 Đây là cách được khuyến nghị sử dụng trong JavaScript hiện đại thay cho nối chuỗi bằng dấu `+`.
+
+# Bài B1 — Máy tính đơn giản
+
+## File đã tạo
+
+```text
+calculator.js
+```
+
+## Mã nguồn
+
+```js
+function calculate(num1, operator, num2) {
+
+    if (typeof num1 !== "number" || typeof num2 !== "number" || isNaN(num1) || isNaN(num2)) {
+        return "Lỗi: Input không phải số";
+    }
+
+    switch (operator) {
+
+        case "+":
+            return num1 + num2;
+
+        case "-":
+            return num1 - num2;
+
+        case "*":
+            return num1 * num2;
+
+        case "/":
+            if (num2 === 0) {
+                return "Lỗi: Không thể chia cho 0";
+            }
+            return num1 / num2;
+
+        case "%":
+            if (num2 === 0) {
+                return "Lỗi: Không thể chia cho 0";
+            }
+            return num1 % num2;
+
+        case "**":
+            return num1 ** num2;
+
+        default:
+            return `Lỗi: Operator '${operator}' không hợp lệ`;
+    }
+}
+
+console.log(calculate(10, "+", 5));
+console.log(calculate(10, "/", 0));
+console.log(calculate(10, "^", 5));
+console.log(calculate("abc", "+", 5));
+console.log(calculate(2, "**", 10));
+```
+
+## Kết quả chạy
+
+```text
+15
+Lỗi: Không thể chia cho 0
+Lỗi: Operator '^' không hợp lệ
+Lỗi: Input không phải số
+1024
+```
+## Giải thích
+
+### Kiểm tra kiểu dữ liệu
+
+```js
+typeof num1 !== "number"
+```
+
+Dùng để kiểm tra input có phải số hay không.
+
+### Kiểm tra chia cho 0
+
+```js
+if (num2 === 0)
+```
+
+Áp dụng cho:
+
+```js
+/
+%
+```
+
+### Switch Case
+
+Dùng để xử lý các phép toán:
+
+```js
++
+-
+*
+/
+%
+**
+```
+
+### Default
+
+Nếu operator không hợp lệ:
+
+```js
+default:
+```
+
+sẽ trả về thông báo lỗi.
