@@ -901,3 +901,147 @@ Code đã sửa các lỗi chính:
 - Load lại history từ localStorage
 - Lưu history bằng JSON
 - Dùng event delegation cho danh sách history
+
+# Câu C2 — Performance
+
+## 1. Vì sao bind event lên 1000 elements riêng lẻ là bad practice?
+
+Ví dụ xấu:
+
+```js
+const items = document.querySelectorAll(".item");
+
+items.forEach(item => {
+    item.addEventListener("click", function () {
+        console.log(item.textContent);
+    });
+});
+```
+
+Nếu có 1000 elements, trình duyệt phải tạo 1000 event listeners.
+
+Điều này không tốt vì:
+
+- Tốn bộ nhớ hơn
+- Code khó quản lý hơn
+- Khi thêm element mới bằng JavaScript, phải bind event lại
+- Hiệu năng kém hơn khi danh sách lớn
+- Dễ gây lỗi nếu quên gỡ event listener
+
+# 2. Event Delegation giải quyết thế nào?
+
+Thay vì gắn event cho từng item, ta gắn 1 event listener lên phần tử cha.
+
+Ví dụ:
+
+```js
+const list = document.querySelector("#list");
+
+list.addEventListener("click", function (e) {
+    if (e.target.classList.contains("item")) {
+        console.log(e.target.textContent);
+    }
+});
+```
+
+Cách này chỉ cần:
+
+```text
+1 event listener
+```
+
+cho cả danh sách.
+
+Nhờ cơ chế:
+
+```text
+Event Bubbling
+```
+
+khi click vào item con, sự kiện sẽ nổi bọt lên phần tử cha.
+
+## Ưu điểm của Event Delegation
+
+- Chỉ cần 1 event listener
+- Tiết kiệm bộ nhớ
+- Code gọn hơn
+- Element thêm mới sau này vẫn hoạt động
+- Phù hợp với danh sách lớn như todo list, table, product list
+
+# 3. Vấn đề reflow trong code ban đầu
+
+Code ban đầu:
+
+```js
+for (let i = 0; i < 1000; i++) {
+    const div = document.createElement("div");
+    div.textContent = `Item ${i}`;
+    document.body.appendChild(div);
+}
+```
+
+Mỗi lần:
+
+```js
+document.body.appendChild(div);
+```
+
+trình duyệt có thể phải cập nhật lại DOM và layout.
+
+Lặp 1000 lần có thể gây:
+
+```text
+1000 lần reflow/repaint
+```
+
+Điều này làm trang chậm hơn.
+
+# 4. Refactor dùng DocumentFragment
+
+```js
+const fragment = document.createDocumentFragment();
+
+for (let i = 0; i < 1000; i++) {
+    const div = document.createElement("div");
+    div.textContent = `Item ${i}`;
+    fragment.appendChild(div);
+}
+
+document.body.appendChild(fragment);
+```
+
+# 5. Vì sao DocumentFragment nhanh hơn?
+
+`DocumentFragment` là vùng chứa DOM tạm thời, chưa nằm trực tiếp trên trang.
+
+Khi thêm 1000 `div` vào fragment:
+
+```js
+fragment.appendChild(div);
+```
+
+trình duyệt chưa cần render ngay lên màn hình.
+
+Sau khi tạo xong tất cả, ta chỉ append một lần:
+
+```js
+document.body.appendChild(fragment);
+```
+
+Lúc này trình duyệt chỉ cần cập nhật layout một lần lớn thay vì 1000 lần nhỏ.
+
+# So sánh
+
+| Cách làm | Số lần append vào DOM thật | Hiệu năng |
+|----------|----------------------------|-----------|
+| Append trực tiếp 1000 lần | 1000 lần | Chậm hơn |
+| Dùng DocumentFragment | 1 lần | Nhanh hơn |
+
+# Kết luận
+
+Để tối ưu DOM performance:
+
+- Dùng Event Delegation khi có nhiều element giống nhau
+- Hạn chế append trực tiếp nhiều lần vào DOM thật
+- Dùng DocumentFragment để gom element rồi append một lần
+- Tránh thao tác DOM lặp lại quá nhiều lần
